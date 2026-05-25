@@ -4,11 +4,9 @@ import { Callout } from './components/Callout'
 import { Pill } from './components/Pill'
 import { PrettyTable } from './components/PrettyTable'
 
-type ThemeComponents = Parameters<typeof getThemeComponents>[0]
-
-export function useMDXComponents(components: ThemeComponents = {}) {
+export function useMDXComponents() {
   return {
-    ...getThemeComponents(components),
+    ...getThemeComponents(),
     Step,
     Steps,
     Callout,
