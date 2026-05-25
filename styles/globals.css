@@ -1,0 +1,132 @@
+/* Design system tokens — from the P09 Manual Design Review */
+:root {
+  --ink:        #1a1a1a;
+  --ink-soft:   #2c2c2c;
+  --mute:       #6b6b66;
+  --rule:       #d9d4c9;
+  --rule-soft:  #ece8dd;
+  --paper:      #f5f1e8;
+  --paper-deep: #efe9da;
+  --card:       #fbf8f1;
+  --accent:     #1f5a52;
+  --accent-ink: #0f3530;
+  --accent-bg:  #e3ece9;
+  --warn:       #8a3a16;
+  --warn-bg:    #f3e3d8;
+  --legal:      #7a1f1f;
+  --legal-bg:   #f1dcdc;
+  --good:       #2d5a2a;
+  --good-bg:    #e0ead7;
+  --gold:       #8a6a1c;
+  --gold-bg:    #f2e8c9;
+
+  /* Map to Nextra theme overrides */
+  --nextra-primary-hue: 168;
+  --nextra-primary-saturation: 50%;
+}
+
+/* Base typography */
+body {
+  font-family: var(--font-sans, var(--font-geist-sans, ui-sans-serif, system-ui, sans-serif));
+  background: var(--paper);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Nextra layout color overrides */
+:root {
+  --nextra-bg: var(--paper);
+}
+.dark {
+  --nextra-bg: #111;
+}
+
+/* Sidebar */
+.nextra-sidebar-container {
+  background: var(--paper-deep) !important;
+  border-right: 1px solid var(--rule) !important;
+}
+
+/* Content area */
+article {
+  background: var(--paper);
+}
+
+/* Headings use serif */
+article h1 {
+  font-family: var(--font-serif, Georgia, serif);
+  font-weight: 400;
+  font-size: 52px;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+
+article h2 {
+  font-family: var(--font-serif, Georgia, serif);
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  margin-top: 48px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--rule);
+}
+
+article h3 {
+  font-family: var(--font-sans, ui-sans-serif, system-ui, sans-serif);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mute);
+  margin-top: 32px;
+  margin-bottom: 10px;
+}
+
+/* Body text */
+article p {
+  line-height: 1.65;
+  color: var(--ink-soft);
+  max-width: 66ch;
+}
+
+/* Inline code */
+article code {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.875em;
+  background: var(--accent-bg);
+  color: var(--accent-ink);
+  padding: 1px 6px;
+  border-radius: 3px;
+  border: 1px solid rgba(31, 90, 82, 0.12);
+}
+
+/* Links */
+article a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-color: rgba(31, 90, 82, 0.3);
+  text-underline-offset: 2px;
+}
+article a:hover {
+  text-decoration-color: var(--accent);
+}
+
+/* Last-updated stamp in right rail */
+.nextra-toc time,
+.nx-text-xs.nx-text-gray-500 {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+
+/* Sidebar active link */
+.nextra-sidebar li a[aria-current="page"] {
+  color: var(--accent) !important;
+  background: var(--accent-bg) !important;
+}

@@ -1,0 +1,92 @@
+---
+title: Quick start — your first week
+lastUpdated: 2026-05-24
+---
+
+import { Steps, Step } from '../../../components/Step'
+import { Callout } from '../../../components/Callout'
+import { Pill } from '../../../components/Pill'
+
+# Quick start.
+
+Eight steps, in order. Each one unlocks the next item on your dashboard checklist. Total: about 25 minutes of clicking, plus whatever time you spend on brand voice.
+
+<Steps>
+<Step n={1} title="Add your business mailing address." time="~2 min" path="Settings → Business contact info">
+
+Open **Settings**, find the *Business mailing address* card, paste your full address — street, suite, city, province, postal code, country — and click **Save changes**. A "Mailing address saved ✓" toast confirms it's done.
+
+<Callout type="legal" title="Why this comes first · CASL §6(2)">
+Canadian anti-spam law requires the sender's physical address on every commercial email and SMS. Tenlo enforces this in code — sends are blocked until the address is saved. Do it now so you don't hit a wall at Step 5.
+</Callout>
+</Step>
+
+<Step n={2} title="Connect Google Business Profile." time="~3 min" path="Settings → Google Business Profile">
+
+Click **Connect Google Business Profile**, sign in with the Google account that *owns* the listing, and approve the permission. You'll return to the dashboard and see <Pill v="replied">connected</Pill>. Existing reviews import in 1–2 minutes.
+
+<Callout type="warn" title="Use the owner account">
+A customer Google account won't carry the `business.manage` permission Tenlo needs. The connection either fails or attaches to the wrong listing — and is a pain to undo.
+</Callout>
+</Step>
+
+<Step n={3} title="Teach the AI how you sound." time="~5 min" path="Settings → Brand voice">
+
+Two fields:
+
+- **Tone description** — 1–2 sentences on how you'd want a reply to read. Direct, warm, technical, conversational — be specific.
+- **Sign-off** — how every reply ends. *"— The [Business] Team"* or just your first name.
+
+Or click **Analyse my reviews** to let Tenlo read your existing replies and draft a tone description for you to edit.
+
+<Callout type="tip">
+Human-edited replies feed the brand-voice analyser first. The more you tweak AI drafts before approving, the faster Tenlo learns to sound like you.
+</Callout>
+</Step>
+
+<Step n={4} title="Create a message template." time="~5 min" path="Campaigns → Templates">
+
+Go to **Campaigns → Templates → New template**. Write your review-request message. Use `{{contact.first_name}}` to personalise the opening. Tenlo will lint the template on save and flag any missing required tokens.
+
+See [Message templates & A/B testing](/reputation-ai/using-the-product/templates) for the full token reference.
+</Step>
+
+<Step n={5} title="Create a campaign." time="~5 min" path="Campaigns → New campaign">
+
+Click **New campaign**, give it a name, choose your template, and set a trigger:
+
+- **Manual** — you fire it when you're ready.
+- **Scheduled** — runs at a fixed time (e.g. every Friday at 10am).
+- **Webhook** — fires when your CRM or booking system sends a signal.
+
+See [Campaigns](/reputation-ai/using-the-product/campaigns) for full trigger documentation.
+</Step>
+
+<Step n={6} title="Send a test review request." time="~2 min" path="Campaigns → your campaign → Test send">
+
+Add your own email or phone number as a contact, click **Send test**, and verify the message arrives and looks right. Check that the review link opens the correct Google listing.
+</Step>
+
+<Step n={7} title="Set up auto-response rules." time="~3 min" path="Settings → Routing rules">
+
+Decide which reviews auto-post and which come to you for approval. The recommended starting point:
+
+| Rating | Default action |
+|---|---|
+| 5 stars | Auto-post after 24h |
+| 4 stars | Auto-post after 24h |
+| 3 stars | Human queue |
+| 1–2 stars | Human queue (always) |
+
+Adjust the **Auto-post delay** if you want a window to catch anything before it goes live.
+</Step>
+
+<Step n={8} title="Go live." time="1 min" path="Campaigns → your campaign">
+
+Toggle your campaign from **Draft** to **Active**. The dashboard checklist ticks to complete. You're live.
+
+<Callout type="note">
+Reviews left after your connection are fetched once daily at 09:00 UTC. A review posted at 10:00 AM may not appear in your inbox until the following morning.
+</Callout>
+</Step>
+</Steps>
