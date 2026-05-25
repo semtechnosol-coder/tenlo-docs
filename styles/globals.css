@@ -33,12 +33,35 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Dark mode token overrides — all design tokens redefined so var() resolves correctly */
+.dark {
+  --ink:        #e8e4d8;
+  --ink-soft:   #c4c0b4;
+  --mute:       #7a7a74;
+  --rule:       #2e2d2a;
+  --rule-soft:  #242320;
+  --paper:      #18171a;
+  --paper-deep: #131216;
+  --card:       #1e1d21;
+  --accent:     #4da090;
+  --accent-ink: #90d0c4;
+  --accent-bg:  #0c2924;
+  --warn:       #e88050;
+  --warn-bg:    #2a140a;
+  --legal:      #e07070;
+  --legal-bg:   #2a0c0c;
+  --good:       #70b868;
+  --good-bg:    #0d1e0b;
+  --gold:       #d4a840;
+  --gold-bg:    #261e08;
+}
+
 /* Nextra layout color overrides */
 :root {
   --nextra-bg: var(--paper);
 }
 .dark {
-  --nextra-bg: #111;
+  --nextra-bg: var(--paper);
 }
 
 /* Sidebar */

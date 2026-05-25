@@ -12,7 +12,7 @@ const config: Record<CalloutType, { icon: string; color: string; bg: string; bor
   note:  { icon: 'i', color: 'var(--accent-ink)', bg: 'var(--accent-bg)', border: 'var(--accent)' },
   warn:  { icon: '!', color: 'var(--warn)',       bg: 'var(--warn-bg)',   border: 'var(--warn)'   },
   legal: { icon: '§', color: 'var(--legal)',      bg: 'var(--legal-bg)', border: 'var(--legal)'  },
-  tip:   { icon: '✓', color: '#5a4612',           bg: 'var(--gold-bg)',  border: 'var(--gold)'   },
+  tip:   { icon: '✓', color: 'var(--gold)',        bg: 'var(--gold-bg)',  border: 'var(--gold)'   },
 }
 
 const defaultTitle: Record<CalloutType, string> = {
