@@ -3,8 +3,69 @@ title: The Reviews tab
 lastUpdated: 2026-05-24
 ---
 
+import { Callout } from '../../../components/Callout'
+import { Pill } from '../../../components/Pill'
+
 # The Reviews tab.
 
-> **Content coming soon.** This section is being migrated from the P09-USER-MANUAL_0.5.docx source. Check back shortly.
+The Reviews tab is your inbox. Layout: review list on the left, draft pane on the right.
 
-Handling incoming reviews — filter pills, draft pane, editing, deep links.
+## Sample mode
+
+The Reviews tab has a **Sample mode** toggle that loads demo reviews so you can see how classification, drafting and routing work before any real reviews arrive. It is read-only — sample reviews never post anywhere. Turn it off to return to your live queue.
+
+## Filter pills
+
+Narrow the list to what needs attention. You can also filter by platform (Google / Facebook) using the chip strip above the list — only platforms that have delivered reviews appear.
+
+| Pill | Shows |
+|---|---|
+| All | Every review |
+| Urgent | 1–3★ reviews or legal-flagged items |
+| Legal | Reviews flagged for legal language — held from the AI |
+| Needs response | In the human queue, not yet acted on |
+| Responded | Approved and posted (or scheduled to post) |
+| Discarded | Closed without a reply |
+
+## Review cards
+
+Each card shows: reviewer name, star rating, sentiment badge, a 2-line preview of the review, and time-ago.
+
+**Status colours:**
+
+| Colour | Meaning |
+|---|---|
+| Green | Auto-posted — handled, on the platform |
+| Red | Urgent — 1–3★ or legal flag |
+| Gold | Pending your approval |
+| Teal | Mixed / neutral sentiment |
+
+## Draft pane actions
+
+Click a review to open the full text and the AI-drafted reply, then choose:
+
+- **Approve & post** — accept the draft. For Google, this triggers the reply post. For Facebook, it marks it done in Tenlo.
+- **Edit** — make manual edits to the AI-generated text, then **Save changes**.
+- **Cancel** — cancel changes you have made to the draft.
+- **Discard** — close the review without sending a reply. It stays in the list under Discarded for audit trail.
+
+The system tracks whether each reply was human-edited or untouched — this feeds the brand-voice analyser.
+
+## Legal-flagged reviews
+
+Reviews containing legal language (words like "lawyer", "sue", "fraud", "scam", "lawsuit", "court", "damages", "false advertising") are held automatically. No AI draft is generated. The detail pane shows a **Legal escalation** banner with two options:
+
+- **Dismiss escalation** — clear the flag, reset status, let the AI draft a normal reply.
+- **Reject review** — close it without sending a reply and handle the matter directly.
+
+<Callout type="warn" title="Do not use AI to respond to legal-flag reviews">
+When a review is in legal escalation, handle the matter directly with legal counsel. Do not dismiss the escalation and approve an AI reply without first consulting your lawyer.
+</Callout>
+
+## Deep links
+
+The URL preserves your filter state, so you can bookmark or share queue views. Example:
+
+```
+/dashboard/reputation?tab=reviews&filter=urgent&platform=google
+```

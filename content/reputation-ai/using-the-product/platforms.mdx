@@ -3,8 +3,82 @@ title: Connecting review platforms
 lastUpdated: 2026-05-24
 ---
 
+import { Steps, Step } from '../../../components/Step'
+import { Callout } from '../../../components/Callout'
+
 # Connecting review platforms.
 
-> **Content coming soon.** This section is being migrated from the P09-USER-MANUAL_0.5.docx source. Check back shortly.
+Reputation AI currently supports two review sources. Connect each one separately under **Settings**.
 
-Google Business Profile, Facebook Pages, and upcoming platforms.
+## Google Business Profile — full support
+
+**What you get:** Review-request links open the real Google review form. Reviews flow into your dashboard. AI replies post back automatically. The aggregate Google and Facebook rating appears on the Rating Improvement Card.
+
+**What you need:** A Google account that owns or manages your Google Business Profile — the same account you used to claim or verify the business.
+
+<Callout type="note">
+Google is the only platform where Reputation AI can post replies for you. Facebook is read-only.
+</Callout>
+
+<Steps>
+<Step n={1} title="Connect via OAuth" path="Settings → Google Business Profile">
+
+Click **Connect Google Business Profile**. Google will ask you to sign in with the account that owns or manages your listing and approve the `business.manage` permission. After you approve, you'll return to the dashboard with a "Google Business Profile connected ✓" toast.
+
+<Callout type="warn" title="Use the owner account">
+Sign in with the Google account that owns or manages the listing — the one you used to claim or verify the business. A customer account won't have the `business.manage` permission Tenlo needs, and the connect will fail or attach to the wrong listing.
+</Callout>
+</Step>
+
+<Step n={2} title="Set your GBP Location ID" path="Settings → Google Business Profile → Look up">
+
+After connecting, click **Look up**. If your account manages one listing, Tenlo fills the Location ID in automatically. If you manage multiple listings, a dropdown appears — select the correct one. If the lookup fails, find the ID manually: open [business.google.com/locations](https://business.google.com/locations), click into your listing, and copy the long number from the URL.
+
+Once your Location ID is saved, Tenlo immediately begins importing your existing reviews in the background — they typically appear within a minute or two.
+</Step>
+
+<Step n={3} title="Add your Google review link" path="Settings → Google Business Profile">
+
+The review link is the public URL that opens the "Write a review" form. Tenlo embeds it in every outbound review-request campaign. It is not needed for review fetching or reply posting — only for campaigns.
+
+**Recommended path — g.page review link:**
+
+1. Go to [google.com](https://www.google.com), signed in with the Google account that manages your business.
+2. Search for your business name exactly as it appears on Google.
+3. In the business panel on the right, look for the **Get more reviews** button (or "Ask for reviews" in the main pane).
+4. A panel opens with a URL like `https://g.page/r/CXXXXXXXXXXXXXXXXXX/review`. Click **Copy link**.
+5. Paste it into Tenlo's **Google review link** field, click **Test link ↗** to verify, then **Save URL**.
+
+**Alternative — Google Maps:**
+If you can't find Get more reviews, go to Google Maps, search your business, click the listing, scroll to Reviews, click **Write a review**, and copy the URL from the popup.
+
+**Last resort — Maps listing URL:**
+Tenlo can accept your standard Maps listing URL and look up your Place ID automatically. Note: this path doesn't open the review form directly — customers see your listing first, then must scroll to click Write a review. Use the g.page link whenever possible.
+</Step>
+</Steps>
+
+### Verifying it worked
+
+After completing all three steps, confirm in Settings:
+
+- The Google Business Profile row shows a **Connected: {email}** chip.
+- The **GBP Location ID** field shows your numeric ID.
+- Clicking **Test link ↗** opens the "Write a review" form directly.
+
+If reviews don't appear within an hour, open your review link in an incognito window. If it doesn't open the review form for your business, it's the wrong link — redo Step 3 above. Email support@tenloai.com with the URL you tried if you're still stuck.
+
+---
+
+## Facebook Pages — connection works, review fetch pending
+
+**What you get:** OAuth connection succeeds and your Page is linked. The aggregate rating appears on the Rating Improvement Card.
+
+**What you don't get yet:** Individual reviews don't flow in. The required Meta permission (`pages_read_user_content`) is gated behind Meta App Review. The application is in progress — once approved, reviews will start flowing in automatically with no action needed on your end.
+
+**How to connect:** Settings → Connect Facebook. Sign in with your Facebook account, select your Business Page when prompted.
+
+---
+
+## Coming soon
+
+Trustpilot, G2, and Clutch are on the roadmap.

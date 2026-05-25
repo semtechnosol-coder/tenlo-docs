@@ -5,6 +5,29 @@ lastUpdated: 2026-05-24
 
 # Monthly ROI reports.
 
-> **Content coming soon.** This section is being migrated from the P09-USER-MANUAL_0.5.docx source. Check back shortly.
+On the 1st of each month, you'll receive a monthly report by email (sent at 13:00 UTC — 9 AM ET during DST, 8 AM ET in winter) covering the prior month's activity across every Tenlo product you have enabled.
 
-What is in the report and where to find past reports.
+## What's in the Reputation AI section
+
+| Section | What it shows |
+|---|---|
+| Reviews handled | Count for the period, with positive / neutral / negative sentiment breakdown |
+| AI acceptance rate | % of AI-drafted replies you approved without edits |
+| Average response time | From review arrival to reply approved/posted. For auto-posted replies, these are the same moment. |
+| Per-platform rollup | Google and Facebook, side by side |
+| Cumulative totals | Your all-time review total as of the end of the period |
+| Rating lift | Your starting baseline rating vs. current rating per platform, plus delta and days tracked |
+| Time saved | Estimate in USD of staff time saved, computed as # of responses × 5 min × $50/hr. The assumption is stated inline so you can sense-check it against your own numbers. |
+| AI narrative | 3–4 highlights citing real figures from the data, the single most important focus area, and 3–4 concrete suggested actions for the month |
+
+## About your baseline rating
+
+The baseline is a snapshot taken when Reputation AI first syncs each platform — your rating the day you onboarded. Rating lift is the current minus the baseline, per platform. It's fixed at onboarding, so it doesn't drift as new reviews land.
+
+## Other products in the report
+
+If you also have Sales Outreach, Sales Assistant, or Support Chatbot enabled, those sections appear in the same report. Empty sections don't render — a Reputation AI-only customer won't see blank Sales or Chatbot blocks.
+
+## Accessing past reports
+
+Click **Reports** in the top nav. Past reports live at [/dashboard/reports](https://app.tenloai.com/dashboard/reports). Click any month to open the rendered report in a new tab. Reports are idempotent — if a period is re-run, the snapshot updates but the email is not re-sent.

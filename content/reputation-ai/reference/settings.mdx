@@ -3,8 +3,71 @@ title: Settings reference
 lastUpdated: 2026-05-24
 ---
 
+import { Callout } from '../../../components/Callout'
+
 # Settings reference.
 
-> **Content coming soon.** This section is being migrated from the P09-USER-MANUAL_0.5.docx source. Check back shortly.
+Quick reference for every Settings field in Reputation AI. Most live on the **Reputation page → Settings tab**. A few cross-product fields live on **Settings in the top nav** and are called out separately.
 
-Full reference for every setting card in the Settings tab.
+## Brand voice card *(Reputation → Settings)*
+
+| Field | Purpose |
+|---|---|
+| Tone description | 1–2 sentences on how your business sounds |
+| Sign-off | The phrase that ends every reply |
+| Analyze my reviews | Reads your last 15 approved responses and auto-writes a tone description |
+
+See [Brand voice](/reputation-ai/using-the-product/brand-voice) for usage guidance.
+
+## Routing rules card *(Reputation → Settings)*
+
+| Setting | Purpose |
+|---|---|
+| Auto-post 4–5★ responses | Toggle on/off. When off, all replies go to the human queue. |
+| Auto-post delay | Buffer before a reply posts: 2 h (default), 4 h, 8 h, or 24 h |
+| Business-hours-only | When on, replies only post Mon–Fri 09:00–17:00 in your account time zone |
+
+See [Routing rules](/reputation-ai/using-the-product/routing-rules) for the full decision flow.
+
+## Business contact info *(Settings top nav)*
+
+A cross-product card. The same values feed into Reputation AI legal-alert routing and the CASL sender footer on every outbound email.
+
+| Field | Used for |
+|---|---|
+| Business name | Sender block on every email |
+| Mailing address | Required by CASL §6(2) — sends are blocked if blank |
+| Contact email | Legal-flag alerts + CASL sender block (at least one of email or phone required) |
+| Contact phone | Legal-flag alerts + CASL sender block (at least one of email or phone required) |
+| Owner display name | AI reply sign-offs + `{{sender.owner_name}}` token |
+
+<Callout type="legal" title="Blank contact fields fall back to Tenlo support">
+If both contact email and contact phone are blank, legal-flag alerts go to Tenlo support instead of you. Set both fields to people who can actually act on a legal-language review.
+</Callout>
+
+## Account settings card *(Reputation → Settings)*
+
+| Field | Purpose |
+|---|---|
+| Business name | Appears in AI replies and campaign messages |
+| Business type | Sets your vertical — determines which template variables are available |
+| Owner display name | As above (also editable in the top-nav Business contact info card) |
+| Google review link | Embedded in every outbound review request |
+| Yelp business ID | Used for outbound campaign links only (Yelp review fetch is gated behind their Reviews Partner program) |
+| Facebook Page | Connects your Page for rating aggregation |
+| Time zone | Drives campaign send windows, business-hours-only auto-posting, the midnight boundary for "Done today", and monthly report send time |
+| Logo | Appears on branded pages (unsubscribe, sender-ID, help pages) |
+
+<Callout type="note" title="Time zone">
+Daylight-saving shifts are handled automatically. If your business relocates, update the time zone here. New sends follow the new zone; already-scheduled sends keep their original timing.
+</Callout>
+
+## Platform connection status strip
+
+Shows a coloured dot for each connected platform:
+
+| Colour | Meaning |
+|---|---|
+| Green | Delivering reviews normally |
+| Grey | Connected but no reviews yet (e.g. Yelp — Reviews Partner program access is currently closed) |
+| Red | Token revoked or expired — click to reconnect |

@@ -3,8 +3,44 @@ title: Brand voice
 lastUpdated: 2026-05-24
 ---
 
+import { Callout } from '../../../components/Callout'
+
 # Brand voice.
 
-> **Content coming soon.** This section is being migrated from the P09-USER-MANUAL_0.5.docx source. Check back shortly.
+The single biggest factor in reply quality is brand voice. The AI gets this right when you give it three things: a tone description, a sign-off, and optionally an owner display name.
 
-Teaching the AI how you sound.
+## Tone description
+
+A 1–2 sentence brief on how your business sounds. Examples from the manual:
+
+> *"Professional with warmth. Trusted advisor, not corporate spokesperson. Direct on issues, generous with thanks."*
+
+> *"Casual and personable, like a neighbourhood shop. First-name friendly. Never stuffy."*
+
+> *"Formal, expert and reassuring. Compliance-aware language; no slang."*
+
+## Sign-off
+
+The phrase that ends every reply. Default: *"— The {Business Name} Team"*. Common alternatives:
+
+- `— Joe Martins, Owner`
+- `— The team at Bright Dental`
+- `With thanks, Sarah`
+
+## Auto-analyze your past replies
+
+Once you have at least three approved review responses, click **Analyze my reviews** in the Brand voice card. The AI reads up to 15 of your approved responses, extracts your tone patterns and writes a brand voice description into the Tone description field. Keep it, edit it or replace it before saving.
+
+<Callout type="tip">
+Human-edited responses are used first by the analyser. The more you tweak AI drafts before approving, the better the analysis gets.
+</Callout>
+
+## Owner display name
+
+Found at **Settings (top nav) → Business contact info**. If you want replies signed personally (e.g. "Thanks again — Joe"), fill in the Owner display name field. The AI will use first-person language and reference you by name.
+
+## Business type (vertical)
+
+Pick the closest match for your business: Home Services, B2B SaaS, Dental, Legal, Retail, Professional Services, Other. This makes vertical-specific template variables available.
+
+For example, Home Services accounts get `{{contact.service_type}}` and `{{sender.tech_name}}` for personalisation. B2B SaaS accounts won't see those — and the template linter warns you if you accidentally use a wrong-vertical variable.

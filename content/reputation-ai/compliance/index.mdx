@@ -3,8 +3,91 @@ title: CASL, TCPA & unsubscribes
 lastUpdated: 2026-05-24
 ---
 
+import { Callout } from '../../../components/Callout'
+
 # CASL, TCPA & unsubscribes.
 
-> **Content coming soon.** This section is being migrated from the P09-USER-MANUAL_0.5.docx source. Check back shortly.
+Reputation AI sends commercial messages on your behalf. CASL (Canada), CAN-SPAM (US) and TCPA (US SMS) all require legitimate opt-out paths. Tenlo handles this for you, but you should understand what's happening.
 
-Compliance obligations — sender ID, consent, suppression, and escalation.
+Tenlo's compliance posture covers four layers:
+
+1. **Identification** — every outbound email and SMS carries CASL §6(2) sender-ID info (your business + "Sent on behalf of Tenlo AI Inc.").
+2. **Consent** — every contact row is stamped with a CASL consent basis at import, attested by you in the UI, and held alongside an audit log.
+3. **Opt-out** — unsubscribe footer + one-click headers on every email; STOP/START/HELP keyword handling on every SMS; a global suppression list shared across all Tenlo customers; a global abuse list fed by Resend complaint webhooks.
+4. **Pre-send filters** — at import, contacts already suppressed, on the abuse list, or in Quebec are rejected; rows older than 24 months are flagged for EBR review.
+
+The full suppression-model explainer lives at [app.tenloai.com/legal/suppression-model](https://app.tenloai.com/legal/suppression-model).
+
+## Sender identification on every message
+
+CASL §6(2) requires every commercial electronic message (CEM) to identify two parties: you (the sender) and Tenlo AI Inc. (the party on whose behalf the message is sent).
+
+Tenlo renders both blocks automatically at the bottom of every outbound email:
+
+- **Your block** — pulled from Settings → Business contact info (your business name, mailing address, contact email or phone).
+- **Tenlo's block** — Tenlo AI Inc., our mailing address, and hello@tenloai.com · tenloai.com.
+
+<Callout type="legal" title="Sends are refused if your block is incomplete">
+If your mailing address is blank — or if you've cleared both contact email and contact phone — you'll see an inline error and the send is blocked. There is no degraded mode.
+</Callout>
+
+For SMS, CASL allows a linked identification page. Every SMS includes a short URL (`app.tenloai.com/s/{slug}`) that opens a branded page showing both blocks. Use `{{sender.short_url}}` in your SMS templates to surface this.
+
+## Email unsubscribes
+
+Every campaign email includes:
+
+- **Unsubscribe footer link** — clicking takes the recipient to a branded page that records the opt-out.
+- **One-click unsubscribe headers** (`List-Unsubscribe`, `List-Unsubscribe-Post`) — Gmail and Outlook show an "Unsubscribe" button at the top of the message; one click adds the recipient to the suppression list.
+
+Suppressions are global — once someone unsubscribes from any Tenlo customer's mailings, they're suppressed across the platform. They're also per-business — local suppressions are honoured even if the global list is clear.
+
+## SMS STOP
+
+Twilio handles STOP/START/HELP keyword replies automatically:
+
+| Keyword | Effect |
+|---|---|
+| `STOP`, `UNSUBSCRIBE`, `CANCEL`, `END`, `QUIT`, `OPTOUT`, `REVOKE` | Suppressed globally — no further texts ever |
+| `START`, `UNSTOP`, `YES` | Suppression cleared |
+| `HELP` | Auto-reply with your business name and contact info |
+
+You'll see the contact flip to `opted_out: true` in the campaign drawer.
+
+## Sending to a suppressed contact
+
+The send is silently skipped (`{ skipped: true }`). The campaign timeline shows the contact as unsent with the reason recorded. No error fires, no fees incurred.
+
+## Consent basis tracking
+
+CASL puts the burden of proving consent on the sender. Tenlo records the basis on every contact at import:
+
+- **P09 Reputation** defaults to *implied — EBR* (review requests to your own past clients).
+- **P02 Sales Outreach** defaults to *conspicuous publication* (cold research-driven outreach to publicly listed contacts).
+
+Per-batch attestation is logged to a tamper-evident table per business. You can produce both the per-row basis and the batch-level proof of who attested to it.
+
+## Import-time filters
+
+Every contact import passes through three hard-reject filters and one advisory check:
+
+| Filter | Behaviour |
+|---|---|
+| Already suppressed | Hard reject — drop rows whose email is on the global suppression list |
+| Global abuse list | Hard reject — drop rows whose email triggered a prior spam complaint |
+| Quebec residency | Hard reject — excluded by default (Law 25 exemptions don't translate cleanly to CASL) |
+| EBR aging (24+ months) | Advisory — flagged, not blocked. You can choose to send on another basis. |
+
+Rejected rows appear in the import summary with the reason.
+
+## Global abuse list vs. suppression
+
+**Suppression** — someone unsubscribed or texted STOP.
+
+**Global abuse list** — fed by spam complaints. When a recipient hits "Report spam" in their mail client, Resend's complaint webhook fires and Tenlo records that address platform-wide. An abuse-listed address is blocked for every Tenlo customer, not just the one whose mail drew the complaint. It's also a hard reject at import, stored separately from unsubscribes.
+
+## Data retention and requests
+
+Reviews, responses and campaign records are retained for the life of your account. After cancellation, Customer Data remains available for export for 30 days and is deleted from production systems within 90 days.
+
+To request data access, export, correction, or deletion: email support@tenloai.com. Tenlo responds within 30 days where required by PIPEDA or Québec Law 25.

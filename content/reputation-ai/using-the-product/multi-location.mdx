@@ -3,8 +3,51 @@ title: Multi-location
 lastUpdated: 2026-05-24
 ---
 
+import { Callout } from '../../../components/Callout'
+
 # Multi-location.
 
-> **Content coming soon.** This section is being migrated from the P09-USER-MANUAL_0.5.docx source. Check back shortly.
+If your business has multiple physical locations under one brand — a 3-store retail chain, a 4-clinic dental group — Reputation AI can manage each one independently: different GBP listing per location, different Facebook Page per location, separate review queues, and aggregated KPIs.
 
-Managing multiple business locations from one account.
+<Callout type="note" title="Pricing">
+Multi-location pricing is negotiated per-account. Contact hello@tenloai.com for terms if you have more than 2 locations.
+</Callout>
+
+## Enabling multi-location
+
+Multi-location is off by default. To enable, contact hello@tenloai.com and we'll flip the flag on your account. Once enabled, you'll see:
+
+- A **location switcher** dropdown above the Reviews / Campaigns / Settings tabs
+- A **Locations management page** at Reputation → Locations
+- An **All locations Overview** page
+
+## Adding a location
+
+Go to **Reputation → Locations → + Add location**. Required: name (e.g. "Toronto Eglinton"). Optional: address, phone.
+
+After creation, you're taken to the per-location edit page where you connect that location's Google review link, GBP listing, and Facebook Page.
+
+## Switching context
+
+Use the location switcher to focus the dashboard on a single location. Reviews, Campaigns and Settings all filter to that location only. The URL preserves the active location (`?loc=<id>`) so you can bookmark deep links.
+
+The dropdown also has an **All locations (overview)** option for the aggregated view.
+
+## The all-locations Overview
+
+A KPI strip plus a leaderboard table:
+
+| Column | What it shows |
+|---|---|
+| KPI strip | Total reviews this month · weighted % positive · average current rating · total pending replies |
+| Leaderboard | One row per location: current rating, monthly review count, % positive, pending count |
+
+Click a row in the leaderboard to drill into that location's dashboard.
+
+## Default location
+
+Every account has one default location. For single-location customers, this is just "your business". For multi-location customers, it's the flagship or original site. The default location can never be archived. New campaigns default to the default location unless you explicitly assign a different one.
+
+## Archiving a location
+
+On the location edit page, click **Archive location**. The location is soft-deleted — data is preserved but excluded from the list, Overview, and review-fetch loops. Contact support to restore it later.

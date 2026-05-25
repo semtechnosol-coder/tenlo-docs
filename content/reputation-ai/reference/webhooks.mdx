@@ -3,8 +3,71 @@ title: Webhook intake
 lastUpdated: 2026-05-24
 ---
 
+import { Callout } from '../../../components/Callout'
+
 # Webhook intake.
 
-> **Content coming soon.** This section is being migrated from the P09-USER-MANUAL_0.5.docx source. Check back shortly.
+Webhook intake allows external systems — Zapier, Jobber, HouseCallPro, and custom integrations — to automatically add contacts to a campaign. The system sends a review request once your delay window opens.
 
-Trigger campaigns via webhook from your CRM or booking system.
+## Getting your webhook URL
+
+In the Campaigns tab, open your campaign's drawer and click **Get webhook URL**:
+
+```
+https://app.tenloai.com/api/webhooks/intake/<campaign_id>?token=<64-char-hex-token>
+```
+
+<Callout type="warn">
+The token authenticates the source — never share it publicly or commit it to source control.
+</Callout>
+
+## Payload format
+
+`POST` a JSON body to that URL:
+
+```json
+{
+  "first_name": "Sarah",
+  "last_name": "Chen",
+  "email": "sarah@example.com",
+  "phone": "+14165551234",
+  "service_type": "HVAC Tune-Up",
+  "technician_name": "Dave"
+}
+```
+
+**Required:** `first_name`, plus either `email` or `phone`.
+
+**Optional:** `last_name`, `service_type`, `technician_name`.
+
+## Response codes
+
+| Code | Meaning |
+|---|---|
+| `200 {"status":"success"}` | Contact added, send scheduled |
+| `200 {"status":"existing_contact"}` | Duplicate — same email or phone already in campaign, no action taken |
+| `400` | Missing required fields |
+| `401` | Invalid or missing token |
+| `404` | Campaign not found |
+
+## Test mode
+
+Add `"test": true` to your payload and the system simulates intake without writing to the database. Use this to verify your Zapier or Jobber wiring before going live.
+
+## Token rotation
+
+If you suspect a token has leaked, click **Rotate token** in the campaign drawer. The old URL returns `401` immediately — there is no grace period. Update your external systems with the new URL.
+
+## Intake log
+
+The drawer has a **View intake log** link — the last 50 webhook hits, including failures. Each row shows status (success / error / test), error code, and the raw payload received. Use it to debug integrations.
+
+## Common integrations
+
+**Zapier** — Use the "Webhooks by Zapier" action → POST → paste the URL → map fields. Trigger on whatever event you care about (job completed, invoice paid, etc.).
+
+**Jobber** — Use Jobber's webhook automation on "Job closed" → map customer fields.
+
+**HubSpot / Pipedrive** — Tenlo has native CRM integrations for the Sales Outreach product. For Reputation AI, use the webhook intake or Zapier.
+
+**Custom** — Any backend that can POST JSON works — typically 5–10 lines of code.

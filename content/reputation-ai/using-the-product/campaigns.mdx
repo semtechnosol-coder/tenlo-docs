@@ -3,8 +3,65 @@ title: Campaigns
 lastUpdated: 2026-05-24
 ---
 
+import { Callout } from '../../../components/Callout'
+
 # Campaigns.
 
-> **Content coming soon.** This section is being migrated from the P09-USER-MANUAL_0.5.docx source. Check back shortly.
+Campaigns let you systematically ask customers for reviews after a transaction. A campaign defines: who (a list of contacts), what (the SMS and email templates they receive), and when (how long after intake to send, and what hours are OK).
 
-Creating campaigns, trigger modes, contacts, and send limits.
+## Creating a campaign
+
+Click **+ Create campaign** in the Campaigns tab. Give it a name, pick a template, set a send delay and a send window (e.g. 9:00 AM – 5:00 PM in your timezone — no 2 AM texts).
+
+## The three trigger modes
+
+**Manual** — you upload a CSV or add contacts one-by-one, then click Send.
+
+**Scheduled** — same as manual, but each contact's send is delayed by the hours you set in Send delay (e.g. 24 hours, 3 days, 7 days). Useful when you want a gap between adding the contact and asking for the review.
+
+**Webhook** — Tenlo infers the mode from your Send delay value and whether you've connected a webhook. Wire up a webhook and it overrides everything else. See [Webhook intake](/reputation-ai/reference/webhooks) for the full reference.
+
+## Adding contacts
+
+**One by one** — click **+ Add contact** in the campaign drawer. Required: consent basis (for CASL compliance), full name, plus either email or phone.
+
+**Bulk via CSV** — click **Upload CSV**.
+
+| Column | Required |
+|---|---|
+| `client_name` OR `first_name` + `last_name` | Required |
+| `client_email` and/or `client_phone` | At least one required |
+| `service_type` | Optional |
+| `technician_name` | Optional |
+| `last_interaction_date` | Optional |
+| `province` | Optional |
+
+Column names are matched case-insensitively. Header row is optional.
+
+**Via webhook** — see [Webhook intake](/reputation-ai/reference/webhooks).
+
+**Anti-duplicate protection** — the system rejects contacts with the same email or phone already in the campaign, so re-running an import is safe.
+
+## The campaigns table
+
+The Campaigns tab shows a sortable table of all your campaigns with per-campaign KPIs. Click any campaign to open the slide-in drawer (press Escape to close) with A/B results, the contact list, and webhook setup.
+
+## Send limits
+
+**Daily SMS cap: 50 SMS per business per day.** Built in to protect your sender reputation. If you have 200 contacts to send to, the first 50 go today and the rest queue automatically.
+
+Email is unmetered — sends are paced at 100 ms per contact to stay within rate limits — but suppressions and unsubscribes always apply.
+
+**Send retries:** Transient failures (5xx) get 3 attempts with delays of 0 s, 1 s, and 3 s. Rate-limit responses (429) get up to 5 attempts with exponential back-off, honouring any Retry-After header. Final failures are recorded — you'll see the contact's `last_send_error` in the campaign drawer.
+
+## What your customer receives
+
+**The email** — your template, personalised per recipient. A one-tap button to your Google review form sits up top. Below it is the CASL §6(2) sender footer — your business block plus "Sent on behalf of Tenlo AI Inc." — and an unsubscribe link. Gmail and Outlook also show their own one-click Unsubscribe button in the mail-client chrome.
+
+**The SMS** — your SMS body, the review short link, and a sender-ID short URL (`ID: app.tenloai.com/s/{slug}`). Carrier rules require opt-out language, so the body always carries STOP/unsubscribe wording.
+
+**The sender-ID page** (`/s/{slug}`) — the short URL opens a branded page showing both identification blocks (yours and Tenlo's) so the recipient can confirm who's contacting them. This page is noindex and exists to satisfy CASL §6(2)(b) where SMS has no room for the full block inline.
+
+<Callout type="note">
+The review link in campaign emails isn't a raw g.page URL — it routes through a tracking redirect so click-through shows up in your campaign stats and A/B results. It resolves to your real Google review form in the same hop.
+</Callout>

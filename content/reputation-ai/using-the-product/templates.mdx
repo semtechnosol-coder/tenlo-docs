@@ -3,8 +3,83 @@ title: Message templates & A/B testing
 lastUpdated: 2026-05-24
 ---
 
+import { Callout } from '../../../components/Callout'
+
 # Message templates & A/B testing.
 
-> **Content coming soon.** This section is being migrated from the P09-USER-MANUAL_0.5.docx source. Check back shortly.
+Templates are your reusable email + SMS bodies, with variables for personalisation. Build them in **Campaigns → Templates**.
 
-Variables, conditional blocks, linting, and A/B tests.
+## Variables (tokens)
+
+Drop these into your subject, email body, or SMS body — they get replaced for each recipient:
+
+| Token | Value |
+|---|---|
+| `{{contact.first_name}}` | Recipient's first name |
+| `{{contact.last_name}}` | Recipient's last name |
+| `{{contact.service_type}}` | Type of service *(Home Services only)* |
+| `{{sender.business}}` | Your business name |
+| `{{sender.owner_name}}` | Your owner display name |
+| `{{sender.tech_name}}` | Technician name *(Home Services only)* |
+| `{{links.review}}` | Your Google review link |
+| `{{links.unsubscribe}}` | Unsubscribe link *(required in email body)* |
+| `{{sender.short_url}}` | CASL sender-ID short URL *(required in SMS body)* |
+
+Older shorthand tokens still work: `{{first_name}}`, `{{business_name}}`, `{{review_link}}`.
+
+## Conditional blocks
+
+Wrap optional text in `{{#if scope.field}} ... {{/if}}` and the section drops out cleanly when the variable is empty:
+
+```
+Hi {{contact.first_name}}, thanks for choosing us{{#if contact.service_type}} for your {{contact.service_type}}{{/if}}.
+```
+
+If `service_type` is empty, the sentence becomes "Hi Sarah, thanks for choosing us." — no awkward dangling phrase.
+
+## Save-time linting
+
+The template builder warns you about:
+
+| Warning | Cause |
+|---|---|
+| Unknown tokens | Typo in a variable name |
+| Wrong vertical | e.g. `{{sender.tech_name}}` in a B2B SaaS template |
+| Missing review link in SMS | Always include `{{links.review}}` |
+| SMS over 160 characters | Will split into multiple messages |
+| Missing `{{links.unsubscribe}}` in email | CAN-SPAM + CASL requirement |
+| Missing `{{sender.short_url}}` in SMS | CASL §6(2) sender identification |
+| Missing STOP / unsubscribe in SMS body | CASL + CTIA carrier rules |
+
+Warnings show as coloured pills on the template card.
+
+## AI suggestions
+
+Click **Generate suggestions** in the template builder. The AI returns four drafts:
+
+- Email Variant A (Warm & conversational)
+- Email Variant B (Concise & direct)
+- SMS Variant A (Warm)
+- SMS Variant B (Concise)
+
+Use them as-is, mix and match, or treat them as a starting point.
+
+## A/B testing
+
+When creating or editing a campaign, toggle **A/B test enabled** and pick two templates: Variant A and Variant B. Each contact added to the campaign gets randomly assigned (50/50), and that assignment is locked.
+
+The **A/B results panel** in the campaign drawer shows per-variant assigned/sent/clicked counts and click rates. A nudge banner appears when one variant is meaningfully ahead — ≥1.5× the other's click rate with at least 20 sends each. Example:
+
+> *"Variant A is getting 36% more clicks. Consider declaring it the winner."*
+
+Click **Declare winner** to lock in one variant. From that point all new contacts added to the campaign get the winner. Existing contacts keep their original assignment.
+
+<Callout type="note">
+The A/B nudge is a heuristic, not a rigorous statistical test. With small samples (under ~100 sends per variant), results can flip — wait for solid sample sizes on tight calls.
+</Callout>
+
+## Template management
+
+- **Soft-delete** — templates attached to active campaigns can't be hard-deleted. They're soft-deleted and no longer appear in pickers, but live campaigns still render them.
+- **Archive** — send a template to the Archive bin instead of deleting it if you might want to revive it.
+- **Edit** — edit the current template at any time.

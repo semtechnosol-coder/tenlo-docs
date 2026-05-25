@@ -3,8 +3,39 @@ title: Notifications
 lastUpdated: 2026-05-24
 ---
 
+import { Callout } from '../../../components/Callout'
+
 # Notifications.
 
-> **Content coming soon.** This section is being migrated from the P09-USER-MANUAL_0.5.docx source. Check back shortly.
+Reputation AI can send operational alerts to Slack, Microsoft Teams, or email. At a minimum, route the legal flag alert to a place where your team will actually see it.
 
-Slack, Teams, and email notification setup.
+## Connecting a channel
+
+Go to **Settings (top nav)** and click the **🔔 Notifications** card ("Route Tenlo alerts to Slack and Microsoft Teams alongside email").
+
+Your account email is already listed there — Tenlo provisions it automatically and it can't be removed. It's the always-on fallback so you never miss an alert.
+
+To add Slack or Microsoft Teams, click **+ Add Slack channel** or **+ Add Teams channel**. A dialogue opens with two fields:
+
+- **Label** — a friendly name (e.g. `#tenlo-leads` or `Sales channel`)
+- **Webhook URL** — paste the URL from your Slack app or Teams channel connector
+
+Click **Connect**. Tenlo fires a live test ping to the URL before saving — if the ping fails (bad URL, revoked webhook, wrong workspace), you'll see the error inline and nothing is persisted. If it succeeds, the channel appears in the list and a ✅ message lands in your Slack or Teams channel confirming the connection.
+
+| Channel | What to paste |
+|---|---|
+| Slack | Incoming Webhook URL from your Slack app |
+| Microsoft Teams | Incoming Webhook URL or Power Automate Workflow URL from a Teams channel connector |
+| Email | Already set up to your account email — no action needed |
+
+## Subscribing to events
+
+Once a channel is connected, you'll see an **event-toggle grid** — one row per event, one column per channel. Flip the toggles for what you want where.
+
+## Test ping
+
+Each channel has a **Send test** button that fires a one-line "Tenlo test message" so you can verify the webhook works before relying on it.
+
+## Revoked webhooks
+
+If Slack or Teams returns a 404 or 410 (channel deleted, app removed), the channel is auto-marked inactive and Tenlo emails you. Re-add it whenever convenient.
