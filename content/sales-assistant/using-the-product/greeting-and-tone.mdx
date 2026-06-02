@@ -1,0 +1,68 @@
+---
+title: Greeting, tone & qualifying questions
+lastUpdated: 2026-05-29
+---
+
+import { Callout } from '../../../components/Callout'
+
+# Greeting, tone & qualifying questions.
+
+Three fields in **Settings → Widget configuration** that shape every conversation.
+
+## Opening greeting
+
+The first message every visitor sees. Keep it warm, specific, and curious. Avoid "How can I help you?" — too open-ended.
+
+Try:
+
+- *"Hey 👋 I'm Riley from Acme. Tell me what brings you in today and I'll help you figure out if we're the right fit."*
+- *"Welcome! Quick chat to see if our service is right for you — just a couple of questions."*
+- *"Hi there — looking for HVAC service? Let me ask a couple of quick questions and I'll see if we can help."*
+
+## Tone description
+
+One sentence describing how the bot should sound. Examples:
+
+- *"Friendly and professional. Conversational, not formal. Short messages, no jargon."*
+- *"Direct and consultative. Match a busy founder's energy — get to the point fast."*
+- *"Warm, reassuring, and patient. Especially with technical questions or skeptical visitors."*
+
+The bot uses this as a style anchor. **Tone is how the bot speaks; ICP is who it's qualifying for.**
+
+## Qualifying questions
+
+The 3–5 things you'd ask on a first sales call. Format: one question per line, in the order you'd want them asked.
+
+**Good qualifying questions:**
+
+- What's the biggest challenge you're trying to solve? *(problem awareness)*
+- How are you handling this today? *(current solution)*
+- How many people would use this? *(size signal)*
+- What's your timeline for making a decision? *(urgency)*
+- Who else is involved in evaluating solutions? *(decision process)*
+
+**Avoid:**
+
+- *Are you ready to buy?* — off-putting; nobody answers honestly
+- *What's your budget?* — too direct; will lower replies
+- *Have you considered our competitors?* — defensive
+
+The bot will rephrase your questions to fit the conversation — weaving them in based on what the visitor has already said.
+
+<Callout type="note" title="The “ask one question at a time” rule">
+Hard-coded into the bot's behaviour: never multiple questions in one message. This keeps the chat feeling conversational, not like a survey. You can't override this.
+</Callout>
+
+## Products and services description
+
+**Settings → Widget configuration → Products & services** (textarea, ~4000 characters). This is where you describe what you actually sell — your products, services, packages, and pricing.
+
+The bot uses this as its source of truth whenever a visitor asks *"what do you offer?"* or *"how much is it?"*. It may paraphrase or trim to fit the conversation, but won't invent products, prices, or terms beyond what's in this field.
+
+- **Be specific.** *"Starter $99/mo for up to 3 users; Pro $299/mo unlimited users + priority support"* beats vague descriptions.
+- **List your real offerings** — the bot won't invent products, prices, or terms beyond what you write here.
+- **This field drives the no-Calendly path.** If you don't connect Calendly, the bot points qualified visitors to whatever next step your products description names. So when you skip Calendly, make sure your Products & services description includes a concrete next step — a trial signup URL, contact-form link, "request a quote" link, or similar. If no concrete next step is described, the bot falls back to telling the visitor that someone from the team will follow up by email shortly (the lead still lands in your Recent Leads card, ready for you to action manually).
+
+<Callout type="tip" title="Self-service now">
+New customers: this used to require a Tenlo team member to set up for you. It's now a self-service field — fill it in yourself any time.
+</Callout>

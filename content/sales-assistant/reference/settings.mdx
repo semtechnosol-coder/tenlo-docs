@@ -1,0 +1,60 @@
+---
+title: Settings reference
+lastUpdated: 2026-05-29
+---
+
+import { Callout } from '../../../components/Callout'
+
+# Settings reference.
+
+Quick reference for every setting in the Sales Assistant. Most live on the **Assistant page → Settings tab**. A few cross-product settings live on **Settings in the top nav** and are called out separately.
+
+## Widget configuration card *(Assistant → Settings)*
+
+| Field | Notes |
+|---|---|
+| Company name | Used in prompts as `{companyName}` |
+| Opening greeting | First message visitors see |
+| Tone description | 1-sentence style anchor |
+| Ideal Customer Profile | Free-form, 2000-char soft cap (the most important field) |
+| Products & services | Free-form, ~4000 char — what the bot quotes about your offerings and pricing |
+| Qualifying questions | One per line, 3–5 recommended |
+| Booking score threshold | Slider 30–90, default 60 |
+| Calendly connection | Connect button or event-type dropdown; shows a *"Connected"* badge once linked |
+| Widget color | Colour picker (6-digit hex), default `#0D2D6B`. The picker UI lives in the **Embed your widget** card above; persisted via Save configuration here. |
+| Bubble icon / Chat avatar | Glyphs for the floating bubble (default 💬) and chat header (default 🤖) |
+
+See [Greeting, tone & qualifying questions](/sales-assistant/using-the-product/greeting-and-tone), [Defining your Ideal Customer](/sales-assistant/using-the-product/icp), and [The booking threshold](/sales-assistant/using-the-product/booking-threshold) for usage guidance.
+
+## Knowledge Base card *(Assistant → Knowledge Base)*
+
+| Method | Notes |
+|---|---|
+| Add a manual entry | Title + content + category |
+| Bulk Import | CSV / XLS / XLSX, 200 rows max |
+| Add a Source | URL / PDF / Word / MD ingestion (power user) |
+
+See [Knowledge base & document ingestion](/sales-assistant/using-the-product/knowledge-base).
+
+## Embed your widget card *(Assistant → Settings)*
+
+| Field | Notes |
+|---|---|
+| `<script>` snippet | Contains your `data-business-id`; auto-emits `data-primary-color` when the Widget color is non-default |
+| Widget color picker | Updates the snippet immediately; **does not change live widgets** until you re-paste the snippet on your site |
+
+See [Embedding the widget](/sales-assistant/using-the-product/embed) and [Theming & branding](/sales-assistant/using-the-product/theming).
+
+## Cross-product settings *(Settings top nav)*
+
+These settings live on the global Settings page, not on the Assistant page — they apply to every Tenlo product, not just the Sales Assistant.
+
+| Setting | Where |
+|---|---|
+| Notifications (Slack/Teams/email) | Top nav → Settings → Notifications |
+| HubSpot / Pipedrive | Top nav → Settings → Integrations |
+| Widget color (per-embed override) | Via `data-primary-color` on the embed snippet |
+
+<Callout type="note">
+The Email notification channel is auto-created against your account owner address the first time you open Notifications. To silence email alerts, toggle off the email row in the subscription grid — deleting the email channel itself isn't supported. See [Notifications](/sales-assistant/using-the-product/notifications).
+</Callout>

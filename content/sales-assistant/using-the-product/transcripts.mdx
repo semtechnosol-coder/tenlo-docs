@@ -1,0 +1,34 @@
+---
+title: Reading conversation transcripts
+lastUpdated: 2026-05-29
+---
+
+import { Callout } from '../../../components/Callout'
+
+# Reading conversation transcripts.
+
+Most leads link to a full conversation transcript so you can see exactly how the bot qualified them. A small share will show *"Conversation history isn't available for this lead"* instead — that means the chat session was pruned or never recorded for that visitor. The lead's contact info and score are still accurate; only the message-by-message replay is missing.
+
+## Opening a transcript
+
+**Recent Leads card → click any lead row → transcript modal opens.** The modal renders every visitor message and every bot response in order, with timestamps.
+
+Contact capture isn't separately flagged — you'll see it implicitly as the point in the conversation where the visitor gave their name and email.
+
+## What you don't see
+
+- The control tokens the bot uses internally are stripped before display
+- System events (the bot deciding to score, etc.) — those happen behind the scenes
+
+## Why this is useful
+
+- **Diagnose bad scores.** If a "hot" lead seems wrong, read the transcript. Usually: the visitor exaggerated, or your ICP needs tightening.
+- **Improve your KB.** If the bot punted on questions you'd want answered, those are the next entries to add — see [Knowledge base](/sales-assistant/using-the-product/knowledge-base).
+
+## Transcript privacy
+
+<Callout type="legal" title="Where transcripts live">
+Transcripts are stored against your account. Visitors don't see them. Tenlo support can see them when you ask for help diagnosing — otherwise they live in your dashboard only.
+</Callout>
+
+See [Legal & data handling](/sales-assistant/compliance) for the full data-retention picture.

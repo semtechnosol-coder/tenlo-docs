@@ -1,0 +1,74 @@
+---
+title: Embedding the widget
+lastUpdated: 2026-05-29
+---
+
+import { Callout } from '../../../components/Callout'
+
+# Embedding the widget.
+
+The widget is a small JavaScript snippet that injects a chat bubble into your site. Unlike the Support Chatbot (P01) which uses an iframe, the Sales Assistant uses **Shadow DOM** — meaning the bubble lives directly in your page's DOM but its styles are isolated, so nothing leaks in or out.
+
+## The basic snippet
+
+```html
+<script
+  src="https://app.tenloai.com/chat-widget.js"
+  data-business-id="YOUR-BUSINESS-ID"
+  data-primary-color="#0D2D6B"
+></script>
+```
+
+Your `data-business-id` is shown in the **Embed your widget** card on the [Settings tab](/sales-assistant/using-the-product/dashboard) — copy from the dashboard. The `data-primary-color` attribute is optional — the dashboard emits it automatically once you change the Widget color from the default. See [Theming & branding](/sales-assistant/using-the-product/theming).
+
+## Where to paste it
+
+Drop it before the closing `</body>` tag on any page where the bubble should appear.
+
+| Platform | Where to paste |
+|---|---|
+| WordPress | Theme File Editor → `footer.php` (before `</body>`), or *Insert Headers and Footers* plugin |
+| Squarespace | Settings → Advanced → Code Injection → Footer |
+| Wix | Settings → Custom Code → Add Custom Code → *Body — End* |
+| Shopify | Online Store → Themes → Edit Code → `theme.liquid` (before `</body>`) |
+| Webflow | Project Settings → Custom Code → Footer Code |
+| Plain HTML | Before `</body>` in your HTML file |
+
+<Callout type="warn" title="Webflow customers — read this">
+The in-dashboard Getting Started checklist's platform tabs cover only WordPress, Squarespace, Wix, Shopify, and custom HTML. Webflow customers should follow the row above — the dashboard's per-platform helper doesn't include a Webflow tab.
+</Callout>
+
+## What the bubble looks like
+
+- 56px round button in the bottom-right corner
+- Default colour `#0D2D6B` (deep navy) — change from the Widget color picker
+- Default bubble glyph 💬 and chat-header avatar 🤖 — both customizable
+- Click expands a 360×520px chat window
+- All UI rendered inline — no iframe; no separate page
+- `z-index: 2147483647` (maximum) — sits on top of any site chrome
+- Fixed 360×520 px window — fits standard mobile portrait viewports (≥ 375 px wide) without resizing. No media queries; the widget itself doesn't reflow for narrower screens.
+
+## Cross-origin compatibility
+
+The widget makes direct API calls to `app.tenloai.com` from your site. CORS headers are configured. There's no iframe boundary, so visitors don't see cross-origin warnings and your CSP only needs `script-src` and `connect-src` to `app.tenloai.com`.
+
+## Lazy initialization
+
+The bubble appears immediately on page load. The widget **auto-opens 8 seconds after page load** if the visitor hasn't already clicked the bubble — this is a fixed behavior, not configurable from the dashboard. When the chat window opens (by click or auto-open), an internal analytics session is created and the greeting message is shown.
+
+A **lead** — the customer-facing record in your Recent Leads card — is only created when the AI extracts a contact (name + email) from the conversation. You can therefore test the widget on your own site without populating your lead pipeline; just don't give it a real name and email mid-chat.
+
+## No hosted chat page
+
+Unlike the Support Chatbot (which has a hosted URL you can share), the Sales Assistant has no hosted page equivalent. The widget is the only customer-facing surface.
+
+## Per-embed colour override
+
+The optional `data-primary-color` attribute on the script tag overrides the dashboard's saved Widget color for that specific embed. Useful when the same widget runs on two sites with different brand palettes, or when you want a preview-environment widget visually distinct from production.
+
+- **Format** — 6-digit hex only (e.g. `#FF6600`). Shorthand (`#F60`) and named colors are rejected.
+- **Invalid values** — silently fall back to the default `#0D2D6B`. No error is shown.
+- **Dashboard behavior** — the Embed your widget card auto-emits this attribute whenever the Widget color picker is set to anything other than the default. If you want to keep the dashboard color but override only on one embed, edit the snippet by hand.
+- **Scope** — the override applies to the bubble background, header background, user message bubbles, send button, and booking button — every primary-coloured surface in the widget.
+
+See [Theming & branding](/sales-assistant/using-the-product/theming) for the full colour-and-emoji reference.

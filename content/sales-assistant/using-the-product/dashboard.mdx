@@ -1,0 +1,79 @@
+---
+title: Dashboard at a glance
+lastUpdated: 2026-05-29
+---
+
+import { Callout } from '../../../components/Callout'
+
+# Dashboard at a glance.
+
+Your dashboard lives at [app.tenloai.com/dashboard/assistant](https://app.tenloai.com/dashboard/assistant). The left rail has five tabs — **Overview**, **Recent Leads**, **Meetings Booked**, **Knowledge Base**, and **Settings** — each section below maps to one of those tabs.
+
+## KPI tiles (top of Overview)
+
+| Tile | What it shows |
+|---|---|
+| Leads captured | Total contact captures |
+| Avg. lead score | Mean score across all leads |
+| Meetings booked | Calendly bookings linked to leads |
+
+## Recent Leads tab
+
+The most recent 20 leads. Each row shows:
+
+- **Name and email**
+- **Score** (X/100) plus an emoji badge — 🔥 Hot ≥ 80, ✅ Good fit ≥ 60, 📋 Low fit otherwise
+- **AI's free-text scoring reasoning** — the 2–3 sentence explanation behind the score
+- **Timestamp**
+- **Click-through** to read the full conversation transcript
+
+See [Lead scoring & lifecycle](/sales-assistant/using-the-product/lead-scoring) for what each badge means and [Reading conversation transcripts](/sales-assistant/using-the-product/transcripts) for the modal.
+
+## Meetings Booked tab
+
+Every Calendly meeting booked through your widget. Each row shows the attendee's name and email, the event type (e.g. "30-min Discovery Call"), the scheduled date and time, and a status pill — ✅ Confirmed or ⊘ Canceled.
+
+Bookings arrive via the Calendly webhook set up during [Step 3 of Quick start](/sales-assistant/getting-started/quick-start).
+
+## Knowledge Base tab
+
+Four input methods on one card:
+
+| Method | What it's for |
+|---|---|
+| **Sitemap crawl** | Point Tenlo at your site (or its sitemap URL) and it discovers and ingests multiple pages in one go. Best for help-centre or product-doc content. |
+| **Add a manual entry** | Manual title + content + category (product, company, pricing, process, objection, or other). |
+| **Bulk Import (CSV / XLS / XLSX)** | Typed entries in spreadsheet form. Max 200 rows; columns must include `title` and `content`; `category` is optional. A downloadable template is linked next to the import button. |
+| **Add a Source** | Paste a single webpage URL or upload a PDF, Word doc (.docx only — not legacy .doc), or Markdown (.md) file. Max 25 MB per file. |
+
+Plus the **entries list** (with edit/delete) and the **imported-documents list** (with status pill and delete).
+
+<Callout type="tip" title="Retrieval Inspector">
+A Retrieval Inspector panel sits inside this card: enter any sample question and it shows which KB chunks the AI would retrieve and their similarity scores — handy for diagnosing why the bot is or isn't picking up a particular answer.
+</Callout>
+
+See [Knowledge base & document ingestion](/sales-assistant/using-the-product/knowledge-base).
+
+## Settings tab
+
+Two cards on this tab.
+
+**Embed your widget** — generates the `<script>` snippet with your `data-business-id`, plus a Widget color picker that auto-emits a `data-primary-color` attribute when changed from the default. Full embed mechanics in [Embedding the widget](/sales-assistant/using-the-product/embed); colour-picker behaviour in [Theming & branding](/sales-assistant/using-the-product/theming).
+
+**Widget configuration** — where you author your assistant's brain. The card scrolls; the fields, in dashboard order:
+
+| Field | Purpose |
+|---|---|
+| Company name | Interpolated into the bot's prompt so it introduces your business by name |
+| Bubble icon / Chat avatar | Glyphs for the floating bubble (default 💬) and chat-window header (default 🤖) |
+| Opening greeting | The first message visitors see when they open the chat |
+| Tone description | One sentence describing how the bot should sound; the AI uses it verbatim as a style guide |
+| Calendly booking link | Connect button that runs OAuth, then an event-type dropdown |
+| Ideal Customer Profile | Free-form description, 2000-char soft cap. Drives both lead scoring and graceful exits from bad-fit conversations |
+| Products & services | What you sell, with pricing and any trial / bundle details (4000-char soft cap). The bot quotes from this verbatim |
+| Qualifying questions | One per line. The AI weaves these into conversation naturally, not as a form |
+| Booking score threshold | Slider (30–90, default 60). Leads scoring at or above the threshold are offered the Calendly link |
+| Log retrievals for diagnostics | Checkbox (on by default). Feeds the Retrieval Inspector; last 200 conversations only |
+| Save configuration | Persists all changes. Nothing takes effect until you save. |
+
+A full field-by-field reference, including every cross-product setting, lives in [Settings reference](/sales-assistant/reference/settings).

@@ -4,4 +4,5 @@ export default {
     display: 'hidden',
   },
   'reputation-ai': 'Reputation AI',
+  'sales-assistant': 'Sales Assistant',
 }

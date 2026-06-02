@@ -1,0 +1,59 @@
+---
+title: Connecting Calendly
+lastUpdated: 2026-05-29
+---
+
+import { Steps, Step } from '../../../components/Step'
+import { Callout } from '../../../components/Callout'
+
+# Connecting Calendly.
+
+Calendly is optional but recommended. With it connected, the bot can check your real availability, avoid offering calls when you have no slots in the next 7 days, and provide a booking link directly in chat.
+
+## Connecting
+
+<Steps>
+<Step n={1} title="Click Connect Calendly." path="Settings → Widget configuration → Connect Calendly">
+
+You'll be redirected to Calendly. Sign in (if not already) and approve the scopes — read availability and set up webhook subscriptions.
+</Step>
+
+<Step n={2} title="Pick an event type." path="Same card → dropdown appears after OAuth">
+
+Select the meeting type you want the bot to offer — e.g. *"30-min Discovery Call"*.
+</Step>
+
+<Step n={3} title="Webhook auto-setup runs in the background." time="auto">
+
+When you connect Calendly, Tenlo automatically creates a webhook subscription so we know when:
+
+- A visitor **books a call** (`invitee.created`) → your CRM deal advances
+- A visitor **cancels** (`invitee.canceled`) → your CRM deal status reverts
+
+No manual webhook setup needed on your end.
+</Step>
+</Steps>
+
+## What the bot says when you have availability
+
+When Calendly says you have open slots in the next 7 days:
+
+> "Great — I can see you've got some openings this week. Here's the link to grab a slot that works for you: \[Calendly link\]"
+
+When you have no slots:
+
+> "Looks like our calendar's pretty packed at the moment. Let me have someone from the team reach out personally to find a time that works."
+
+The bot does NOT push the link when availability is empty.
+
+## What the bot says when Calendly is NOT connected
+
+The bot still qualifies leads, but it won't offer a booking link. For qualified visitors it will point to whatever next step your **Products & services** field names (free trial, signup, contact page). See [Greeting, tone & qualifying questions](/sales-assistant/using-the-product/greeting-and-tone).
+
+## Disconnecting
+
+Same card → **Disconnect Calendly**. Tokens are wiped, the webhook subscription is deleted, the booking link is cleared. Booked meetings remain in your Calendly account.
+
+<Callout type="warn" title="If your Calendly account expires">
+The bot will still offer the (now-dead) booking link because the URL is stored locally — but the availability check fails silently behind the scenes and a visitor clicking the link won't reach a working Calendly page. Reconnect Calendly to restore.
+</Callout>

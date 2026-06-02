@@ -1,0 +1,145 @@
+---
+title: Knowledge base & document ingestion
+lastUpdated: 2026-05-29
+---
+
+import { Callout } from '../../../components/Callout'
+
+# Knowledge base & document ingestion.
+
+The KB is what the bot uses to answer mid-conversation questions. Different from qualifying questions: **KB answers questions visitors ask you** (about pricing, process, objections), while **qualifying questions are what the bot asks them**.
+
+## What goes in the KB
+
+- **Pricing** — your real pricing, not "contact us"
+- **Process** — what happens after they sign up / book / pay
+- **Objection-handling** — common reasons people hesitate, with your honest answer
+- **Product details** — what's included, what's not
+- **Differentiation** — what makes you different from alternative X
+- **Proof points** — case studies, customer counts, results
+- **Process objections** — *"do I need to sign a contract?"*, *"can I cancel anytime?"*
+- **Edge cases** — unusual situations you've handled before
+
+## Adding a manual entry
+
+**Knowledge Base tab → Add a manual entry**:
+
+| Field | Notes |
+|---|---|
+| Title | Short label (e.g. "Refund Policy", "Onboarding Process") |
+| Content | The actual text the bot will use as context |
+| Category | Pick from: product, company, pricing, process, objection, other |
+
+The category is for your own organisation — the bot doesn't filter by category at retrieval time.
+
+**Edit** — inline form on each row. Changes are searchable immediately (no reindex wait). **Delete** — removed from the search index immediately.
+
+## Bulk import (CSV / XLS / XLSX)
+
+**Knowledge Base tab → Bulk Import**. Upload a spreadsheet with columns:
+
+| title | content | category |
+|---|---|---|
+| Pricing | We charge $99/mo per user, billed annually. No setup fees. | pricing |
+| Cancellation | You can cancel anytime — no penalties. Pro-rated refund. | process |
+
+**Constraints:** Max 200 rows per upload. Headers required: `title`, `content` (case-insensitive); `category` optional.
+
+<Callout type="warn" title="Two silent behaviours to know about">
+**Rows missing either `title` or `content`** are skipped without raising an error — the response message reports how many rows were imported vs. skipped, so check it if your imported count is lower than your file's row count.
+
+**Any `category` value that isn't one of the six valid options** (product, company, pricing, process, objection, other) is normalised to empty — the row imports but lands uncategorised. Capitalisation is forgiving ("Pricing" matches), but typos and out-of-enum values like "marketing" are silently dropped from the category column.
+</Callout>
+
+## Writing KB entries that work
+
+**The bot does well when:**
+
+- Entries are specific and concrete — *"$99/month per user, billed annually"* not *"competitive pricing"*
+- Entries match how visitors actually phrase questions
+- Tone matches your overall brand voice
+- One topic per entry — don't bundle pricing + cancellation + onboarding into one
+
+**The bot does poorly when:**
+
+- Entries are vague marketing copy
+- Two entries contradict each other
+- The KB is empty (the bot has nothing to ground on for objections)
+
+## Common starter set (10 entries)
+
+For most SMBs, this 10-entry skeleton handles 70%+ of in-chat questions:
+
+1. Pricing
+2. What's included
+3. What's NOT included (gotchas, caveats)
+4. Cancellation policy
+5. Refund policy
+6. Onboarding / time-to-value
+7. Customer support
+8. Common objection #1 (often: *"are you cheaper than X?"*)
+9. Common objection #2 (often: *"how long does it take?"*)
+10. Trust signal (case study, customer count, certifications)
+
+---
+
+# Document ingestion *(power user)*
+
+If you have existing sales content (a help-centre URL, a product PDF, an FAQ doc), you can ingest it directly instead of re-typing into KB entries.
+
+## Supported formats
+
+| Format | Extension | Notes |
+|---|---|---|
+| URL (single page) | — | Public web page; we extract main content |
+| URL (whole site) | — | Point at a site and we'll follow its sitemap to ingest multiple pages in one go |
+| PDF | `.pdf` | Text-based PDFs work directly. Scanned/image PDFs are now read via OCR — no need to convert them first. OCR is capped at the first 50 pages per PDF; anything beyond page 50 is silently dropped. |
+| Word | `.docx` | Modern Word format. Legacy `.doc` is rejected — convert to `.docx` first. |
+| Markdown | `.md` | Plain Markdown |
+
+## How it works
+
+**Knowledge Base tab → Add a source.** For a URL, paste it and click **Import URL**. For a file, click **↑ Upload PDF / Word / Markdown** and pick the file from your computer. There is no single "Ingest" button — the URL form auto-submits via Import URL, and the file picker auto-submits on selection.
+
+**Status flow** shown in the Imported documents list:
+
+```
+pending → Processing… → Ready (success) or failed (with an error message)
+```
+
+Scanned PDFs show **Processing (OCR)…** mid-flight to flag the longer wait.
+
+Behind the scenes Tenlo fetches, parses, chunks into ~500-token blocks, embeds each chunk, and adds to your search index. Typical end-to-end time: 30 seconds to 2 minutes per document.
+
+## Sitemap crawl (multi-page URL ingest)
+
+You no longer have to ingest help-centre pages one at a time. Paste a site URL and Tenlo will look for its sitemap and ingest the pages it lists. A crawl counts as **one ingest** against your hourly limit, no matter how many pages it pulls in.
+
+## Limits
+
+- **100 documents per business** at any one time — deleting a document frees a slot. This cap is shared with the Support Chatbot (P01).
+- **25 MB max per file**
+- **20 ingests per hour** (a sitemap crawl = 1 ingest)
+
+## Deleting
+
+The Imported documents list has a **Delete** button per row. Clicking it removes all chunks from the search index, deletes the file from storage, and removes the document from the list. The bot stops citing it immediately.
+
+## KB entries vs. document ingestion
+
+| Use KB entries when… | Use document ingestion when… |
+|---|---|
+| The answer is short and specific | You have long-form policy or guide content |
+| You want tight wording control | The content already exists and is accurate |
+| The topic is a single Q&A | The doc covers many topics |
+| You're starting from scratch | You already maintain a help centre or product doc |
+
+You can mix both freely. The bot searches everything together.
+
+## What's not yet supported
+
+- **JavaScript-rendered single-page apps** — save the page as a PDF and upload that instead
+- **Scheduled re-ingestion** — today, you re-ingest manually after content changes
+- **Multi-file batch upload** — ingest documents one at a time
+
+These are roadmap items. (Sitemap crawl and scanned-PDF OCR — previously listed here — are now live.)

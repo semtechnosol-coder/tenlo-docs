@@ -1,0 +1,51 @@
+---
+title: Notifications
+lastUpdated: 2026-05-29
+---
+
+import { Callout } from '../../../components/Callout'
+
+# Notifications.
+
+When a lead comes in, you can route alerts to wherever your team actually monitors — Slack, Microsoft Teams, or email.
+
+## The two events
+
+| Event | When |
+|---|---|
+| `p05.high_score_lead` | Every captured lead, after it's been scored (regardless of score — the subject line includes the score and a 🔥/✅/📋 badge so you can triage) |
+| `p05.hot_lead_booked` | Lead actually booked a meeting via Calendly |
+
+## Adding a channel
+
+**Top nav → Settings → Notifications.** The Channels section already shows an **Email** entry — auto-configured to your account owner address, there's no Add Email button.
+
+To add a webhook channel, click **+ Add Slack channel** or **+ Add Teams channel**:
+
+| Channel | What to paste |
+|---|---|
+| Slack | Incoming Webhook URL from your Slack app |
+| Microsoft Teams | Classic Incoming Webhook URL or Power Automate Workflow webhook URL |
+
+After the channel is added, click the **Test** button on its row to verify wiring.
+
+## Subscribing to events
+
+Once a channel is connected, find the `p05.high_score_lead` and `p05.hot_lead_booked` rows in the toggle grid and flip them on for the channels you want.
+
+## What the alerts contain
+
+- **Slack/Teams** — Block Kit / MessageCard with lead name, email, score, score reasoning, and a link to the Sales Assistant dashboard, where you can click the lead row to read the transcript.
+- **Email** — same content as the legacy lead-alert email format.
+
+## Default email behaviour
+
+The Email channel is **auto-created against your account owner address** the first time you open Settings → Notifications (or the first time any alert dispatches), with default-on subscriptions for both events.
+
+Webhook channels you add layer on top — they don't replace the email default. If you want to silence email alerts, toggle off the email row in the subscription grid; deleting the email channel itself isn't supported.
+
+## Auto-revoke
+
+<Callout type="note">
+If a webhook URL becomes invalid (channel deleted, app removed, returns 404/410), the system auto-marks it inactive and emails you. Re-add it whenever convenient.
+</Callout>

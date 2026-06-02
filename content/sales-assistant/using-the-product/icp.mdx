@@ -1,0 +1,58 @@
+---
+title: Defining your Ideal Customer
+lastUpdated: 2026-05-29
+---
+
+import { Callout } from '../../../components/Callout'
+
+# Defining your Ideal Customer.
+
+The single most important field in the entire product. Lives at **Settings → Widget configuration → Ideal Customer Profile**.
+
+## Why ICP matters
+
+When you set ICP, the AI does four things differently:
+
+- **Prioritises the right qualifying questions** for each visitor based on which fits matter most.
+- **Recognises non-fit visitors early** and exits gracefully without pushing them toward a sales call.
+- **Scores leads against your real definition of "good fit"** — not just whether they answered all the questions.
+- **Offers non-fit visitors something useful instead of dismissing them** — the AI is instructed to suggest a free resource (a guide, a tool, a relevant article) when it identifies a clear non-fit. Your bot becomes a brand-positive touchpoint even for visitors you can't sell to today.
+
+<Callout type="warn" title="Empty ICP weakens scoring">
+When ICP is empty, the AI can only judge by whether a visitor answered your qualifying questions. That's far weaker — anyone who answers looks qualified, even if they're clearly wrong-fit.
+</Callout>
+
+## What to write
+
+Two paragraphs is plenty (2,000-character soft cap on the field). Include:
+
+- **Industries / verticals** you serve (and don't serve)
+- **Company size** — employee count, revenue range, customer base
+- **Geography** if it matters
+- **Role / decision-maker profile**
+- **Stage / situation** — startup vs scale-up vs established; greenfield vs replacing a tool
+- **Disqualifiers** — explicit non-fits
+
+## Examples
+
+### B2B SaaS for SMB marketing teams
+
+> "Our ideal customer is a marketing manager or VP at a B2B company with 20–200 employees, primarily in tech, professional services, or e-commerce. Sweet spot is companies that have outgrown spreadsheets but aren't ready for enterprise platforms like Marketo. Not a fit for: agencies, companies under 10 employees, and Fortune 500s."
+
+### Local home-services business
+
+> "We serve homeowners in the Greater Toronto Area for residential HVAC repair and replacement. Best fits are owners of single-family homes built before 2010 needing furnace, AC, or heat-pump work — typical job size $3,000–$15,000. Not a fit for: commercial buildings, condos under 5 years old, tenants, or anyone outside our service zone."
+
+### Professional services
+
+> "Our clients are founders or CEOs of Series A–B SaaS startups (50–500 employees, $5M–$50M ARR) preparing for a Series C raise or strategic exit within 18 months. Not a fit for: pre-revenue startups, public companies, or anyone seeking ongoing fractional CFO work."
+
+## ICP scoring impact
+
+When ICP is set, the lead reasoning text becomes much more grounded.
+
+| Without ICP | With ICP |
+|---|---|
+| "Lead met 3 of 4 qualifying criteria. Strong indication of need. Did not specify timeline." | "Strong fit against your stated target of 20–200 employee B2B SaaS marketing teams. Visitor is the marketing director, owns the budget, and confirmed they've outgrown spreadsheet tracking. Did not specify timeline, which is the typical Series A signal." |
+
+The reasoning sentence is the actual deliverable that lands in your CRM. A score of "78" alone means nothing — but a sentence saying *"matched your 20–200-employee B2B SaaS target, owns marketing, did not state timeline"* gives your sales team a real lead-in and the words to open the next conversation. See [Lead scoring & lifecycle](/sales-assistant/using-the-product/lead-scoring).

@@ -1,0 +1,74 @@
+---
+title: Frequently asked questions
+lastUpdated: 2026-05-29
+---
+
+# Frequently asked questions.
+
+The questions the support inbox sees most often, with the answers we'd give over chat.
+
+### Can the bot make up information about my business?
+
+No. The bot grounds answers in your KB and your **Products & services** field. There's an explicit rule against inventing trial terms, pricing, refund policies, or onboarding details — when something isn't in your KB, the bot says it'll have your team confirm rather than guess.
+
+### How long after a lead is captured before they appear in my CRM?
+
+Within ~1–2 seconds. Capture → CRM sync → score → CRM stage advance → notification all happen in the same beat.
+
+### Will the bot handle multiple visitors at the same time?
+
+Yes. Each visitor session is independent. There's no concurrency limit.
+
+### What happens if a visitor closes the chat halfway through?
+
+The session is preserved (in case they come back during the same page load). If they reload the page, a new session starts. Partial conversations without contact capture don't generate leads.
+
+### Will the bot keep messaging after a visitor says they're not interested?
+
+No. When ICP indicates non-fit, the bot wraps up warmly, optionally suggests a free resource, and stops pushing.
+
+### Can the bot speak to a visitor in a language other than English?
+
+The bot will respond in whatever language the visitor uses. Your KB content should be in the language(s) you serve.
+
+### How does this differ from the Support Chatbot (P01)?
+
+P01 is for **support** — answering existing-customer questions from your help docs. P05 is for **sales** — qualifying new visitors, capturing contact info, and booking meetings.
+
+### Can I run both P01 and P05 at the same time?
+
+Yes — they're separate widgets with separate scripts and separate bubbles. Customers running both typically style them in different colours and put them on different pages.
+
+### Does the bot work without Calendly?
+
+Yes. Without Calendly, the bot still qualifies and captures leads. Instead of offering to book a meeting, it points qualified visitors to whatever next step you've described in your **Products & services** field (trial signup, contact form, quote request, etc.). If no concrete next step is described there, the bot tells the visitor someone from the team will follow up by email shortly. See [Greeting, tone & qualifying questions](/sales-assistant/using-the-product/greeting-and-tone).
+
+### How accurate is the lead scoring?
+
+With a strong ICP, the score reflects fit reliably. Without ICP, it's much weaker. The reasoning text is the real value — see [Lead scoring & lifecycle](/sales-assistant/using-the-product/lead-scoring).
+
+### Can I edit how the bot scores leads?
+
+Indirectly. Update your ICP and qualifying questions and the scoring shifts. There's no manual scoring rubric to edit.
+
+### What happens to leads that don't book?
+
+They land in your CRM with their score and reasoning, and your team can follow up. The bot doesn't auto-send follow-up emails.
+
+### Are visitor conversations used to train AI models?
+
+No. Tenlo uses Anthropic's enterprise endpoints which prohibit training on customer data.
+
+### What happens to my data if I cancel or disconnect?
+
+When you disconnect an integration (HubSpot, Pipedrive, Calendly), Tenlo wipes the tokens and stops future syncs; records already created in the third-party system are not touched, and your Tenlo-side history (leads, bookings, transcripts) is preserved.
+
+If you cancel your subscription, your data is automatically purged 90 days after cancellation — including conversation transcripts, leads, and your knowledge-base index. For an immediate deletion request, email hello@tenloai.com.
+
+### How much does this cost beyond $199/mo?
+
+Nothing. AI inference, Calendly integration, CRM sync, document ingestion — all included.
+
+### What if my Calendly account expires?
+
+The bot will still offer the (now-dead) booking link because the URL is stored locally — but the availability check fails silently behind the scenes and a visitor clicking the link won't reach a working Calendly page. Reconnect Calendly to restore.

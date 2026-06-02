@@ -1,0 +1,15 @@
+export default {
+  dashboard: 'Dashboard at a glance',
+  embed: 'Embedding the widget',
+  icp: 'Defining your Ideal Customer',
+  'greeting-and-tone': 'Greeting, tone & qualifying questions',
+  calendly: 'Connecting Calendly',
+  'booking-threshold': 'The booking threshold',
+  'knowledge-base': 'Knowledge base & document ingestion',
+  'lead-scoring': 'Lead scoring & lifecycle',
+  transcripts: 'Reading conversation transcripts',
+  crm: 'CRM integration',
+  notifications: 'Notifications',
+  theming: 'Theming & branding',
+  reports: 'Monthly ROI reports',
+}

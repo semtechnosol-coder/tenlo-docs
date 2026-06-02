@@ -1,0 +1,86 @@
+---
+title: Lead scoring & lifecycle
+lastUpdated: 2026-05-29
+---
+
+import { Callout } from '../../../components/Callout'
+
+# Lead scoring & lifecycle.
+
+Every captured lead gets a 0–100 score within seconds of contact capture, and a lifecycle status that tracks where it is in your sales process.
+
+## What the AI evaluates
+
+Scoring runs against two inputs:
+
+- **Your Ideal Customer Profile** (when set) — primary scoring criterion
+- **Your qualifying questions** — secondary criterion (or primary, when ICP is empty)
+
+The AI reads the full conversation transcript and judges fit against these inputs. It's not a magic number — it's the AI's structured assessment, distilled into a 0–100 scale.
+
+## Score buckets
+
+| Score | Bucket | Meaning |
+|---|---|---|
+| 0–59 | Low fit (`low_fit`) | Visitor doesn't match your ICP or missed key qualifiers. Don't push for a meeting. |
+| 60–79 | Good fit (`good_fit`) | Solid prospect. Worth a sales conversation. Booking offer recommended. |
+| 80–100 | Hot lead (`hot`) | Clearly qualified. High-intent. Top of inbox priority. |
+
+Two other lifecycle states exist that aren't score buckets — `new` (briefly, in the seconds between contact capture and scoring completion) and `booked` (once a Calendly meeting has been confirmed; the score-derived bucket is preserved underneath but the displayed status sticks at `booked`).
+
+## What you see per lead
+
+Every lead in Recent Leads shows:
+
+- **Score** with emoji badge — 🔥 ≥80 / ✅ ≥60 / 📋 under 60
+- **Reasoning** — 2–3 sentences explaining the score
+
+Clicking a lead opens a transcript modal with the full conversation. The AI also produces structured **met-criteria** and **missed-criteria** lists per lead — these are stored on the lead record but aren't surfaced in the dashboard yet (on the roadmap). For now, the reasoning sentence is the most actionable thing the AI tells you about each lead.
+
+<Callout type="tip" title="Why this matters more than just a number">
+The reasoning sentence is the actual deliverable. A score of "78" alone means nothing — but a sentence saying *"matched your 20–200-employee B2B SaaS target, owns marketing, did not state timeline"* gives your sales team a real lead-in and the words to open the next conversation.
+</Callout>
+
+## Scoring is automatic and immediate
+
+You don't trigger scoring. It happens in the seconds after contact capture. By the time the lead lands in your CRM, it has a score, reasoning, and CRM deal stage already attached.
+
+The system does **not** currently re-score on subsequent messages — the score reflects the conversation state at contact-capture time. This is on the roadmap.
+
+---
+
+# Lead status lifecycle
+
+Each lead has a status that tracks where it is in your sales process. In Recent Leads you see it implied by the score badge (🔥 / ✅ / 📋); in your CRM it maps to the deal stage; in monthly ROI reports it appears as a column in the lead breakdown.
+
+## The five statuses
+
+| Status | When |
+|---|---|
+| `new` | Lead just captured; scoring hasn't completed yet (lasts ~1–2 seconds) |
+| `low_fit` | Scored under 60 |
+| `good_fit` | Scored 60–79 |
+| `hot` | Scored 80+ |
+| `booked` | Visitor actually booked a meeting via your Calendly link |
+
+## Transitions
+
+```
+new ──> low_fit / good_fit / hot      (scoring completes)
+                 │
+               booked                  (Calendly invitee.created)
+                 │
+         low_fit / good_fit / hot      (Calendly invitee.canceled — reverts to score bucket)
+```
+
+`booked` is **sticky** — once a lead has booked, late re-scoring won't revert their status. Only an explicit Calendly cancellation reverts.
+
+## What this means in practice
+
+- **Your CRM deal stage advances as the status changes** — see [CRM integration](/sales-assistant/using-the-product/crm).
+- **Notifications fire on every scored lead** (event `p05.high_score_lead`), regardless of score — the subject line shows the score and a 🔥/✅/📋 badge so you can triage at a glance. A separate notification fires on every Calendly booking (event `p05.hot_lead_booked`). Each event is subscribed independently per channel, so you can keep booking alerts on and turn lead alerts off if your widget has high traffic.
+- **Monthly ROI reports** break down leads by status — see [Monthly ROI reports](/sales-assistant/using-the-product/reports).
+
+<Callout type="tip" title="Filtering to hot-only at the email level">
+Until the system adds a per-channel score threshold, a one-line Gmail / Outlook filter on the subject line is the cleanest workaround: skip anything whose subject contains 📋 (low fit) and ✅ (good fit). Anything left — 🔥 hot leads and all booking confirmations — lands in your inbox.
+</Callout>

@@ -1,0 +1,69 @@
+---
+title: Theming & branding
+lastUpdated: 2026-05-29
+---
+
+import { Callout } from '../../../components/Callout'
+
+# Theming & branding.
+
+The widget bubble can match your brand colour, and you can swap the bubble/avatar glyphs.
+
+## Setting the primary colour
+
+Two ways, in priority order:
+
+**1. From the dashboard *(recommended)*.** Settings tab → **Embed your widget** card → Widget color picker. The picker updates state immediately; scroll down and click **Save configuration** in the Widget configuration card to persist.
+
+<Callout type="warn" title="The live widget doesn't update automatically">
+The new color updates the embed snippet displayed in the Embed your widget card — but the **live widget on your site does not change automatically**. The widget reads the colour from its `data-primary-color` script-tag attribute at install time, not from your dashboard config, so you must copy the updated snippet and re-paste it on every page where the widget is installed for the new colour to take effect. *(Roadmap: live colour updates without re-install.)*
+</Callout>
+
+**2. Per-embed override.** Add a `data-primary-color` attribute to a specific embed snippet. This wins over the dashboard setting for that particular installation.
+
+```html
+<script
+  src="https://app.tenloai.com/chat-widget.js"
+  data-business-id="YOUR-BUSINESS-ID"
+  data-primary-color="#FF6B35"
+></script>
+```
+
+## What the colour applies to
+
+- The 56px bubble background
+- Chat header
+- User message bubbles
+- Booking-card button
+- Send button
+- Focus ring
+
+The bot's response bubbles and chat input stay in neutral tones for readability.
+
+## Colour format
+
+- Must be **6-digit hex** (`#0D2D6B`, `#FF6B35`, `#0066cc`)
+- 3-digit hex (`#abc`) is not supported — use full 6-digit
+- Invalid values silently fall back to default `#0D2D6B`
+- Hover states automatically brighten via CSS filter — no need to set hover separately
+
+## Bubble and avatar emoji
+
+**Settings → Widget configuration** lets you set two glyphs:
+
+| Field | Default | Where shown |
+|---|---|---|
+| Bubble icon | 💬 | The closed floating bubble |
+| Chat avatar | 🤖 | Next to the bot in the chat-window header |
+
+Each accepts a short emoji or 1–16 characters. Save with **Save configuration**.
+
+## What's not yet customizable
+
+- **Bubble position** — always bottom-right, 24px offset
+- **Bubble size** — always 56px round
+- **Chat window size** — 360×520px on desktop, mobile-responsive
+- **Font** — system defaults
+- **Booking-card layout**
+
+These are roadmap items.

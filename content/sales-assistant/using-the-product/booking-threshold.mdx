@@ -1,0 +1,49 @@
+---
+title: The booking threshold
+lastUpdated: 2026-05-29
+---
+
+import { Callout } from '../../../components/Callout'
+
+# The booking threshold.
+
+**Settings → Widget configuration → Booking score threshold**. A slider from 30 to 90, default 60.
+
+## What it controls
+
+Every captured lead gets a 0–100 score. The bot offers a Calendly link only when it judges the lead would likely score at or above your threshold. Below threshold, the bot collects contact info but doesn't push for a meeting.
+
+The bot estimates this judgment in real time during the chat. A separate post-conversation scoring pass produces the official score you see in Recent Leads — that score is computed independently and may differ from the AI's in-conversation estimate.
+
+<Callout type="note" title="No-Calendly caveat">
+The threshold only gates the Calendly booking card. If you haven't connected Calendly, moving the slider has no functional effect — the bot will still make its own "good fit" judgment and offer the next step described in your [Products & services field](/sales-assistant/using-the-product/greeting-and-tone), and the slider's value is ignored.
+</Callout>
+
+## Threshold guide
+
+| Threshold | Behaviour |
+|---|---|
+| 30–40 | Permissive — almost every lead gets a booking offer. Use if your Calendly is empty and you want volume to build judgement. |
+| 50 | Loose — most leads get offered. Catches some weak fits. |
+| 60 *(default)* | Balanced — solid SQLs get the offer; questionable leads don't. |
+| 70 | Strict — only clearly-qualified leads. Better quality, fewer bookings. |
+| 80–90 | Very strict — only no-doubt fits. Use if your team's calendar is precious. |
+
+## Status labels are independent of the threshold
+
+The Recent Leads card tags each lead with a status badge — 🔥 Hot for scores ≥ 80, ✅ Good fit for ≥ 60, 📋 Low fit for < 60. These cut-offs are **hard-coded; they don't move with your slider**.
+
+So if you set the threshold to 80, leads scoring 65 will still be labeled ✅ Good fit in the dashboard but won't receive a booking offer. The threshold tunes booking *offers*; the dashboard tags reflect raw qualification *quality*.
+
+## Tuning advice
+
+Start at 60. After 10–20 leads, look at the scores in Recent Leads:
+
+- If most of your good-fit leads scored 50–65, drop the threshold to 55.
+- If borderline leads are scoring 70+ and getting unwanted offers, raise to 65.
+
+## Threshold and ICP work together
+
+**ICP** = who counts as a good fit. **Threshold** = how strict the bot is when calling someone "qualified."
+
+A clear ICP makes the threshold work better. Don't try to tune the threshold without first writing a real ICP — see [Defining your Ideal Customer](/sales-assistant/using-the-product/icp).

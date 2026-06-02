@@ -1,0 +1,78 @@
+---
+title: Quick start — live in 30 minutes
+lastUpdated: 2026-05-29
+---
+
+import { Steps, Step } from '../../../components/Step'
+import { Callout } from '../../../components/Callout'
+
+# Quick start.
+
+Six steps, in order. The Getting Started checklist on your dashboard at [app.tenloai.com/dashboard/assistant](https://app.tenloai.com/dashboard/assistant) mirrors these steps and ticks them off automatically once Tenlo detects you've done them.
+
+<Steps>
+<Step n={1} title="Configure your ideal customer." time="~10 min" path="Settings → Widget configuration → Ideal Customer Profile">
+
+Describe in plain language who is a good fit and who isn't. Two paragraphs is fine. Include the industries you serve, company size, geography, decision-maker profile, and — critically — your explicit disqualifiers.
+
+In the same card, add your **Qualifying questions** (one per line). Examples:
+
+- What's your current process for X?
+- How big is your team?
+- What's your timeline?
+- Have you tried solutions like ours before?
+
+<Callout type="tip" title="The single most important field">
+ICP drives everything downstream — scoring quality, graceful exits from bad-fit visitors, even the AI's choice of qualifying questions per visitor. Don't skip this. See [Defining your Ideal Customer](/sales-assistant/using-the-product/icp) for examples.
+</Callout>
+</Step>
+
+<Step n={2} title="Set your greeting and tone." time="~3 min" path="Settings → Widget configuration">
+
+**Opening greeting** — the first message visitors see. Keep it warm, specific, and curious. Avoid "How can I help you?" — too open-ended.
+
+> "Hi! I'm here to help you figure out if Acme is the right fit. What brings you in today?"
+
+**Tone description** — one sentence describing how the bot should sound:
+
+> "Friendly, professional, and concise."
+
+The AI uses this verbatim as a style guide. See [Greeting, tone & qualifying questions](/sales-assistant/using-the-product/greeting-and-tone).
+</Step>
+
+<Step n={3} title="Connect Calendly and set your booking threshold." time="~5 min" path="Settings → Widget configuration → Connect Calendly">
+
+Click **Connect Calendly** → OAuth flow → pick your event type (e.g. "30-min Discovery Call"). The bot will offer this link to qualified visitors.
+
+In the same card, the **Booking score threshold** slider (range 30–90, default 60) controls how qualified a visitor must be before the bot offers them the booking link. Higher = pickier. See [The booking threshold](/sales-assistant/using-the-product/booking-threshold).
+
+<Callout type="note">
+If you skip Calendly, the bot still qualifies leads — it just won't offer a booking link. It will point qualified visitors to whatever next step you describe in your **Products & services** field. See [Calendly](/sales-assistant/using-the-product/calendly).
+</Callout>
+</Step>
+
+<Step n={4} title="Copy the embed code." time="~1 min" path="Settings → Embed your widget">
+
+Copy the `<script>` snippet from the **Embed your widget** card. The snippet contains your `data-business-id` and — if you changed the widget colour — your `data-primary-color` attribute.
+</Step>
+
+<Step n={5} title="Install on your website." time="~5 min">
+
+Paste the snippet just before `</body>` on every page where you want the chat bubble. The dashboard's Getting Started checklist has platform tabs for WordPress, Squarespace, Wix, Shopify, and custom HTML.
+
+<Callout type="warn" title="Webflow customers">
+The dashboard's per-platform helper doesn't include a Webflow tab — paste the snippet at **Project Settings → Custom Code → Footer Code** instead.
+</Callout>
+
+See [Embedding the widget](/sales-assistant/using-the-product/embed) for the full per-platform table.
+</Step>
+
+<Step n={6} title="Wait for your first lead." time="auto" path="Recent Leads tab">
+
+This step completes automatically when the first qualified visitor leaves their contact info.
+
+To test sooner, open your site in an incognito tab, click the bubble, and have a real conversation — the lead should appear in **Recent Leads** within seconds.
+</Step>
+</Steps>
+
+That's it — your Sales Assistant is live, running 24/7.

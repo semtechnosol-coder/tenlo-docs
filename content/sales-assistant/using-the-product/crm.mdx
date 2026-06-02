@@ -1,0 +1,69 @@
+---
+title: CRM integration
+lastUpdated: 2026-05-29
+---
+
+import { Callout } from '../../../components/Callout'
+
+# CRM integration.
+
+Two CRMs supported: **HubSpot** and **Pipedrive**. Connecting one (or both) lets every captured lead flow automatically into your existing pipeline.
+
+## What syncs to your CRM
+
+| Trigger | HubSpot action | Pipedrive action |
+|---|---|---|
+| Lead captured | Upsert Contact; create Deal *"Tenlo Lead — \[name]"* | Upsert Person; create Deal *"Tenlo Lead — \[name]"* |
+| Lead scored | Advance Deal stage based on score bucket | Mark Deal won if score ≥80 |
+| Lead booked (Calendly) | Advance Deal to `qualifiedtobuy` | Mark Deal won |
+| Booking cancelled (Calendly) | No automatic action — manual follow-up | No automatic action |
+
+## HubSpot deal stage mapping
+
+| Score | HubSpot stage |
+|---|---|
+| ≥80 (`hot`) | `qualifiedtobuy` |
+| 60–79 (`good_fit`) | `presentationscheduled` |
+| under 60 (`low_fit`) | `appointmentscheduled` |
+
+These map to HubSpot's default deal pipeline. If you use a custom pipeline, the deal still creates but stage names may not match — contact support to align.
+
+## Pipedrive deal status
+
+Pipedrive has a simpler model:
+
+- **Score ≥80** → deal status `won`
+- **Otherwise** → deal stays `open` at default stage
+- **Booking** → deal `won`
+
+Pipedrive deals are linked to the Person only — **no Organisation is created for P05 leads**, because the chat doesn't reliably capture company info. If you need Org-level pipeline tracking, create and link the Organisation manually. On the roadmap once company info is reliably available from the conversation.
+
+## Connecting HubSpot
+
+**Top nav → Settings → Integrations → HubSpot → Connect HubSpot → OAuth flow → Approve permissions.** Leads start syncing immediately.
+
+## Connecting Pipedrive
+
+1. Get a personal API token from Pipedrive (**Personal preferences → API**).
+2. Paste it into **Settings → Integrations → Pipedrive**.
+3. *(Optional)* Add company domain (e.g. `acmecorp` for `acmecorp.pipedrive.com`).
+
+<Callout type="warn" title="Pipedrive tokens are personal">
+Pipedrive uses personal API tokens, not OAuth. If the user who created the token leaves the company, generate a new token from someone with permanent access.
+</Callout>
+
+## What happens if both are connected
+
+Both fire on every event. You get duplicate records — one in HubSpot, one in Pipedrive. **Pick one, not both**, unless you have a clear migration reason.
+
+## Disconnecting
+
+**Settings → Integrations → Disconnect.** Tokens are wiped. Existing CRM records aren't touched — only future syncs stop.
+
+## What doesn't sync
+
+- The conversation transcript (lead reasoning *is* synced as a property on the Contact, but the full chat is not)
+- Custom fields beyond name/email/phone/score
+- Marketing campaign attribution
+
+These are roadmap items.
