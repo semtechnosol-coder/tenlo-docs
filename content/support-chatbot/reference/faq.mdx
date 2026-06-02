@@ -1,0 +1,66 @@
+---
+title: Frequently asked questions
+lastUpdated: 2026-06-02
+---
+
+# Frequently asked questions.
+
+The questions the support inbox sees most often, with the answers we'd give over chat.
+
+### Will the bot make up answers?
+
+No. The bot is grounded — it can only answer using content from your KB. When confidence is below your threshold, it says *"I'm not sure I have the right information..."* rather than guessing. This is the single most important difference between Tenlo's chatbot and generic AI assistants.
+
+### Does the bot remember previous messages in the same conversation?
+
+Not yet. Each visitor message is treated independently — the bot doesn't currently use prior turns as context. Multi-turn context is on the roadmap.
+
+In practice, this means visitors get the best results when each question is self-contained (*"what are your refund policies?"* not *"what about the previous one?"*).
+
+### How fast does the bot respond?
+
+First word usually appears in 600ms–1s. The full answer streams in over 1–3 seconds depending on length. Responses appear progressively (token-by-token) so visitors see something happening immediately.
+
+### Can I have different chatbots for different products or pages?
+
+Today, one chatbot per business. Multi-bot support is on the roadmap. Workaround: write FAQs that explicitly distinguish products, and the bot will route based on the visitor's wording.
+
+### Can I see live conversations as they happen?
+
+Not yet. The Conversations tab shows finished conversations with a brief delay. Live monitoring is on the roadmap.
+
+### Can I export my conversations or KB?
+
+Email `hello@tenloai.com` for a one-off CSV export. Self-serve export is on the roadmap.
+
+### What languages does the bot support?
+
+The bot answers in whatever language matches your KB. English KB → English answers. If your KB is in French and a visitor types in English, you'll get inconsistent results — write FAQs in the language(s) you serve.
+
+### Is my data used to train AI models?
+
+No. Your KB content, visitor conversations, and configuration are not used to train any models. Anthropic and OpenAI's enterprise endpoints (which Tenlo uses) prohibit training on customer data.
+
+### What happens if Anthropic or OpenAI is down?
+
+The bot returns a generic error to the visitor for that turn. Tenlo doesn't queue/retry visitor-facing requests — visitors see a real-time error, not a delayed response. Your KB and conversations are unaffected.
+
+### Can the bot trigger actions (book meetings, place orders, etc.)?
+
+No — the bot is read-only against your KB. For action-taking AI (qualifying leads, booking calls, taking payments), see Tenlo's [Sales Assistant (P05)](/sales-assistant) which is purpose-built for that.
+
+### How much will this cost beyond $299/mo?
+
+Nothing. AI inference, embeddings, document ingestion (including OCR for scanned PDFs), and email transcripts are all included. There's no metered billing.
+
+### I have both the Support Chatbot (P01) and the Sales Assistant (P05) — do they share my 100-document limit?
+
+Yes. The 100-doc cap is enforced per business across both products combined. Ingesting 60 docs into the Chatbot KB leaves 40 slots for the Sales Assistant (or vice-versa). Deleting a doc anywhere on either product frees a slot for either product.
+
+### What happens if I cancel?
+
+Data is retained while your account is open. The widget on your site stops responding (returns an error). Deletion-on-request is available — email `hello@tenloai.com`. See [Pricing & billing](/support-chatbot/reference/billing) for the full retention window.
+
+### Can I let the bot reply directly to handoffs (auto-respond)?
+
+No, by design. When confidence is low, your team should respond — that's where the high-value moments happen. Letting AI handle *"I'm stuck, please help"* tends to make the experience worse, not better.

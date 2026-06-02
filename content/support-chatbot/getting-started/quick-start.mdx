@@ -1,0 +1,60 @@
+---
+title: Quick start — live in 30 minutes
+lastUpdated: 2026-06-02
+---
+
+import { Steps, Step } from '../../../components/Step'
+import { Callout } from '../../../components/Callout'
+
+# Quick start.
+
+Seven steps, in order. The onboarding checklist on your dashboard at [app.tenloai.com/dashboard/chatbot](https://app.tenloai.com/dashboard/chatbot) mirrors these steps.
+
+<Steps>
+<Step n={1} title="Open the dashboard." time="~1 min" path="app.tenloai.com/dashboard/chatbot">
+
+Your chatbot is auto-created on first visit — there's nothing to provision.
+</Step>
+
+<Step n={2} title="Name it and write a greeting." time="~2 min" path="Settings tab">
+
+**Chatbot name** (e.g. *"Acme Support"*) and **Greeting message** (the first thing visitors see). Save.
+</Step>
+
+<Step n={3} title="Add 5–10 starter FAQs." time="~15 min" path="Knowledge Base tab → Add FAQ">
+
+Paste a question your customers actually ask. Paste your real answer. Repeat 5–10 times. Each FAQ is searchable as soon as you save it.
+
+<Callout type="tip">
+Start with the questions your team answers most often by email or chat. Even 10 FAQs gives the bot enough material to handle the most common 60–70% of incoming questions.
+</Callout>
+
+See [Knowledge base — FAQs](/support-chatbot/using-the-product/faqs) for writing tips.
+</Step>
+
+<Step n={4} title="Test it." time="~2 min" path="Overview tab → Test Chat Sandbox">
+
+The sandbox is open by default for new accounts. Type a question. The bot should answer using your FAQ, with a confidence score visible on each reply.
+</Step>
+
+<Step n={5} title="Set the handoff email." time="~1 min" path="Settings tab → Handoff email">
+
+This is where transcripts go when the bot escalates to a human. Use a shared inbox or a real person's address.
+
+See [Handoff to a human](/support-chatbot/using-the-product/handoff).
+</Step>
+
+<Step n={6} title="Copy the embed code." time="~1 min" path="Overview tab → Install on your website">
+
+Copy the `<script>` snippet to your clipboard. Paste it before the closing `</body>` tag on every page where you want the bubble to appear (or just on your support page).
+
+See [Embedding the widget](/support-chatbot/using-the-product/embed) for per-platform instructions.
+</Step>
+
+<Step n={7} title="Verify installation." time="auto" path="Overview tab → Verify installation">
+
+After a visitor opens the widget on your site, the dashboard turns this dot green. Confirms your embed is live without forcing you to send a fake conversation.
+</Step>
+</Steps>
+
+That's it. Your chatbot is now live, answering questions from your KB, handing off to your inbox when stumped.

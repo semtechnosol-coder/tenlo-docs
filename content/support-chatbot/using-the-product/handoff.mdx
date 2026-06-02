@@ -1,0 +1,53 @@
+---
+title: Handoff to a human
+lastUpdated: 2026-06-02
+---
+
+import { Callout } from '../../../components/Callout'
+
+# Handoff to a human.
+
+When the bot can't confidently answer, it offers to connect the visitor with a human. This is the handoff flow.
+
+## What triggers a handoff
+
+A handoff fires when:
+
+1. The visitor's confidence score is **below your threshold** (the most common path), OR
+2. The visitor's message contains a **trigger phrase** you've configured — e.g. *"speak to human"*, *"cancel my account"*. See [Trigger phrases](/support-chatbot/using-the-product/trigger-phrases).
+
+The bot says:
+
+> *"I'm not sure I have the right information to answer that. Would you like me to connect you with a human who can help?"*
+
+…and the chat shows a small form: **Name** + **Email** + **Send / Cancel**.
+
+## What happens after the visitor submits the form
+
+1. The conversation is marked `handed_off`
+2. The full transcript is sent to your **handoff email** (Settings tab)
+3. If you've configured Slack or Teams notifications, they fire too — see [Notifications](/support-chatbot/using-the-product/notifications)
+4. The visitor sees: *"Thanks \[name]! Someone from our team will be in touch shortly."*
+
+## Configuring the handoff email
+
+**Settings tab → Handoff email.** Best practice:
+
+- Use a **shared inbox** (e.g. `support@yourbusiness.com`) so multiple team members can see and reply
+- Don't use a personal address that may go to spam or get missed
+- The email comes from `alerts@tenloai.com` — your team can set a forwarding rule if needed
+
+## What the handoff email looks like
+
+Subject line includes the visitor's name (or *"Anonymous visitor"*). Body contains:
+
+- Visitor's name and email (if provided)
+- The page they were on when the chat started
+- The full conversation transcript
+- A timestamp
+
+## No auto-reply
+
+<Callout type="note" title="Humans handle handoffs">
+The bot does **not** generate a reply on your behalf when a handoff fires. The visitor's question is in your inbox — your team responds personally. That's the whole point of the handoff: the bot knows when to step aside.
+</Callout>

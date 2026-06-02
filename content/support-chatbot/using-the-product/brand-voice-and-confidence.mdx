@@ -1,0 +1,70 @@
+---
+title: Brand voice & confidence threshold
+lastUpdated: 2026-06-02
+---
+
+import { Callout } from '../../../components/Callout'
+
+# Brand voice & confidence threshold.
+
+Two settings shape how your bot sounds and when it speaks up.
+
+## Brand voice prompt
+
+**Settings tab → Brand voice prompt.** A 1–4 sentence description of how your bot should sound. Examples:
+
+- *"Friendly and professional. First-name energy. No corporate-speak. Always thank the visitor for reaching out."*
+- *"Concise and direct. Get to the answer fast. No fluff. Match how a busy ops person would write."*
+- *"Warm and reassuring, especially on billing or account questions. Acknowledge frustration before answering."*
+
+The bot uses this as a style anchor on every reply that's grounded in your KB. You're shaping voice and tone, not content — content always comes from your FAQs and ingested documents.
+
+## Confidence threshold *(the most important setting)*
+
+**Settings tab → Confidence threshold.** A slider from `0.50` to `0.80` (default `0.60`).
+
+Every visitor message gets a confidence score from 0 to 1 based on how closely your KB matches the question. The threshold is the cut-off:
+
+- **Above threshold** → bot generates an answer using your KB
+- **Below threshold** → bot says *"I'm not sure I have the right information..."* and offers handoff
+
+| Threshold | Behaviour |
+|---|---|
+| `0.50` | Answers more questions, lower certainty. More risk of soft/imprecise answers. Less handoff friction. |
+| `0.60` *(default)* | Balanced. Right for most SMBs. |
+| `0.70` | Higher precision; bot only answers when confident. More handoffs. |
+| `0.80` | Strict. Bot only answers near-exact KB matches. Lots of handoffs. |
+
+<Callout type="tip" title="Tuning advice">
+Start at `0.60`. After a few hundred conversations, look at your handoff rate in the Conversations tab. If you're handing off too often (over 30%), lower to `0.55`. If the bot is giving wrong/imprecise answers, raise to `0.65` or `0.70` and add more FAQs to plug gaps.
+</Callout>
+
+## What "confidence" actually measures
+
+Confidence is the **similarity** between the visitor's question and your closest matching FAQ or document chunk. High confidence means the visitor's wording is close to something in your KB. Low confidence means nothing in your KB matches what they're asking — usually because the KB doesn't cover that topic, but sometimes because the visitor phrased it in an unexpected way.
+
+If you keep seeing the bot punt on questions you *did* answer, the fix is usually **adding a paraphrase FAQ** with the visitor's wording.
+
+---
+
+## Retrieval Inspector *(V2.6)*
+
+Shipped 2026-05. Two related additions.
+
+### Advanced retrieval section *(Settings → General → Advanced retrieval)*
+
+Collapsed by default. Two controls:
+
+- **Use different threshold per content type** — flip the checkbox to expose five sliders (FAQ, URL, PDF, DOCX, MD). Long-form chunks (PDFs, web pages) typically score lower than a tight FAQ pair even when they contain the right answer, so you can loosen the bar for long-form without lowering it for FAQs. Default gradient when enabled: `faq=0.60`, `url/pdf/docx/md=0.50`. Leave the box unticked to use the single global threshold above.
+- **Log retrievals for diagnostics** — on by default. Every visitor question writes one row to a retention-capped log (last 200 conversations only) so you can replay it in the inspector. Disable to skip logging entirely.
+
+### Retrieval Inspector card *(Knowledge Base tab)*
+
+Two modes:
+
+1. **Probe** — type any question, hit **Probe**, see the exact chunks Pinecone returned, each chunk's similarity score, which threshold it was compared against, and whether it qualified. The clearest way to debug *"why didn't the bot use my new FAQ?"*.
+2. **Log** — scroll the most recent real visitor probes from the log table. Useful for spotting topics that consistently fall below threshold (good candidates for new FAQs).
+
+<Callout type="note">
+When a chunk shows just below the threshold marker, the typical fix is either to lower that source type's bar a few points or to add a paraphrase FAQ closer to the visitor's wording.
+</Callout>

@@ -5,4 +5,5 @@ export default {
   },
   'reputation-ai': 'Reputation AI',
   'sales-assistant': 'Sales Assistant',
+  'support-chatbot': 'Support Chatbot',
 }

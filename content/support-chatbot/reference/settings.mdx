@@ -1,0 +1,42 @@
+---
+title: Settings reference
+lastUpdated: 2026-06-02
+---
+
+import { Callout } from '../../../components/Callout'
+
+# Settings reference.
+
+Quick reference for every chatbot setting. Most live on the **Chatbot page → Settings tab**. A few cross-product settings live on **Settings in the top nav** and are called out separately.
+
+## General card *(Chatbot → Settings)*
+
+| Field | Notes |
+|---|---|
+| Chatbot name | Display name in widget header (default: *"\[Business Name] Support"*) |
+| Greeting message | First message visitors see (default: *"Hi! How can I help you today?"*) |
+| Brand voice prompt | 1–4 sentence tone description (optional but powerful) — see [Brand voice & confidence threshold](/support-chatbot/using-the-product/brand-voice-and-confidence) |
+| Confidence threshold | Slider `0.50–0.80`, default `0.60` |
+| Advanced retrieval → per-source-type threshold | Optional override of the single threshold with five sliders (FAQ/URL/PDF/DOCX/MD) |
+| Advanced retrieval → log retrievals | On by default. Powers the Retrieval Inspector log. |
+
+## Handoff Rules card *(Chatbot → Settings)*
+
+| Field | Notes |
+|---|---|
+| Handoff email | Recipient for transcript emails (use a shared inbox) |
+| Trigger phrases | Pill-tag list — see [Trigger phrases](/support-chatbot/using-the-product/trigger-phrases) |
+
+## Cross-product settings *(Settings top nav)*
+
+These settings live on the global Settings page, not on the Chatbot page — they apply to every Tenlo product, not just the Support Chatbot.
+
+| Setting | Where |
+|---|---|
+| Notifications (Slack/Teams/email) | Top nav → Settings → Notifications |
+| Primary colour | Via `data-primary-color` on embed snippet — see [Theming & branding](/support-chatbot/using-the-product/theming) |
+| KB content | Knowledge Base tab — see [FAQs](/support-chatbot/using-the-product/faqs) and [Documents](/support-chatbot/using-the-product/documents) |
+
+<Callout type="note">
+There is no in-dashboard control for the stored brand colour yet — contact support if you'd like it changed without redeploying your snippet.
+</Callout>

@@ -1,0 +1,32 @@
+---
+title: What the Support Chatbot does
+lastUpdated: 2026-06-02
+---
+
+import { Callout } from '../../../components/Callout'
+
+# What the Support Chatbot does.
+
+The Tenlo Support Chatbot is a RAG-powered (retrieval-augmented generation) assistant that answers customer questions on your website using **only your own knowledge base**.
+
+## Five jobs, one bot
+
+- **Reads visitor messages** from a chat widget you embed on your site (or a hosted chat page Tenlo provides).
+- **Searches your knowledge base** — FAQs you write yourself, plus URLs, PDFs, Word docs, or Markdown files you've ingested.
+- **Generates a brand-voice answer** using Claude — but **only when the match is confident enough**. If your KB doesn't cover the question, the bot says so honestly and offers to connect the visitor with a human.
+- **Hands off to your team** by emailing the conversation transcript (and optionally posting to Slack or Teams).
+- **Streams replies word-by-word** — visitors see the answer appearing as it's generated, not after a 3-second wait.
+
+## Grounded, not creative
+
+The bot won't invent answers. If your KB doesn't have it, the bot says *"I'm not sure I have the right information to answer that. Would you like me to connect you with a human?"* — full stop. No hallucinations.
+
+<Callout type="note">
+This is the single most important difference between the Tenlo Support Chatbot and a generic AI assistant. The confidence threshold (see [Brand voice & confidence threshold](/support-chatbot/using-the-product/brand-voice-and-confidence)) is what enforces it.
+</Callout>
+
+## How it differs from the Sales Assistant (P05)
+
+P01 is for **support** — answering existing-customer questions from your help docs. [P05 (Sales Assistant)](/sales-assistant) is for **sales** — qualifying new visitors, capturing contact info, and booking meetings. You can run both side-by-side; teams typically style them in different colours and put them on different pages.
+
+The two products share the **100-document KB cap** per business — see [Knowledge base — documents](/support-chatbot/using-the-product/documents).

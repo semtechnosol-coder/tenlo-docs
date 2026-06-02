@@ -1,0 +1,54 @@
+---
+title: Legal & data handling
+lastUpdated: 2026-06-02
+---
+
+import { Callout } from '../../../components/Callout'
+
+# Legal & data handling.
+
+Tenlo's Support Chatbot runs an AI chat widget on your website, ingests content you provide as a knowledge base, and stores conversation transcripts so you can review them later. A few documents govern how the product handles your data and your visitors' data.
+
+## Governing documents
+
+- **Privacy policy** — how Tenlo collects, stores and processes data, including US state privacy laws (CCPA/CPRA) where they apply. [tenloai.com/privacy](https://www.tenloai.com/privacy)
+- **Terms of service** — the contract between you and Tenlo AI Inc. [tenloai.com/terms](https://www.tenloai.com/terms)
+- **Data processing addendum (DPA)** — for customers who need one for their own compliance. Tenlo acts as a processor for the visitor data your widget collects; you remain the controller.
+- **Subprocessors** — the AI providers (Anthropic, OpenAI, Mistral for OCR), hosting, and search providers Tenlo uses to deliver the Support Chatbot are listed in the DPA and on the website.
+
+## What you should do on your side
+
+Because the widget runs on your domain and stores conversation transcripts, most teams add a short line to their own privacy policy noting that an AI-powered chat assistant is in use and that conversations may be stored to answer questions and improve responses.
+
+## Transcript privacy
+
+Transcripts are stored against your account. Visitors don't see them. Tenlo support can see them when you ask for help diagnosing — otherwise they live in your dashboard only.
+
+See [The Conversations inbox](/support-chatbot/using-the-product/conversations) for the operator-facing mechanics.
+
+## AI training
+
+<Callout type="legal" title="Conversations are not used for model training">
+Tenlo uses Anthropic's and OpenAI's enterprise endpoints, which prohibit training on customer data. Your KB content, visitor conversations, and configuration are never used to train AI models — Anthropic's, OpenAI's, Tenlo's, or anyone else's.
+
+OCR for scanned PDFs uses Mistral OCR; the same enterprise-tier no-training stance applies.
+</Callout>
+
+## Data retention and deletion
+
+- **While your subscription is active** — FAQs, ingested documents, conversation transcripts and KB indexes are retained for the life of your account.
+- **When you cancel your subscription** — the widget on your site stops responding (returns an error). Your data is automatically purged 90 days after cancellation, including conversation transcripts, FAQs, and your knowledge-base index.
+- **Immediate deletion** — email hello@tenloai.com to request earlier deletion.
+
+## Cross-product data sharing
+
+The 100-document KB cap is shared with the [Sales Assistant (P05)](/sales-assistant). Documents themselves are scoped to the product they were ingested into — a PDF uploaded to the chatbot KB is not visible to the Sales Assistant and vice-versa — but slot accounting spans both.
+
+## Where to look
+
+| Topic | Where it lives |
+|---|---|
+| What gets stored and for how long | This page |
+| Transcript visibility (operator-side) | [The Conversations inbox](/support-chatbot/using-the-product/conversations) |
+| Data after cancellation | [Pricing & billing](/support-chatbot/reference/billing) |
+| AI training stance | This page (above) and [FAQ](/support-chatbot/reference/faq) |

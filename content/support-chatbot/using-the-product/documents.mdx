@@ -1,0 +1,102 @@
+---
+title: Knowledge base — documents
+lastUpdated: 2026-06-02
+---
+
+import { Callout } from '../../../components/Callout'
+
+# Knowledge base — documents *(power user)*.
+
+If you have existing content (a help-centre URL, a product manual PDF, a Word policy doc), you can ingest it directly instead of typing FAQs by hand.
+
+## Supported formats
+
+| Format | Extension | Notes |
+|---|---|---|
+| URL | — | Public web page; Tenlo extracts main content via Mozilla Readability. Sitemap-driven multi-page crawl is available (see below). |
+| PDF | `.pdf` | Text-based PDFs handled natively. **Scanned PDFs are now OCR'd automatically** via Mistral OCR (V2.3, shipped 2026-05) — first 50 pages are processed, the rest are skipped with a notice on the document card. |
+| Word | `.docx` | Modern Word format. Legacy `.doc` is rejected — convert to `.docx` first. |
+| Markdown | `.md` | Plain Markdown |
+
+## How ingestion works
+
+**Knowledge Base tab → Add a source.** Either paste a URL or pick a file. Click **Ingest**.
+
+The dashboard shows the document immediately in the **Imported documents** list with status `pending`. Behind the scenes:
+
+1. **Fetch** — Tenlo downloads the URL or reads the uploaded file
+2. **Parse** — extract clean text (URL: Readability; PDF: text extraction; Word: raw text; MD: as-is)
+3. **Chunk** — split into ~500-token chunks with 50-token overlap so the bot can match precisely without hallucinating across boundaries
+4. **Embed** — generate a vector for each chunk
+5. **Index** — save to your private search index
+
+Status pill flips through `pending` → `processing` → `embedded` (success) or `failed` (with an error message). Typical end-to-end time: 30 seconds to 2 minutes per document. Scanned PDFs show a **`Processing (OCR)…`** badge while Mistral OCR runs (usually 1–3 minutes for a 10-page scan).
+
+## Limits
+
+- **100 documents per business** (lifetime) — shared across Support Chatbot (P01) and [Sales Assistant (P05)](/sales-assistant). Deleting a document anywhere on either product frees a slot for either product.
+- **25 MB max** per file
+- **20 ingest operations per hour** — a sitemap crawl that fans out into 80 pages still counts as **1 operation** against this cap. Single URL or single file = 1 operation.
+- **Scanned PDFs** — first **50 pages** are OCR'd; beyond that, processing stops and the document card shows how many pages were skipped. Re-upload a split version if you need the tail.
+- **Sitemap crawl** — same-host pages only. CDN subdomains or off-host URLs found in the sitemap are filtered out. Already-ingested URLs are detected and shown as such (no double-ingest).
+
+## Deleting an ingested document
+
+The Imported documents list has a **Delete** button per row. Clicking it:
+
+- Removes all the document's chunks from the search index
+- Deletes the file from storage (if uploaded)
+- Removes the row from the list
+
+The deletion is clean — the bot stops citing that document immediately.
+
+## FAQs vs. documents — when to use each
+
+| Use FAQs when… | Use document ingestion when… |
+|---|---|
+| The answer is a single short paragraph | You have a long-form policy or guide |
+| The question is highly specific | The content is reference material |
+| You want tight control over wording | You trust your existing content to be accurate |
+| You're starting from scratch | You already maintain a help centre |
+
+You can mix them freely. The bot searches both at once and returns the best match, regardless of source type.
+
+## What's not yet supported
+
+- **JavaScript-rendered pages** (single-page apps that need JS execution to show content)
+- **Scheduled re-ingest** — today, you re-ingest manually after content changes
+- **Multi-file batch upload** — sitemap crawl covers the URL side; file batches are still one-at-a-time
+- **OCR for scanned PDFs beyond 50 pages** — anything over the cap is truncated with a notice on the doc card
+
+These are on the roadmap. For now, the workaround is to ingest URLs/files individually.
+
+---
+
+## Sitemap crawl *(V2.1)*
+
+Shipped 2026-05. Lets you bring in a whole help centre or docs site in one go without pasting URLs one at a time.
+
+### How it works
+
+1. **Knowledge Base tab → Sitemap crawl card.** Paste any URL on the target site (e.g. `https://docs.example.com/getting-started`).
+2. Tenlo probes `/sitemap.xml` and `/robots.txt` for a sitemap and parses it (recursing one level into sitemap-index files).
+3. You get a preview list of every URL the sitemap exposes. Pages under the same section as the seed URL are **preselected**; URLs you've already ingested are flagged and disabled.
+4. Tick the pages you want, click **Ingest selected**. Each URL becomes its own `kb_documents` row and runs through the same fetch / parse / chunk / embed pipeline as a single URL.
+
+### Constraints
+
+- **Same host only** — sitemap entries on different hosts (CDN subdomains, partner domains) are filtered out
+- **Slot accounting** — if a crawl would push you past the 100-doc cap, the UI tells you how many slots remain and caps the selection
+- **One operation against the rate limit** regardless of how many pages were enqueued
+- **Atomic enqueue** — if the queue rejects the batch, all just-inserted rows are rolled back so they don't ghost-occupy the cap
+- **No sitemap found?** Tenlo can't discover one ~30% of the time (especially on hand-rolled marketing sites). Fall back to single-URL ingestion.
+
+### Common patterns
+
+- **Help-centre import** — paste your `/help` landing page → ingest the section in one click
+- **Product-docs migration** — paste the docs root → tick the categories that map to support-ish questions, ignore developer-only pages
+- **Refresh** — re-run the crawl periodically; already-ingested URLs show as such and stay unticked by default
+
+<Callout type="tip" title="Diagnosing retrieval">
+After ingestion, use the Retrieval Inspector on the same Knowledge Base tab to probe how chunks are matching — see [Brand voice & confidence threshold](/support-chatbot/using-the-product/brand-voice-and-confidence).
+</Callout>

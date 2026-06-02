@@ -1,0 +1,46 @@
+---
+title: Dashboard at a glance
+lastUpdated: 2026-06-02
+---
+
+import { Callout } from '../../../components/Callout'
+
+# Dashboard at a glance.
+
+Your dashboard lives at [app.tenloai.com/dashboard/chatbot](https://app.tenloai.com/dashboard/chatbot). The left rail has four tabs — **Overview**, **Conversations**, **Knowledge Base**, and **Settings**.
+
+## Overview tab
+
+| Block | What it shows |
+|---|---|
+| KPI tiles | Total Conversations · Resolution Rate · Human Handoffs · FAQ Entries |
+| Onboarding checklist | 8 steps; complete in order |
+| Test Chat Sandbox | Try the bot with the same RAG flow real visitors hit |
+| Widget install block | Your `<script>` snippet with copy button + **Verify Installation** |
+| Hosted chat page link | Open the standalone chat page in a new tab |
+
+## Conversations tab
+
+Two-pane inbox of every chat that's happened, with filters for `all` / `resolved` / `unresolved` / `handed_off`. Click a conversation to read the full thread and see per-message confidence scores. See [The Conversations inbox](/support-chatbot/using-the-product/conversations).
+
+## Knowledge Base tab
+
+Four ways to add content:
+
+- **Add FAQ** — manual question + answer entry
+- **Bulk import (CSV/XLSX)** — upload typed FAQ entries in spreadsheet form
+- **Add a source** — drop a URL, PDF (text-based *or scanned*), Word doc, or Markdown file and Tenlo ingests it
+- **Sitemap crawl** — paste any URL from a help centre / docs site, Tenlo discovers the sitemap, and lets you tick which pages to ingest in one shot
+
+Plus the FAQ list (with edit/delete), the imported-documents list (with status pill and delete), and the **Retrieval Inspector** card for diagnosing why the bot retrieved (or didn't retrieve) a given chunk — see [Brand voice & confidence threshold](/support-chatbot/using-the-product/brand-voice-and-confidence).
+
+## Settings tab
+
+| Card | Contents |
+|---|---|
+| General | Name, greeting, brand voice, confidence threshold, advanced retrieval |
+| Handoff Rules | Handoff email + trigger phrases |
+
+<Callout type="note" title="Fewer knobs than you'd expect">
+The chatbot has fewer settings than you'd expect because it's grounded entirely in your KB. Most "tuning" happens by editing your FAQs, not by twisting knobs. See [Settings reference](/support-chatbot/reference/settings) for the field-by-field rundown.
+</Callout>

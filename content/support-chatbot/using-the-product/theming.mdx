@@ -1,0 +1,56 @@
+---
+title: Theming & branding
+lastUpdated: 2026-06-02
+---
+
+import { Callout } from '../../../components/Callout'
+
+# Theming & branding *(power user)*.
+
+The widget bubble and chat window can match your brand colour.
+
+## Setting the primary colour
+
+Today, the colour is set via your embed snippet. Add a `data-primary-color` attribute:
+
+```html
+<script
+  src="https://app.tenloai.com/widget.js"
+  data-chatbot-id="YOUR-CHATBOT-ID"
+  data-primary-color="#FF6B35"
+  defer
+></script>
+```
+
+## Where the colour applies
+
+- Bubble background (the floating button)
+- Chat window header bar
+- User message bubbles (the visitor's messages)
+- Send button
+
+The bot's responses, the chat input, and the rest of the chrome stay in neutral tones for readability.
+
+## Colour format
+
+- Must be a valid 6-digit hex (`#1B3A5C`, `#FF6B35`, `#0066cc`)
+- Invalid values fall back silently to the default `#1B3A5C`
+- 3-digit hex (`#abc`) is **not** supported — use the full 6-digit form
+
+## The dashboard-stored colour
+
+Behind the scenes, your account also has a stored `primary_color` in `widget_theme`. The script-tag attribute **overrides** it. If you don't set the attribute, the stored colour is used.
+
+<Callout type="note">
+There's no UI control for the stored value yet — contact support if you'd like it changed without redeploying your snippet.
+</Callout>
+
+## What's not yet customizable
+
+- **Bubble position** — always bottom-right
+- **Bubble size** — always 56px round
+- **Bubble icon** — always 💬
+- **Chat window dimensions** — 380×580px on desktop, near-full on mobile
+- **Font** — system defaults
+
+These are on the roadmap. For now, if you need a wildly different chat surface, embed the [hosted chat page](/support-chatbot/using-the-product/hosted-chat-page) in an iframe with your own chrome around it.

@@ -1,0 +1,91 @@
+---
+title: Troubleshooting
+lastUpdated: 2026-06-02
+---
+
+# Troubleshooting.
+
+The most common symptoms, with the fixes that resolve them on the first try.
+
+## "I installed the embed but the bubble isn't showing"
+
+- Check the script tag is **before `</body>`** (not in `<head>`)
+- Open browser DevTools → Console — look for `widget.js` errors
+- Confirm `data-chatbot-id` matches the ID on your dashboard's install card
+- Check you didn't accidentally put the snippet in a partial that doesn't load on every page (e.g. a logged-in-only header)
+- Try the **Verify installation** button in the dashboard — green dot = traffic seen
+- Check for ad blockers or strict CSP headers blocking `app.tenloai.com`
+
+## "The bot is answering questions wrong"
+
+- Open the conversation in the dashboard. Note the confidence score.
+- If confidence is high (over 0.7) and the answer is wrong, check your FAQ content — likely two FAQs are contradicting each other.
+- If confidence is medium (`0.5–0.7`) and the answer is generic, raise your threshold to `0.65` or `0.70` to force handoff in those cases.
+- If the bot keeps citing an old answer after you edited the FAQ, refresh the dashboard and re-edit through the UI — direct database edits don't sync the search index.
+
+## "The bot is handing off too often"
+
+- Check your confidence threshold — try lowering from `0.60` to `0.55`
+- Look at the questions visitors are asking (Conversations tab) — write FAQs for the patterns you see
+- Consider adding paraphrase FAQs (multiple FAQs covering the same topic with different wording)
+
+## "The bot is handing off too rarely (and giving bad answers)"
+
+- Raise your confidence threshold to `0.65` or `0.70`
+- Add more FAQs to cover edge cases
+- Review unresolved conversations and identify topics that need more depth
+
+## "I'm not getting handoff emails"
+
+- Check Settings → Handoff email is set and correctly spelled
+- Check spam/junk folder for emails from `alerts@tenloai.com`
+- Add `alerts@tenloai.com` to your safe-senders list
+- Verify a test handoff: use the Test Chat Sandbox, ask something the bot can't answer, fill in the handoff form
+- If using Slack/Teams notifications: send a test ping from Settings → Notifications
+
+## "Scanned PDF was only partially ingested"
+
+If your scanned PDF is more than 50 pages, the first 50 are OCR'd and the rest are skipped — the document card shows a notice with the skipped count. Workarounds:
+
+- Split the PDF into 50-page-or-smaller chunks (Adobe Acrobat → Organize Pages → Split) and upload each separately
+- If only specific sections matter, export those sections as a smaller PDF and re-upload
+
+## "Scanned PDF ingestion failed entirely"
+
+Rare, but it can happen if the OCR provider returns an auth/quota error or the PDF is so degraded that no readable text comes back. Workarounds:
+
+- Re-try after a few minutes (transient errors auto-retry, but persistent ones surface as a fail)
+- Convert to text yourself using Adobe Acrobat's OCR tool, then re-upload as text-PDF
+- Copy the content into a `.docx` or `.md` file and upload that instead
+
+## "Document ingestion failed with 'unsupported format'"
+
+You probably uploaded a `.doc` (legacy Word format). Convert to `.docx` and re-upload. The legacy binary format was deprecated in 2007 and Tenlo doesn't parse it.
+
+## "Sitemap crawl says 'we couldn't find a sitemap'"
+
+Tenlo probes `/sitemap.xml` and `/robots.txt` from the host of the URL you pasted. About 30% of sites — particularly hand-built marketing sites — don't expose a sitemap. Workarounds:
+
+- Try a known docs/help-centre URL on the same domain (those sites usually do have sitemaps)
+- Fall back to single-URL ingestion for the pages that matter most
+- If you control the site, add a `/sitemap.xml` (most CMSes generate one with a single setting)
+
+## "URL ingestion got the wrong content"
+
+The URL extractor uses Mozilla Readability, which targets the *main content* of a page. If your page is a single-page app or has unusual markup, the extracted content may be wrong. Workarounds:
+
+- Use a *"print"* or *"article"* version of the page if available
+- Save the page as a PDF and upload that
+- Manually copy the content into FAQs
+
+## "The bot won't load on a customer's site (CORS error)"
+
+The widget is designed to work cross-origin via a same-origin iframe. If you're seeing CORS errors:
+
+- Check that `app.tenloai.com` is reachable from the customer's network (some corporate firewalls block unknown domains)
+- Check Content-Security-Policy headers on the customer site — they may need to allow `frame-src https://app.tenloai.com`
+- Email support with the failing URL and Tenlo will diagnose
+
+## Anything else
+
+`hello@tenloai.com` — Mon–Fri 9am–5pm EST, 1 business day response.

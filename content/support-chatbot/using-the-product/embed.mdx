@@ -1,0 +1,60 @@
+---
+title: Embedding the widget
+lastUpdated: 2026-06-02
+---
+
+import { Callout } from '../../../components/Callout'
+
+# Embedding the widget.
+
+The widget is a small JavaScript snippet that adds a 56px chat bubble to the bottom-right of your page.
+
+## The basic snippet
+
+```html
+<script
+  src="https://app.tenloai.com/widget.js"
+  data-chatbot-id="YOUR-CHATBOT-ID"
+  defer
+></script>
+```
+
+Your `data-chatbot-id` is unique to your account — the dashboard generates the full snippet for you with the right ID baked in.
+
+## Where to paste it
+
+Drop it before the closing `</body>` tag on any page where the bubble should appear. Common patterns:
+
+- **Site-wide** — add to your global footer/template; bubble appears everywhere
+- **Support pages only** — add to specific landing pages (e.g. `/help`, `/contact`)
+- **Logged-in pages only** — add inside an authenticated section so prospects don't see it
+
+| Platform | Where to paste |
+|---|---|
+| WordPress | Appearance → Theme File Editor → `footer.php` (before `</body>`), or a Custom HTML widget, or the *Insert Headers and Footers* plugin |
+| Squarespace | Settings → Advanced → Code Injection → Footer |
+| Wix | Settings → Custom Code → Add Custom Code → *Body — End* |
+| Shopify | Online Store → Themes → Edit Code → `theme.liquid` (before `</body>`) |
+| Webflow | Project Settings → Custom Code → Footer Code |
+| Plain HTML | Before `</body>` in your HTML file |
+
+## What the bubble looks like
+
+- **56px round button** in the bottom-right corner
+- 💬 emoji when closed; ✕ when open
+- Default colour `#1B3A5C` (deep navy) — see [Theming & branding](/support-chatbot/using-the-product/theming) to override
+- Click expands a **380×580px** chat window
+- On mobile (under 440px wide), the chat fills nearly the full screen
+- `z-index` is high enough to sit above almost any site chrome
+
+## Lazy loading
+
+The chat window doesn't load until the visitor clicks the bubble. The script tag adds essentially zero weight to your page on first paint — just the 5KB widget loader.
+
+## Same-origin iframe (architecture note)
+
+<Callout type="note" title="Deliberate isolation">
+The chat itself runs inside an iframe served from `app.tenloai.com`. This means your site's CORS headers, CSP, and cookie policies don't affect the chat — the bubble is on your domain, but the chat conversation runs in Tenlo's domain. **Visitors can't extract data from your site through the bot**, which is a deliberate security choice.
+</Callout>
+
+Unlike the Sales Assistant (P05) which uses Shadow DOM, the Support Chatbot uses an iframe. The trade-off is stronger isolation for slightly less style flexibility — see [Theming & branding](/support-chatbot/using-the-product/theming).

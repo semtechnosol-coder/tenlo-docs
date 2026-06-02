@@ -1,0 +1,46 @@
+---
+title: Trigger phrases
+lastUpdated: 2026-06-02
+---
+
+import { Callout } from '../../../components/Callout'
+
+# Trigger phrases *(power user)*.
+
+Trigger phrases force a handoff regardless of confidence. Use them for situations where you always want a human, even if the bot has a confident answer.
+
+## Adding triggers
+
+**Settings tab → Handoff Rules → Trigger phrases.** Pill-tag input — type a phrase, press Enter, repeat.
+
+Common triggers:
+
+| Phrase | Why |
+|---|---|
+| `speak to human` | Direct request for handoff |
+| `talk to someone` | Variations of the above |
+| `agent` | Common in support contexts |
+| `cancel my account` | High-stakes — never let AI handle |
+| `refund` | Same |
+| `legal` | Compliance |
+| `billing dispute` | Financial — needs a person |
+| `complaint` | Goodwill recovery — humans only |
+
+## How matching works
+
+- **Substring match** — the visitor's message just has to *contain* the phrase
+- **Case-insensitive** — `Cancel` matches `cancel`
+- **Lowercased on save** so what you type and what gets matched are stable
+
+A visitor saying *"hi, I'd like to cancel my account please"* triggers the `cancel my account` phrase and gets handoff immediately, even if your KB has detailed cancellation FAQs.
+
+## When to use triggers vs. KB
+
+- **Use trigger phrases for "no AI ever"** — anything legal, billing dispute, account closure
+- **Use KB content for everything else** — even if the visitor says *"how do I cancel"* in a non-aggressive way, a calm KB answer about your cancellation process is fine and converts a lot of would-be cancels into stay-with-us moments
+
+## Empty triggers list
+
+<Callout type="note">
+If you leave the trigger list empty (default), handoff only fires on low-confidence answers. That's fine — the bot will offer handoff naturally when stumped.
+</Callout>

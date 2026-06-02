@@ -1,0 +1,48 @@
+---
+title: Notifications
+lastUpdated: 2026-06-02
+---
+
+import { Callout } from '../../../components/Callout'
+
+# Notifications.
+
+When a handoff fires, you can route the alert to whatever channels your team actually monitors — Slack, Microsoft Teams, or email.
+
+## The event
+
+| Event | Fires when |
+|---|---|
+| `p01.handoff` | Visitor submits the handoff form |
+
+Other Tenlo products fire other events into the same notification system — see [Reputation AI](/reputation-ai/using-the-product/notifications) and [Sales Assistant](/sales-assistant/using-the-product/notifications).
+
+## Adding a channel
+
+**Top nav → Settings → Notifications → + Add channel.** Pick:
+
+- **Slack** — paste an Incoming Webhook URL (Slack → Apps → Incoming Webhooks → Add to channel)
+- **Microsoft Teams** — paste an Incoming Webhook URL (Teams channel → Connectors → Incoming Webhook)
+- **Email** — enter an email address
+
+## Subscribing handoffs to a channel
+
+After adding the channel, find the `p01.handoff` row in the per-event toggle grid and flip it on. Done — handoffs now fire to that channel.
+
+<Callout type="note" title="Existing handoff email keeps working">
+If you've previously set a **Handoff email** in chatbot Settings, it keeps working as the default email channel — you don't need to reconfigure anything. The Notifications system layers on top.
+</Callout>
+
+## Test ping
+
+Each channel has a **Send test** button. Use it before relying on a brand-new webhook to make sure the wiring is correct.
+
+## What the alerts look like
+
+- **Slack** — Block Kit message with visitor name, email, the question that triggered handoff, and a link back to the conversation in your dashboard
+- **Teams** — MessageCard format with the same content
+- **Email** — full transcript (the original handoff email format)
+
+## Auto-revoke
+
+If a webhook URL becomes invalid (channel deleted, app removed, returns 404/410), the system auto-marks it inactive and emails you. Re-add it whenever convenient.

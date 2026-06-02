@@ -1,0 +1,77 @@
+---
+title: Knowledge base — FAQs
+lastUpdated: 2026-06-02
+---
+
+import { Callout } from '../../../components/Callout'
+
+# Knowledge base — FAQs.
+
+FAQs are the heart of your chatbot. The bot only answers from what's in your KB.
+
+## Adding a single FAQ
+
+**Knowledge Base tab → Add FAQ form.** Two fields:
+
+- **Question** — what a customer might type (this is what gets matched)
+- **Answer** — what you want the bot to say (in your voice, in your words)
+
+Click **Add to knowledge base**. The FAQ is searchable instantly — no waiting, no batch processing.
+
+## Editing an FAQ
+
+Each FAQ card has an **Edit** button. Click → inline form opens with the current question and answer. Make your changes → Save. The change is searchable immediately.
+
+<Callout type="warn" title="Edit through the dashboard">
+Editing the FAQ in the dashboard re-syncs the search index automatically. If you've ever heard *"the bot is still saying the old answer"* it's because someone edited the database directly without re-syncing — which the dashboard never does.
+</Callout>
+
+## Deleting an FAQ
+
+Each FAQ card has a **Delete** button. Click → it's removed from the search index immediately. No undo — but the rest of your KB is untouched.
+
+## Bulk import (CSV/XLSX)
+
+**Knowledge Base tab → Import CSV / XLSX.** Upload a spreadsheet with two columns:
+
+| question | answer |
+|---|---|
+| What are your hours? | We're open Mon–Fri 9am–5pm EST. |
+| Do you ship to Canada? | Yes — Canada-wide flat-rate shipping is $9.95. |
+
+**Constraints:**
+
+- Max **200 rows per upload**
+- Headers required: `question` and `answer` (case-insensitive)
+- Both columns must have content (rows with empty cells are silently skipped)
+- File types: `.csv`, `.xlsx`, `.xls`
+
+The dashboard provides a **template CSV** you can download as a starting point.
+
+## How many FAQs should you write?
+
+| FAQ count | Behaviour |
+|---|---|
+| 0–5 | Bot will fall back to handoff frequently — KB is too thin |
+| 10–20 | Reasonable starting point; expect 50–60% deflection on common questions |
+| 30–60 | Sweet spot for most SMBs; 70–80% deflection |
+| 100+ | Mature KB; 80%+ deflection on routine questions |
+
+<Callout type="tip" title="Depth before breadth">
+Better to have 30 great FAQs covering your top 20 issues than 200 thin entries. Every entry should be a real answer to a real question — not generic marketing copy.
+</Callout>
+
+## Writing FAQs that work
+
+**The bot does well when:**
+
+- **Questions match how customers actually phrase things** — *"how much does it cost?"* not *"pricing structure inquiry"*
+- **Answers are concrete and specific** — *"$49/month, billed annually"* not *"affordable, flexible pricing"*
+- **One question per FAQ** — don't bundle three things into one entry
+- **Variations are encouraged** — separate FAQs for *"what's your refund policy"* and *"can I get my money back"* both work, even though they're similar
+
+**The bot does poorly when:**
+
+- Answers reference things not in the KB (*"see our pricing page"* — the bot can't follow links)
+- Questions are too generic (*"help"*, *"info"*)
+- Answers contradict each other across multiple FAQs

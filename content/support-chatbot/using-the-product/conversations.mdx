@@ -1,0 +1,50 @@
+---
+title: The Conversations inbox
+lastUpdated: 2026-06-02
+---
+
+import { Callout } from '../../../components/Callout'
+
+# The Conversations inbox.
+
+**Conversations tab** → review every chat that's happened.
+
+## The list view
+
+Left pane shows recent conversations. Each card has:
+
+- **Visitor name** (or *"Anonymous visitor"* if not collected)
+- **Started date** + time
+- **Status badges** — `Resolved` / `Unresolved` / `Handed off`
+- **Source** — `widget` or `hosted_page`
+
+## Filter pills
+
+| Filter | Shows |
+|---|---|
+| **All** | Every conversation |
+| **Resolved** | Last message had high confidence (not handed off) |
+| **Unresolved** | Last message was a fallback (no handoff form submitted) |
+| **Handed off** | Visitor submitted the handoff form |
+
+## The thread viewer
+
+Click a conversation → right pane shows the full thread. Each assistant message displays its **confidence score** so you can see exactly how confident the bot was on each turn.
+
+## Reading patterns
+
+Things to look for:
+
+- **Many handoffs on the same topic** → write more FAQs for that topic
+- **Confident answers that seem wrong** → review your FAQ content; maybe contradiction in the KB
+- **High fallback rate** (over 30%) → KB is too thin or threshold is too high
+- **Anonymous handoffs** → consider making the handoff form less optional
+
+## What's not in the dashboard
+
+<Callout type="note">
+- **No visitor session continuity.** Each page reload = new conversation. Tenlo doesn't track returning visitors.
+- **No conversation export.** Today, transcripts live in the dashboard. CSV export is on the roadmap — email support for one-off exports.
+- **No live conversation viewer.** You see conversations after they happen, not as they're happening (yet).
+- **No analytics events.** The widget doesn't fire to GA, PostHog, Segment, etc. You can add your own tracking on the host page if you want.
+</Callout>
