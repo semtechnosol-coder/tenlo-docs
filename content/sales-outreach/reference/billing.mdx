@@ -1,0 +1,101 @@
+---
+title: Pricing, caps & billing
+lastUpdated: 2026-06-02
+---
+
+import { Callout } from '../../../components/Callout'
+
+# Pricing, caps & billing.
+
+Everything about what you pay, the three caps to keep straight, and how to stop. Billing portal lives at [app.tenloai.com/dashboard/billing](https://app.tenloai.com/dashboard/billing).
+
+## What it costs
+
+Sales Outreach is **$249/month CAD**, flat — single plan. Also included in the **Growth Bundle at $599/month CAD**, which adds the other three Tenlo products at the same approval cap.
+
+| Item | Value |
+|---|---|
+| Price | $249/mo CAD (flat — single plan) |
+| Prospect cap | **500 approvals per month** |
+| Import cap | **750 prospects per month** (1.5× the approval cap — protects you from researching prospects you'll never email) |
+| Sending capacity | Shared mailbox: ~50 emails/day, ~1,500/month theoretical ceiling |
+| Daily send limit | 50 emails per business per day |
+| Trial | 7 days |
+| Bundle | Included in Growth Bundle ($599/mo) with Reputation AI, Sales Assistant, and Support Chatbot — same 500-prospect cap |
+| Higher throughput? | **Dedicated mailbox setup** available — contact hello@tenloai.com |
+
+<Callout type="note" title="The single-plan model">
+Earlier tiers (Growth at 2,000/mo, Scale at 10,000/mo) were retired in May 2026 because the shared-mailbox sending capacity couldn't deliver them. If you need more than ~50 emails/day, the answer is a dedicated mailbox — email hello@tenloai.com and Tenlo will set it up case-by-case.
+</Callout>
+
+## The three caps
+
+| Cap | What it limits | When it ticks |
+|---|---|---|
+| **Approval cap** (500/mo) | Sequences you can send | On click of **Approve & send** |
+| **Import cap** (750/mo, 1.5×) | Prospects you can research | On import (file/CRM/manual) |
+| **Daily send cap** (50/day) | Emails sent in a day | On every send |
+
+### Approvals vs imports — what they mean
+
+- **Approvals** consume your $249/500 cap. Every time you click **Approve & send** on a sequence, your usage counter ticks up by one.
+- **Imports** are what you've researched but haven't necessarily approved yet. The 750 import cap exists because every prospect costs ~$0.04 to research even if you never email them — without the ceiling, you could import 5,000 prospects, cherry-pick the best 500, and burn unsustainable margin.
+- **Resets** happen monthly on your billing renewal date.
+
+### Daily 50-email behaviour
+
+If you have 200 prospects approved at once, the system sends the first 50 today and queues the rest for tomorrow's quota. No emails are dropped — just delayed.
+
+### Send windows and timezones
+
+Step delays are calculated in **calendar days**, but the system respects your business hours window. By default, sends fire when ready. If you set a window (e.g. 9am–5pm) in Settings, late-night sends queue forward to the next morning.
+
+## What "shared mailbox" means
+
+The shared sending pool is Tenlo-managed infrastructure used by all customers on the standard plan. Practical implications:
+
+- **~50 emails/day per business** is enforced
+- **No dedicated IP** — your sender reputation is a function of the pool
+- **No custom from-domain** — emails send from your connected Gmail/Microsoft account, but routing volume is shared
+
+## When to upgrade to a dedicated mailbox
+
+If any of these is true, email hello@tenloai.com for dedicated-mailbox pricing:
+
+- You consistently hit 50/day and want more headroom
+- You need more than 500 prospects/month
+- You want to send from a custom domain you've warmed yourself
+- You need predictable enterprise-style deliverability
+
+Tenlo will set you up case-by-case. Pricing varies by volume.
+
+## Free trial
+
+New accounts start on a **7-day free trial**. A credit card is required to begin. Your card details are held securely by Stripe — Tenlo never stores your card number directly. At the end of the trial your card is automatically charged for your subscription. Cancel before the trial ends from the Billing page and you will not be charged.
+
+## Updating your card
+
+Go to the Billing page and click **Update payment method**. This opens a Stripe-hosted portal where you enter your new card details. Tenlo never sees or stores your card number.
+
+## Invoices and receipts
+
+Past invoices live in the Stripe-hosted portal. From the Billing page, click **Manage Billing →** then select Invoice history. Each invoice can be downloaded as a PDF.
+
+## Changing plans
+
+**Upgrades** take effect immediately — the price difference is charged to your card at the time of the change. **Downgrades** take effect at the end of your current billing period; you retain full access until the period closes.
+
+## Cancelling
+
+Click **Manage Billing →** on the Billing page and follow the cancellation steps in the Stripe portal.
+
+| Question | Answer |
+|---|---|
+| When does cancellation take effect? | Your subscription runs to the end of the current billing period |
+| Are there refunds? | No refunds for remaining days in a billing period |
+| What stops when the period ends? | Outbound sends stop, AI calls stop, CRM sync stops, notifications stop |
+| What can I still do after cancellation? | Account switches to read-only — view sequences, replies, transcripts, export your data as CSV |
+
+<Callout type="legal" title="Data after cancellation — 90-day grace">
+The moment Stripe confirms a cancellation, provider tokens (Gmail, Microsoft 365, Calendly, HubSpot, Pipedrive) are nulled. Your data is automatically purged 90 days after cancellation — sequences, prospects, replies, attestation records. Full mechanics in [CASL, suppressions & data handling](/sales-outreach/compliance#what-happens-when-you-cancel-your-subscription).
+</Callout>

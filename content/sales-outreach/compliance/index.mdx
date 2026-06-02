@@ -1,0 +1,136 @@
+---
+title: CASL, suppressions & data handling
+lastUpdated: 2026-06-02
+---
+
+import { Callout } from '../../../components/Callout'
+
+# CASL, suppressions & data handling.
+
+Sales Outreach sends commercial messages on your behalf. CASL (Canada), CAN-SPAM (US) and GDPR all require legitimate opt-out paths and sender identification. Tenlo handles this automatically — but you should understand what's happening.
+
+Tenlo's P02 compliance posture covers five layers:
+
+1. **Identification** — every outbound email carries CASL §6(2) sender-ID info (your business + *"Sent on behalf of Tenlo AI Inc."*).
+2. **Consent** — every prospect is stamped with a CASL consent basis at import, attested by you in the UI, and held alongside an audit log.
+3. **Opt-out** — unsubscribe footer + one-click headers on every email; a global suppression list shared across all Tenlo customers; a global abuse list fed by complaint webhooks.
+4. **Pre-send filters** — at import, contacts already suppressed, on the abuse list, or in Quebec are rejected; rows older than 24 months are flagged for EBR review.
+5. **Lifecycle** — provider tokens are nulled on cancellation; imported prospects from disconnected integrations are deleted; full account purge after 90 days.
+
+The full suppression-model explainer lives at [tenloai.com/legal/suppression-model](https://www.tenloai.com/legal/suppression-model) (counsel-aligned wording, updated 2026-05-24).
+
+## What's in every outreach email
+
+- **CASL §6(2) sender-identification footer** — auto-injected on every send. Includes your business legal name, your mailing address, an owner/contact line, and a *"Sent on behalf of Tenlo AI Inc."* block. The render-time gate blocks the send if your mailing address is missing or looks like a placeholder. You can't disable this footer.
+- **Unsubscribe footer link** → branded `https://www.tenloai.com/unsubscribe?email=...` page (one-click confirm)
+- **One-click unsubscribe headers** (`List-Unsubscribe`, `List-Unsubscribe-Post`) — Gmail, Yahoo, and Outlook show an *Unsubscribe* button at the top of the message. The header points at `https://app.tenloai.com/api/unsubscribe` which accepts the one-click `POST` per RFC 8058.
+
+<Callout type="legal" title="Sends are refused if your mailing address is missing">
+If your business mailing address is blank, or the field rejected your input as a placeholder (`TBD`, `123 Main St`, `N/A`), the render-time gate blocks every send. You'll see the error in the failed step's `last_error`. Set the address at **Settings → Business mailing address** to unblock.
+</Callout>
+
+## What happens on unsubscribe
+
+Two paths land in the same place — the global `email_suppressions` list:
+
+1. Customer clicks the unsubscribe footer → marketing-site page → suppression added
+2. Customer hits the one-click button in their mail client → suppression added
+
+In both cases:
+
+- All in-flight sequences for that recipient stop
+- All future sends are blocked
+- Reply classification of `unsubscribe` content also adds to suppressions (defence in depth)
+
+## The two-list suppression model
+
+There are two complementary lists. Both are checked before every send (and at import preview time). A match in either blocks the send.
+
+| List | Scope | When used |
+|---|---|---|
+| **Per-business suppressions** | Your account only | Anyone *you* sent to who unsubscribed (footer link or one-click button), replied with unsubscribe intent, or whom you manually added. These belong to you and aren't shared across Tenlo customers. |
+| **Global abuse list** | Across all Tenlo customers | Hard bounces, spam complaints (Resend complaint webhook), repeated unsubscribes across multiple accounts. Defends every customer's deliverability. |
+
+For the full policy, see [tenloai.com/legal/suppression-model](https://www.tenloai.com/legal/suppression-model).
+
+## Consent basis on import
+
+You must select a **consent basis** for every import — see [Importing prospects](/sales-outreach/using-the-product/importing-prospects#the-two-phase-import-flow-applies-to-every-source). Tenlo stamps the basis on every contact in the batch and stores it with the attestation. If a recipient ever complains, your defence is *"I asserted basis X on date Y"* — and Tenlo can produce that record.
+
+## Manually suppressing a prospect
+
+If you know a prospect is wrong (left the company, complained directly to you, etc.), you can manually add them. Today this is a support request — email hello@tenloai.com with the email address. Self-serve is on the roadmap.
+
+## Removing a suppression
+
+Tenlo only removes a suppression after the recipient has confirmed they want messages again, **in writing**. CASL/CAN-SPAM violations carry significant penalties — Tenlo errs on the side of compliance.
+
+## Bounces
+
+- **Hard bounces** (invalid email, permanent reject) — auto-added to suppressions.
+- **Soft bounces** (mailbox full, temporary reject) — trigger retries before suppressing.
+
+## Domain warmup
+
+If you're sending from a brand-new domain, your delivery rate will be poor regardless of platform. Best practice:
+
+1. Send from the connected mailbox manually for 1–2 weeks before automating
+2. Start automated outreach at low volume (5–10/day) and ramp slowly
+3. Don't import 500 prospects on day one of a new domain — ramp first
+
+---
+
+# Cancellation, data retention & privacy
+
+Updated 2026-05-21. Tenlo automates content cleanup so you don't have to file a deletion request to leave cleanly.
+
+## What happens when you cancel your subscription
+
+The moment Stripe confirms a cancellation:
+
+1. **Provider tokens are nulled** — Gmail, Microsoft 365, Calendly, HubSpot, Pipedrive OAuth/API tokens are wiped from the database.
+2. **Microsoft Graph subscriptions are deleted** — the reply-watch webhooks are unregistered upstream.
+3. **In-flight sequences stop** — no further sends fire on your account.
+4. **Account status flips to `inactive`** — dashboards still load (read-only) so you can export anything you need.
+5. **`cancelled_at` is stamped** on your account.
+6. **A daily cron purges the full account 90 days after `cancelled_at`** — prospects, sequences, replies, attestation records, the lot. This grace window exists so you can resubscribe and pick up where you left off if you change your mind.
+
+## What happens when you disconnect a single integration
+
+Disconnects are tier-scoped — only the relevant data is affected.
+
+| Integration | Tokens wiped? | Imported content deleted? |
+|---|---|---|
+| Gmail | Yes | No (sent history stays for your records) |
+| Microsoft 365 | Yes (Graph subscription deleted) | No |
+| Calendly | Yes | No |
+| HubSpot | Yes | **Yes** — prospects imported from HubSpot are removed; their in-flight sequences stop |
+| Pipedrive | Yes | **Yes** — same pattern as HubSpot |
+
+Every deletion writes an audit row to `data_deletion_log` (timestamp, scope, row counts).
+
+## What's retained vs deleted
+
+- **Audit-trail data** (consent attestations, suppression list, abuse-list entries) is retained even after deletion — it's how Tenlo proves compliance to a regulator if challenged.
+- **Suppressions** are never removed without written confirmation from the recipient.
+- **ROI report archives** stay accessible for 12 months after cancellation in case you need them for an end-of-year summary; the underlying raw prospects/replies are gone after 90 days.
+
+## If you want an immediate deletion
+
+<Callout type="legal" title="GDPR right-to-erasure & similar">
+Email hello@tenloai.com and ask for an immediate purge. Tenlo actions it manually, logs the request, and emails you a confirmation. This is the path to use if you have a regulatory deadline (GDPR right-to-erasure, etc.) you can't wait 90 days for.
+</Callout>
+
+## AI training
+
+Tenlo uses Anthropic's and OpenAI's enterprise endpoints, which prohibit training on customer data. Your prospects, replies, templates, and attestation records are never used to train AI models — Anthropic's, OpenAI's, Tenlo's, or anyone else's.
+
+## Where to look
+
+| Topic | Where it lives |
+|---|---|
+| Sender-ID footer mechanics | This page (above) |
+| Two-phase import flow | [Importing prospects](/sales-outreach/using-the-product/importing-prospects) |
+| What gets stored and for how long | This page (above) |
+| Data after cancellation | [Pricing, caps & billing](/sales-outreach/reference/billing) |
+| AI training stance | This page (above) and [FAQ](/sales-outreach/reference/faq) |

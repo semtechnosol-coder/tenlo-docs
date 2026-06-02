@@ -1,0 +1,39 @@
+---
+title: AI research
+lastUpdated: 2026-06-02
+---
+
+import { Callout } from '../../../components/Callout'
+
+# AI research.
+
+Each newly-imported prospect goes through automated web-search-backed research. Takes about **30–60 seconds per prospect**. The output is a structured **research profile** stored on the prospect.
+
+## What's in a research profile
+
+| Field | What it is |
+|---|---|
+| Company summary | 1–2 sentences |
+| Industry | One value, used in templates as `contact.industry` |
+| Company size estimate | Headcount / revenue bracket |
+| Pain points | 2–3 bullets specific to this business |
+| Personalisation hook | One specific, recent, verifiable fact (e.g. *"Just opened a Toronto Eglinton location in March"* or *"Closed Series B led by Bessemer last quarter"*) |
+| Tone signals | Formal vs casual, technical vs business, etc. |
+| Recent news | Last 90 days where available |
+
+The **personalisation hook** is what feeds the P.S. line of your Step 1 email. It's the difference between *"Hope this email finds you well"* and *"Saw you announced your Eglinton location — congrats."*
+
+## Why prospects sometimes have weak research
+
+The AI prefers verifiable, recent facts. If your prospect is a small business with no recent press, no LinkedIn post in 6 months, and a thin website, the research may fall back to industry generalities. You can:
+
+- **Help it** — fill in `company_url` on import; that's the strongest research anchor.
+- **Skip it** — use [sequence templates](/sales-outreach/using-the-product/sequence-templates) and bypass per-prospect research entirely.
+
+## Research errors
+
+If research fails (network glitch, bad URL), the prospect lands in `pending_research` indefinitely. The system retries automatically up to 3 times.
+
+<Callout type="note">
+Persistent failures usually mean a bad email domain or a private/blocked website — email hello@tenloai.com and Tenlo will diagnose.
+</Callout>

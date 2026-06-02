@@ -1,0 +1,92 @@
+---
+title: Sequence templates
+lastUpdated: 2026-06-02
+---
+
+import { Callout } from '../../../components/Callout'
+
+# Sequence templates *(power user)*.
+
+Build templates at **Sales Outreach → Manage sequence templates** (or directly at `/dashboard/sales/templates`).
+
+## The four steps
+
+Every template has exactly 4 steps, sent at fixed default delays:
+
+| Step | Default delay | Typical purpose |
+|---|---|---|
+| 1 | 0 days (immediate) | Opening — hook, who you are, why them |
+| 2 | 4 days | Bump — different angle, specific value, proof |
+| 3 | 8 days | Value-add — share something useful (case study, insight) |
+| 4 | 14 days | Breakup — *"I'll leave it here..."* — high response rates from this one |
+
+You can override delays per step. Common variations:
+
+- **Tighter cadence** — `[0, 2, 5, 9]` for hot lists
+- **Looser** — `[0, 5, 10, 18]` for executives or low-frequency buyers
+
+## Per-step fields
+
+| Field | Notes |
+|---|---|
+| **Subject** | Email subject line. Supports tokens. |
+| **Body** | Email body (plain text + line breaks; auto-converted to safe HTML on send) |
+| **Angle** | Internal label for what this step is doing (e.g. *"Pain point"*, *"Social proof"*, *"Breakup"*). Doesn't show to recipient. |
+| **Delay days** | Days after the previous step (or after **Approve & send** for Step 1) |
+
+## Available tokens
+
+Drop these into subject or body — they get filled in per recipient.
+
+| Token | What it inserts |
+|---|---|
+| `{{contact.first_name}}` | Prospect's first name |
+| `{{contact.last_name}}` | Prospect's last name |
+| `{{contact.company}}` | Company name |
+| `{{contact.title}}` | Job title |
+| `{{contact.company_url}}` | Company website |
+| `{{contact.industry}}` | Industry (from research profile) |
+| `{{contact.personalization_hook}}` | The personalisation hook (the most valuable token — use it in Step 1) |
+| `{{sender.business}}` | Your business name |
+| `{{sender.owner_name}}` | Owner display name (your name, used in sign-off) |
+| `{{links.unsubscribe}}` | Required in footer for compliance — auto-injected if missing |
+
+## Conditional blocks
+
+When research is sparse, a token can come back empty. Use `{{#if scope.field}} ... {{/if}}` to drop unsupported phrases cleanly:
+
+```handlebars
+Hi {{contact.first_name}},
+
+I've been following {{contact.company}}{{#if contact.industry}} in the {{contact.industry}} space{{/if}} and noticed{{#if contact.personalization_hook}} {{contact.personalization_hook}}{{/if}}.
+```
+
+If `industry` is empty, that clause silently vanishes — no awkward *"in the space"* fragment.
+
+## Linting
+
+The editor warns you about:
+
+- **Unknown tokens** (typos)
+- **Wrong scope** (e.g. using `sender.tech_name`, which is a P09 token, not P02)
+- **Missing unsubscribe link**
+
+Warnings appear as coloured pills next to the affected field.
+
+## Save behaviour
+
+Saving a template upserts all 4 steps **atomically** — either all four save or none do. Edit one step, click Save, and steps 2–4 re-save in lockstep.
+
+## Soft-delete
+
+Templates that have been used in real sequences can't be hard-deleted. Hitting **Delete** soft-deletes (status = `deleted`) — the template stops appearing in the message-style dropdown but live sequences still render it correctly.
+
+## Best practices
+
+<Callout type="tip" title="Anchor Step 1 in the personalisation hook">
+Generic intros get ignored. Specific *"I saw your X"* gets opens. The `contact.personalization_hook` token is the single most valuable variable in the product.
+</Callout>
+
+- **Step 4 is the highest-converting step.** Don't skip it. Phrasing matters: *"I'll stop bothering you here. If now isn't the right time, no worries — just hit reply with 'not now' and I'll close this out."*
+- **Keep Step 2 short.** Under 80 words. The recipient already saw your intro; this is a bump, not a fresh pitch.
+- **Avoid banned phrases.** Anything that screams template lowers reply rate — *"I hope this email finds you well"*, *"I wanted to reach out"*, *"touch base"*, *"circle back"*.

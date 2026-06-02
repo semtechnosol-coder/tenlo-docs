@@ -1,0 +1,75 @@
+---
+title: Settings reference
+lastUpdated: 2026-06-02
+---
+
+import { Callout } from '../../../components/Callout'
+
+# Settings reference.
+
+Quick reference for every Sales Outreach-related setting. Most live on **Settings in the top nav** (they're cross-product). The Sales Outreach page has its own in-page controls for message style and templates.
+
+## Account Settings *(global)*
+
+| Field | Purpose |
+|---|---|
+| Business name | Used in email signatures, templates (`sender.business`), and the CASL sender-id footer |
+| Owner display name | Personal name used in templates (`sender.owner_name`) and the CASL footer contact line |
+| Timezone | IANA timezone — affects send window calculations |
+| Logo | PNG/SVG, max 500KB — used in monthly reports |
+
+## Business mailing address card *(required)*
+
+| Field | Purpose |
+|---|---|
+| Street address | Auto-injected into every outreach email's CASL footer. Required before P02 sends work. |
+| City / Province / Postal / Country | Same as above — full address is rendered |
+| Legal contact email | Optional but recommended; appears on the footer's *"Contact"* line |
+| Legal contact phone | Optional but recommended |
+
+<Callout type="legal" title="Placeholders are rejected">
+Placeholder-looking addresses (`TBD`, `123 Main St`, `N/A`) are rejected by validation — the field will refuse to save until you enter a real address.
+</Callout>
+
+## Email Provider card
+
+| Field | Purpose |
+|---|---|
+| Connect Gmail / Microsoft 365 | One-click OAuth connect — see [Connecting your sending email](/sales-outreach/using-the-product/email-provider) |
+| Active sender | Shows which provider is currently sending |
+| Disconnect | Clear tokens, stop sending |
+
+## Integrations card
+
+| Field | Purpose |
+|---|---|
+| HubSpot | OAuth connect / disconnect |
+| Pipedrive | API token paste / disconnect |
+| Calendly | OAuth (used by [P05 — Sales Assistant](/sales-assistant)) |
+
+See [CRM integration](/sales-outreach/using-the-product/crm).
+
+## Notifications *(Settings → Notifications)*
+
+| Field | Purpose |
+|---|---|
+| Channels | List of Slack/Teams/email destinations you've configured |
+| Subscriptions | Toggle grid — which events to which channels |
+
+See [Notifications](/sales-outreach/using-the-product/notifications).
+
+## Sales Outreach page *(in-page settings)*
+
+| Field | Purpose |
+|---|---|
+| Message style | Default mode for new imports — AI-written or pick a template. See [AI-written vs template-driven](/sales-outreach/using-the-product/two-modes). |
+
+## Sequence Templates editor
+
+| Field | Purpose |
+|---|---|
+| Step subject / body / angle / delay | Per-step content |
+| Linting pills | Token / scope warnings |
+| Preview | Render with sample data |
+
+See [Sequence templates](/sales-outreach/using-the-product/sequence-templates) for the full token reference.

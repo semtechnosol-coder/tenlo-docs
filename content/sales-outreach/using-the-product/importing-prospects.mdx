@@ -1,0 +1,136 @@
+---
+title: Importing prospects
+lastUpdated: 2026-06-02
+---
+
+import { Callout } from '../../../components/Callout'
+
+# Importing prospects.
+
+Four ways to bring prospects in — file upload, Pipedrive, HubSpot, or manual entry. All four respect the same dedup, suppression, and import-cap rules, **and all four go through the same two-phase compliance flow**: pre-import preview → consent attestation → commit.
+
+## The two-phase import flow *(applies to every source)*
+
+When you trigger any import, the drawer first calls a **preview** endpoint that classifies every row without writing anything to the database. You see:
+
+| Bucket | What it means |
+|---|---|
+| **Will import** | Clean rows that will be queued for research |
+| **On your unsubscribe list** | Collapsible group of rows that already opted out (per-business suppressions) |
+| **Flagged in our system** | Collapsible group of rows on the global abuse list (e.g. prior spam complaints across any Tenlo customer) |
+| **Quebec** | Quebec contacts are blocked at import today (Law 25 compliance — broader QC support planned post-launch). Detection uses the `province` field and area-code analysis. |
+| **Express consent expired** | Rows whose `last_interaction_date` falls outside the implied-consent window your chosen basis allows (e.g. EBR 24 months for paying customers, 6 months for enquiries) |
+
+Below the preview you must:
+
+1. **Pick a consent basis** from the dropdown:
+   - *"Conspicuous publication (e.g. published business email)"* — default
+   - *"Existing business relationship"*
+   - *"Express consent (subscribed/asked to hear from you)"*
+   - *"Express consent (signed agreement)"*
+   - *"Other lawful basis"*
+
+   The selected basis is stamped on every row in the batch and becomes part of your audit trail.
+
+2. **Tick the attestation checkbox.** The wording is counsel-approved, version `2026-05-24-v2`:
+
+<Callout type="legal" title="Attestation wording">
+*I certify that I have a valid legal basis to send commercial electronic messages to every contact in this list, including express consent, a valid implied-consent basis, or another lawful basis available under applicable law. I can provide evidence of that basis on request. I have not included anyone who has opted out, unsubscribed, complained, or otherwise asked my business not to contact them. I will not use Tenlo to send to recipients outside Canada or the United States, or to recipients in Québec, unless Tenlo has confirmed that jurisdiction is supported.*
+</Callout>
+
+3. Click **Confirm import**. Only then are the clean rows written.
+
+Each commit records an attestation row (timestamp + your user ID + consent basis + attestation version + row counts) for audit/legal purposes. You can read the underlying policy at [tenloai.com/legal/suppression-model](https://www.tenloai.com/legal/suppression-model).
+
+---
+
+## File upload *(CSV / XLSX)*
+
+The most common path.
+
+### Required columns *(case-insensitive, alias-aware)*
+
+- `company_name` (or `company`, `organization`, `org_name`)
+- `contact_email` (or `email`, `e-mail`)
+
+### Optional columns
+
+| Column | Notes |
+|---|---|
+| `contact_name` | Or `name`, `full_name` |
+| `first_name` + `last_name` | Auto-joined |
+| `contact_title` | Or `title`, `job_title`, `position` |
+| `company_url` | Or `website`, `url`, `domain` |
+| `phone` | Used for Quebec area-code detection and stored for future SMS support |
+| `province` | Used for Quebec detection; accepts `QC`, `Quebec`, `Québec` |
+| `last_interaction_date` | ISO date of your most recent legitimate contact with this prospect. Used to check whether your selected consent basis is still in window (e.g. EBR expires after 24 months). |
+
+Headers are matched case-insensitively. The XLSX parser switched from `xlsx` to `exceljs` in 2026-05 — behaviour-identical, but slightly stricter about malformed cells.
+
+### Constraints
+
+- Maximum **500 rows per upload**
+- Headers required (first row)
+- UTF-8 encoded, comma-delimited (CSV) or standard `.xlsx` / `.xls`
+
+### Result counters
+
+| Counter | Meaning |
+|---|---|
+| `imported` | Successfully created and queued for research |
+| `skippedDuplicate` | Email already exists in your prospects table |
+| `skippedSuppressed` | Email is on your per-business suppression list |
+| `skippedAbuse` | Email is on the global abuse list (prior complaints, hard bounces, etc.) |
+| `skippedQuebec` | Quebec contact — blocked pending broader QC support |
+| `skippedExpiredConsent` | `last_interaction_date` falls outside the chosen consent basis's allowed window |
+| `skippedInvalid` | Row missing a required field |
+| `skippedImportCap` | Hit the 750/month import ceiling |
+
+<Callout type="legal" title="Why Quebec is blocked">
+Law 25 (Loi 25) extends Quebec's consumer-protection regime to commercial electronic messages and adds disclosure requirements Tenlo doesn't yet meet across the full QC dataset. Tenlo blocks at import to keep you compliant. Broader Quebec support is planned post-launch — if you need it sooner, email hello@tenloai.com and Tenlo will prioritise based on demand.
+</Callout>
+
+---
+
+## Pipedrive import *(power user)*
+
+Connect Pipedrive once (Settings → Integrations → Pipedrive → paste API token), then import prospects from any saved Person filter.
+
+1. On the Sales Outreach page, click **Import prospects → From Pipedrive**.
+2. The dropdown shows your saved filters from Pipedrive (e.g. *"Cold leads — Q3"*, *"Trade show contacts"*).
+3. Pick a filter and click Import. Up to **500 records** pull in (oldest first).
+4. People without an email are skipped (`skippedNoEmail` counter).
+
+<Callout type="note" title="Echo-write safety">
+Tenlo will also push these prospects back into Pipedrive (as Persons + Organisations). Because the upsert dedups by email, you won't get duplicates in Pipedrive — it's a no-op when the contact already exists.
+</Callout>
+
+The Pipedrive adapter pulls `phone`, `address` (mapped to `province` where parsable), and `last_activity_date` (mapped to `last_interaction_date`) so the preview can run its compliance checks accurately.
+
+---
+
+## HubSpot import *(power user)*
+
+Same flow as Pipedrive but using HubSpot Contact Lists.
+
+1. Settings → Integrations → HubSpot → paste OAuth access token (or use the Connect button).
+2. **Import prospects → From HubSpot.**
+3. Pick a saved Contact List from the dropdown. Up to **500 contacts** import.
+4. Contacts without an email are skipped.
+
+The HubSpot adapter pulls `phone`, `state` (mapped to `province`), and `last_activity_date` so the compliance preview can classify your list correctly.
+
+---
+
+## Manual entry
+
+For one-offs. Sales Outreach page → **Import prospects → Add manually**. Fill in `company_name` + `contact_email` (minimum) and Save.
+
+---
+
+## What import doesn't do
+
+- **No approval cap consumed.** Imports use the import ceiling (750/month), not the approval cap (500/month). The approval cap only ticks up when you click **Approve & send** on a sequence.
+- **No CRM webhook.** New people added in Pipedrive/HubSpot after you imported are not auto-synced. You'll re-import to pull them in.
+- **No incremental import.** Every CRM import refetches the whole filter/list. Tenlo's dedup catches duplicates on its side.
+- **No filter selected = full account.** If you skip the filter dropdown, Pipedrive/HubSpot send everything they can up to 500 rows. Use a filter unless you mean to import the lot.

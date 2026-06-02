@@ -1,0 +1,41 @@
+---
+title: AI-written vs template-driven
+lastUpdated: 2026-06-02
+---
+
+import { Callout } from '../../../components/Callout'
+
+# AI-written vs template-driven.
+
+This is the most important decision in the product. Pick the mode at import time via the **Message style** dropdown.
+
+## AI-written mode *(default)*
+
+**How it works.** Every email of every step is freshly written by Claude Sonnet, anchored on the prospect's research profile and your brand voice.
+
+| Pros | Cons |
+|---|---|
+| High personalisation per prospect | Costs about $0.04 per prospect (included in your $249/mo) |
+| Each email genuinely different (no two-sentence boilerplate) | You can't predict the wording in advance |
+| Adapts to industry, role, company stage automatically | Less control over compliance language |
+
+**When to use.** Smaller volumes, high-trust accounts, tight ICPs where every prospect is worth bespoke copy.
+
+## Template-driven mode
+
+**How it works.** You pre-author a 4-step sequence with variables. Every prospect that imports under that template gets the same skeleton, with `contact.first_name`, `contact.industry`, `contact.personalization_hook` etc. filled in from their research profile. See [Sequence templates](/sales-outreach/using-the-product/sequence-templates) for the full token reference.
+
+| Pros | Cons |
+|---|---|
+| **Zero AI cost per prospect** for sequence generation (research still runs) | Less per-prospect variation than AI mode |
+| You see exactly what every prospect will receive | You write the templates yourself (one-time effort) |
+| Easier compliance review (one template approved = all prospects approved) | If a research field is empty, conditional blocks need to handle it |
+| Faster — sequence generation is instant, no Sonnet call | |
+
+**When to use.** Volume outreach, regulated industries, mature ICPs where you've already iterated copy, or when you want to A/B test wording.
+
+## Mixing modes
+
+<Callout type="tip">
+You can mix freely. Different imports can use different message styles. Some teams keep one template for warm leads (fast, predictable) and use AI mode for cold lists (more personalisation needed).
+</Callout>

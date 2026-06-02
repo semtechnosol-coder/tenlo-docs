@@ -1,0 +1,69 @@
+---
+title: The Sequences table
+lastUpdated: 2026-06-02
+---
+
+import { Callout } from '../../../components/Callout'
+
+# The Sequences table.
+
+The main work surface. Every active and recent sequence as one row.
+
+## Columns
+
+| Column | What it shows |
+|---|---|
+| Prospect | Company + contact name |
+| Status | Coloured chip — see status reference below |
+| Progress | Step bar (1/4, 2/4, …) |
+| Last sent | When the most recent email went out *(sortable)* |
+| Created | When the sequence was generated *(sortable)* |
+| Action | **Approve & send** inline on `pending_approval` rows, or row menu |
+
+## Status reference
+
+| Status | What it means | Colour |
+|---|---|---|
+| `pending_approval` | Awaiting your click | Gold |
+| `approved` | Approved but Step 1 hasn't sent yet | Navy |
+| `active` | Currently sending the 4-step sequence | Teal |
+| `paused` | You paused it | Grey |
+| `replied_positive` | Prospect replied with interest — sequence stops, CRM deal created | Green |
+| `replied_objection` | Prospect replied with concerns — sequence stops, you handle | Amber |
+| `complete` | All 4 steps sent, no reply received | Light blue |
+| `archived` | Permanently stopped (by you or after auto-archive on unsubscribe) | Faded grey |
+
+## Filter chips
+
+Filter the table by status. Default is **Active** (hides archived to reduce noise). Other chips — Pending approval / Replied / Complete / Archived.
+
+Active chip + sort persist in the URL — you can bookmark filter views.
+
+## Sorting
+
+Click any sortable column header. Sort state lives in the URL (`?sort=last_sent_at:desc`).
+
+## The detail drawer
+
+Click any row → 640px slide-in panel. Shows:
+
+- All 4 steps with subject, body, angle, delay
+- Send timestamps per step
+- The full reply text (if replied)
+- Failed-step error messages with **Retry** buttons
+
+Press Escape or click outside to close.
+
+## Failed steps
+
+If an individual step send fails after 5 retries (transient Gmail/Microsoft 5xx errors are retried automatically with backoffs at 30s → 1m → 2m → 4m), the step is marked `failed` and shows:
+
+- Red border on the step card
+- The actual provider error message (e.g. *"Daily user-quota exceeded"*)
+- A **Retry** button that re-queues the step
+
+<Callout type="note" title="Common failure causes">
+- **Token expired** — reconnect the email provider
+- **Recipient bounced** — the email was added to your suppression list automatically
+- **Quota hit** — wait until the daily counter resets
+</Callout>

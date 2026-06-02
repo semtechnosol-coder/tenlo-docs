@@ -1,0 +1,48 @@
+---
+title: Replies & classification
+lastUpdated: 2026-06-02
+---
+
+import { Callout } from '../../../components/Callout'
+
+# Replies & classification.
+
+When a prospect replies to any email in your sequence, here's what happens.
+
+## Reply detection
+
+| Provider | Mechanism |
+|---|---|
+| Gmail | Pub/Sub push notification fires within seconds |
+| Microsoft 365 | Graph webhook fires within seconds (renewed daily) |
+
+In both cases, the system fetches the new message, strips quoted text and signatures, and matches it to the originating sequence via thread ID.
+
+## Classification
+
+The AI reads the reply and classifies it as one of four buckets:
+
+| Classification | Behaviour |
+|---|---|
+| **positive** | Sequence stops. Status → `replied_positive`. CRM deal auto-created (HubSpot or Pipedrive). Notification fires. |
+| **objection** | Sequence stops. Status → `replied_objection`. You handle the response — the system doesn't auto-reply. |
+| **unsubscribe** | Sequence stops. Status → `archived`. Email added to your suppression list. |
+| **out_of_office** | Logged but **sequence continues** — the OOO isn't a real engagement. |
+
+## Why classification matters
+
+It's the difference between sending Step 3 to someone who already said *"interested — let's set up a call"* (an embarrassing mistake) and continuing to nurture a prospect on holiday.
+
+## What if the AI gets it wrong?
+
+Reply classification is high-accuracy but not perfect. You can:
+
+- Manually **pause** the sequence in the UI if you spot a misclassification
+- Use the row menu → **Archive** if the prospect should permanently drop out
+- Email hello@tenloai.com if you see systematic errors (Tenlo will review and tune)
+
+## The "no auto-reply" policy
+
+<Callout type="legal" title="Humans handle replies">
+The AI never writes a reply on your behalf. When a prospect engages, you take over personally — that's where deals close. This is a deliberate product choice, not a missing feature.
+</Callout>

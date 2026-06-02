@@ -1,0 +1,59 @@
+---
+title: Dashboard at a glance
+lastUpdated: 2026-06-02
+---
+
+import { Callout } from '../../../components/Callout'
+
+# Dashboard at a glance.
+
+The Sales Outreach dashboard lives at [app.tenloai.com/dashboard/sales](https://app.tenloai.com/dashboard/sales).
+
+## Onboarding checklist *(new accounts)*
+
+Pinned to the top until you finish setup. Eight steps tick off **automatically** as you complete them — mailing address detected on save, Gmail/M365 detected on OAuth callback, upload detected on first successful import, first send detected on Step 1 going out.
+
+The card disappears once all eight are complete. Full list and behaviour in [Quick start](/sales-outreach/getting-started/quick-start#the-8-step-onboarding-checklist).
+
+## Plan & Usage header
+
+Below the checklist (or top of the page once setup is complete). Shows:
+
+| Element | What it shows |
+|---|---|
+| Current plan | `$249/500 prospects` |
+| **Approval bar** | Used / cap with a coloured progress bar (navy → amber at 80% → red at 95%+). Refreshes after every approval. |
+| **Import bar** | Researched / import-ceiling (750 for the standard plan). Same colour ladder. Refreshes after every import. |
+| Rollover date | When your monthly counter resets |
+| *"Need more capacity?"* CTA | Links to `mailto:hello@tenloai.com` for dedicated-mailbox setup |
+
+## Outreach KPIs
+
+Four-card strip:
+
+| KPI | What it counts |
+|---|---|
+| Prospects | Total imported (lifetime) |
+| Emails sent | Across all sequences (lifetime) |
+| Positive replies | Plus reply rate % |
+| Pending approval | Sequences ready for your click |
+
+## Sequences table
+
+The main work surface — sortable table with one row per sequence. See [The Sequences table](/sales-outreach/using-the-product/sequences-table) for columns, statuses, filters, and the detail drawer.
+
+## Import controls
+
+Below the table:
+
+- **Message style** dropdown — `AI-written per prospect` (default) or any active sequence template
+- **Manage sequence templates** button → template editor
+- **Import prospects** dropdown → File upload / Pipedrive / HubSpot / Manual entry
+
+## Sequence detail drawer
+
+Click any row → slide-in panel (640px wide, Esc to close). Shows all 4 email steps with subject, body, angle, delay, sent timestamps, and a **Retry** button on any step that failed.
+
+<Callout type="tip">
+The detail drawer is also where you read the full reply text on `replied_positive` and `replied_objection` rows — the reply body isn't shown in the table itself.
+</Callout>

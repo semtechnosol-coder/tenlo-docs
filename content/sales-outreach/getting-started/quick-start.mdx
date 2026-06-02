@@ -1,0 +1,83 @@
+---
+title: Quick start — your first outreach
+lastUpdated: 2026-06-02
+---
+
+import { Steps, Step } from '../../../components/Step'
+import { Callout } from '../../../components/Callout'
+
+# Quick start.
+
+Seven steps, in order. The **Onboarding Checklist** card on your dashboard at [app.tenloai.com/dashboard/sales](https://app.tenloai.com/dashboard/sales) mirrors these steps — most tick off automatically as you complete them.
+
+<Steps>
+<Step n={1} title="Add your business mailing address." time="~3 min" path="Settings → Business mailing address">
+
+Fill in your legal business name, owner display name, and a real street address (PO boxes are accepted; placeholder text like *"TBD"* or *"123 Main St"* is rejected).
+
+<Callout type="legal" title="Required by CASL §6(2)">
+Every commercial email must carry the sender's mailing address, and Tenlo enforces this in code — **outreach sends are blocked until this is filled in**. This address is auto-injected into the compliance footer of every email you send.
+</Callout>
+</Step>
+
+<Step n={2} title="Connect your sending email." time="~2 min" path="Settings → Email Provider">
+
+Click **Connect Gmail** or **Connect Microsoft 365**. Sign in, accept the permissions, and you're done. See [Connecting your sending email](/sales-outreach/using-the-product/email-provider).
+
+<Callout type="warn" title="Use a warmed-up mailbox">
+Brand-new mailboxes hit Gmail's spam filters hard. If your domain is fresh, do a slow ramp (5–10 sends/day) for the first 2 weeks before scaling.
+</Callout>
+</Step>
+
+<Step n={3} title="Import a small batch." time="~5 min" path="Sales Outreach → Import prospects">
+
+For your first run, pick **File upload** and drop in a CSV with 5–10 rows (so you can validate quickly without burning cap). Required columns: `company_name` and `contact_email`.
+
+You'll be shown a **preview** of what will and won't import (suppressed, Quebec, flagged), be asked to pick a **consent basis**, and tick a legal attestation before the import commits — see [Importing prospects](/sales-outreach/using-the-product/importing-prospects).
+</Step>
+
+<Step n={4} title="Wait 1–2 minutes for research." time="auto" path="Sequences table">
+
+Each prospect goes through real-time research (web search + AI profiling). Status moves: `pending_research` → `pending_sequence` → `sequence_ready`. The dashboard polls every ~20 seconds while anything is mid-pipeline and stops automatically once everyone is done — you don't need to refresh.
+
+See [AI research](/sales-outreach/using-the-product/ai-research).
+</Step>
+
+<Step n={5} title="Review the first draft." time="~5 min" path="Click any sequence row">
+
+You'll see 4 emails — Step 1 (intro, sent immediately), Step 2 (4 days later), Step 3 (8 days later), Step 4 (breakup, 14 days later). Read them.
+
+Inline draft editing lives on the roadmap; for now, the cleanest path to predictable copy is to set up a [sequence template](/sales-outreach/using-the-product/sequence-templates) you trust.
+</Step>
+
+<Step n={6} title="Approve & send." time="~1 min" path="Sequences table → Approve & send">
+
+Click **Approve & send** on a sequence row. The first email queues immediately and sends within minutes (subject to your daily 50-email cap). The next three queue automatically with their delays.
+
+The Approvals usage bar at the top of the dashboard refreshes after every approval so you can see your remaining cap in real time. See [Approving & sending](/sales-outreach/using-the-product/approving-sequences).
+</Step>
+
+<Step n={7} title="Monitor the queue." time="ongoing" path="Sequences table">
+
+The Sequences table shows real-time progress. Send status, open events, and replies update as they happen. Reply classification fires within ~1 minute of a reply landing in your inbox — see [Replies & classification](/sales-outreach/using-the-product/replies).
+</Step>
+</Steps>
+
+That's it — you're running outreach. Most customers see their first positive reply within the first week.
+
+## The 8-step onboarding checklist
+
+The dashboard's checklist is one step wider than the Quick Start above — it adds **ICP definition** and **send-limit configuration** as discrete steps, and stamps **first send** and **first positive reply** as automatic milestones.
+
+| # | Step | Auto-completes when… |
+|---|---|---|
+| 1 | Add your business mailing address | Address is saved (validation passes) |
+| 2 | Connect Gmail (or Microsoft 365) | OAuth callback completes |
+| 3 | Define your ideal customer | Manual tick (no auto-detect yet) |
+| 4 | Set daily send limits | Manual tick |
+| 5 | Upload your first prospect list | First successful import commits |
+| 6 | Review and approve sequences | Manual tick (or after first approval) |
+| 7 | Send first batch | First outbound email actually sends |
+| 8 | First positive reply | Reply classifier marks any reply as `positive` |
+
+A green check appears as each step ticks off. The whole card disappears once all 8 are complete. If automation misses a step (rare, but happens), click the step to mark it done manually.

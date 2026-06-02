@@ -1,0 +1,60 @@
+---
+title: CRM integration
+lastUpdated: 2026-06-02
+---
+
+import { Callout } from '../../../components/Callout'
+
+# CRM integration *(power user)*.
+
+Two CRMs are supported: **HubSpot** and **Pipedrive**.
+
+<Callout type="note" title="Native CRM is coming">
+The Pipedrive card in Settings now shows: *"Have a new Tenlo account? The built-in Native CRM is included — no API token needed."* The native CRM is being built into Tenlo so most customers won't need an external CRM at all. Existing HubSpot/Pipedrive connections keep working — this is additive.
+</Callout>
+
+## What CRM sync does
+
+| Trigger | HubSpot action | Pipedrive action |
+|---|---|---|
+| Prospect imported | Upsert Contact + Company. Stored IDs back on prospect for future updates. | Upsert Person + Organization (linked). |
+| Positive reply received | Create Deal at stage `qualifiedtobuy`, linked to Contact + Company. | Create Deal linked to Person (no org link — minor inconsistency). |
+
+## Connecting HubSpot
+
+1. Settings → Integrations → HubSpot.
+2. Click **Connect** (OAuth flow) or paste a private app access token.
+3. *(Optional)* Enter your Portal ID for cleaner deal URLs in future.
+
+## Connecting Pipedrive
+
+1. Settings → Integrations → Pipedrive.
+2. Paste your **personal API token** (Pipedrive → Personal Preferences → API).
+3. *(Optional)* Enter your company domain (e.g. `acmecorp` for `acmecorp.pipedrive.com`).
+
+<Callout type="warn" title="Pipedrive tokens are personal">
+Pipedrive uses API tokens, not OAuth. Token scope = the user who created it. If that user leaves the company, generate a new token from someone with permanent access.
+</Callout>
+
+## Deal stages
+
+- **HubSpot** — Deals created at stage `qualifiedtobuy` in the default pipeline.
+- **Pipedrive** — Deals created at the default stage of the default pipeline.
+
+Custom pipelines / custom stages aren't yet selectable — coming in a future release. Once a deal is created, you take over in the CRM.
+
+## Known gaps
+
+These are intentional limitations today:
+
+- **No reply-text in CRM.** Only the *fact* of a positive reply creates a deal — the actual reply body isn't logged as a CRM note. Read replies in the Tenlo dashboard drawer.
+- **No sequence-status sync.** Pausing or archiving a sequence doesn't update the CRM deal.
+- **No incremental import.** Re-importing the same Pipedrive filter pulls everyone again (Tenlo dedups on its side, you don't get duplicates in the CRM).
+
+## Disconnecting
+
+**Settings → Integrations → Disconnect.** Tokens are wiped and outbound CRM sync stops; existing CRM contacts/deals **in the CRM itself** are not touched.
+
+<Callout type="legal" title="2026-05 change — best-effort deletion on disconnect">
+Disconnecting HubSpot or Pipedrive now also triggers a best-effort deletion of prospects that were imported *from that platform* into Tenlo, so you don't have stale outbound continuing against contacts you no longer own. Sequences mid-flight against those prospects are stopped. The deletion is logged to your account's audit trail (`data_deletion_log`). See [CASL, suppressions & data handling](/sales-outreach/compliance#what-happens-when-you-disconnect-a-single-integration).
+</Callout>

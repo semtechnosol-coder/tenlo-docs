@@ -1,0 +1,42 @@
+---
+title: Approving & sending
+lastUpdated: 2026-06-02
+---
+
+import { Callout } from '../../../components/Callout'
+
+# Approving & sending.
+
+Once a sequence is in `pending_approval` status (research and generation complete), you click **Approve & send** on the row.
+
+## What happens on approve
+
+1. **Cap check** — the system atomically checks if you have approval cap remaining. If you're at 500/500, the click returns *"Cap reached — contact us for dedicated-mailbox setup"* and the sequence stays pending.
+2. **Cap consumed** — your usage counter ticks +1.
+3. **Warning fires** if you crossed the 80% or 95% threshold (one-time per period — see [Notifications](/sales-outreach/using-the-product/notifications)).
+4. **Step 1 queues** — sends within minutes (subject to your daily 50-email cap).
+5. **Steps 2–4 queue** with their respective delays.
+
+## Pause, Resume, Archive
+
+These live in the **row menu** (three-dot menu) on each sequence row.
+
+| Action | Effect |
+|---|---|
+| **Pause** | Stops further sends. Already-sent emails remain. Status flips to `paused`. |
+| **Resume** | Restarts sending. Pending steps fire on their original schedule (or right away if their delay has already passed). |
+| **Archive** | **Permanent.** Stops all remaining sends. Sequence becomes read-only. The dashboard asks you to confirm with explicit wording: *"This stops all remaining sends and cannot be undone."* |
+
+<Callout type="note" title="Why pause/resume isn't on the row directly">
+Approving is the most common positive action — kept inline, one click. Pausing/archiving are destructive — moved to the row menu so you don't fat-finger them.
+</Callout>
+
+## Cap at 100% — what then?
+
+Approval is blocked. You have three options:
+
+- Wait for monthly rollover
+- Email hello@tenloai.com to upgrade to a **dedicated mailbox**
+- Archive sequences you don't intend to use (doesn't refund the cap, but reduces visual clutter)
+
+See [Pricing, caps & billing](/sales-outreach/reference/billing) for the difference between **approval cap** (500/mo), **import cap** (750/mo), and **daily send cap** (50/day).

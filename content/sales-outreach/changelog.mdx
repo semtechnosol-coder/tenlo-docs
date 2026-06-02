@@ -1,0 +1,61 @@
+---
+title: Changelog
+description: What changed and when in the Sales Outreach manual
+lastUpdated: 2026-06-02
+---
+
+# Changelog.
+
+Manual changes by section, newest first.
+
+---
+
+## 2026-06-02 — v1.0
+
+Initial web publication. Content migrated from `P02-USER-MANUAL.md` (source last updated 2026-06-02).
+
+**Recent product changes already reflected in this initial publication:**
+
+- **CASL §6(2) — business mailing address now required** before any P02 send works (auto-injected into every email's footer; placeholder addresses rejected). See [Quick start Step 1](/sales-outreach/getting-started/quick-start) and [Compliance](/sales-outreach/compliance#whats-in-every-outreach-email).
+- **Two-phase import flow** with preview → consent basis → attestation → commit. See [Importing prospects](/sales-outreach/using-the-product/importing-prospects#the-two-phase-import-flow-applies-to-every-source).
+- **Onboarding checklist** (8 steps) that auto-completes as you go. See [Quick start](/sales-outreach/getting-started/quick-start#the-8-step-onboarding-checklist).
+- **90-day data retention after cancellation** with token-nulling on cancel and best-effort prospect deletion on HubSpot/Pipedrive disconnect. See [Compliance](/sales-outreach/compliance#what-happens-when-you-cancel-your-subscription).
+- **Single-plan pricing** at $249/mo CAD (Growth and Scale tiers retired May 2026 — dedicated mailbox available case-by-case). See [Pricing, caps & billing](/sales-outreach/reference/billing).
+- **XLSX parser migrated** from `xlsx` to `exceljs` in 2026-05 — behaviour-identical but stricter on malformed cells.
+- **RFC 8058 one-click `POST`** now returns 200 (previously 405 in some flows — fixed 2026-05).
+
+**Editorial choices during migration:**
+
+- Section numbering (§1–§24) dropped in favour of section links — every cross-reference now points to the relevant in-site page.
+- Inline *"Note:"*, *"Heads-up:"*, and *"Why X"* callouts promoted to structured `<Callout>` components throughout.
+- The §24 Glossary was inlined where terms appear rather than kept as a separate end-page glossary — matches the P01, P05, and P09 pattern.
+- §3 Quick Start and §19 Onboarding Checklist combined into one page — they're the same flow.
+- §2 Pricing and §16 Caps/Throughput combined into a single billing page — caps are a pricing artefact.
+- §17 Compliance and §20 Cancellation/Data Retention combined into one compliance page — they're the same legal surface.
+- §21 Help Center folded into the landing index and footer pointers — no separate page.
+- Em-dashes normalised across all step descriptions.
+
+**Sections published:**
+
+| Section | Status |
+|---|---|
+| What Sales Outreach does | Published |
+| Logging in | Published |
+| Quick start — your first outreach | Published |
+| Dashboard at a glance | Published |
+| Connecting your sending email | Published |
+| Importing prospects | Published |
+| AI research | Published |
+| AI-written vs template-driven | Published |
+| Sequence templates | Published |
+| Approving & sending | Published |
+| The Sequences table | Published |
+| Replies & classification | Published |
+| CRM integration | Published |
+| Notifications | Published |
+| Monthly ROI reports | Published |
+| Settings reference | Published |
+| Pricing, caps & billing | Published |
+| Frequently asked questions | Published |
+| Troubleshooting | Published |
+| CASL, suppressions & data handling | Published |

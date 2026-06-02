@@ -1,0 +1,50 @@
+---
+title: Connecting your sending email
+lastUpdated: 2026-06-02
+---
+
+import { Callout } from '../../../components/Callout'
+
+# Connecting your sending email.
+
+You connect either Gmail **or** Microsoft 365 — only one is active at a time. The **Email Provider** card on the global Settings page handles both.
+
+<Callout type="legal" title="Prerequisite — mailing address first">
+Your **business mailing address** must be saved in Settings before any send works. CASL §6(2) requires it, and Tenlo blocks the send at render-time if it's missing (you'll see a clear error rather than a non-compliant email going out). Placeholder addresses (`TBD`, `123 Main St`, etc.) are rejected. See [Quick start Step 1](/sales-outreach/getting-started/quick-start).
+</Callout>
+
+## Connecting Gmail
+
+1. **Settings → Email Provider → Connect Gmail.**
+2. Sign in with the account you want to send *from*.
+3. Accept permissions — send mail, read mail, modify (for reply detection).
+4. Done. You're now the active sender.
+
+<Callout type="warn" title="Use a warmed-up business email">
+Brand-new mailboxes hit Gmail's spam filters hard. If your domain is fresh, do a slow ramp (5–10 sends/day) for the first 2 weeks before scaling. See [Compliance → Domain warmup](/sales-outreach/compliance#domain-warmup).
+</Callout>
+
+## Connecting Microsoft 365
+
+1. **Settings → Email Provider → Connect Microsoft 365.**
+2. Sign in with your work or school account (org-managed) or personal Microsoft account.
+3. Accept permissions — read mail, send mail, set up reply notifications.
+4. Done.
+
+Microsoft 365 connections include automatic reply ingestion via Graph webhooks (renewed daily) — same downstream classification flow as Gmail. See [Replies & classification](/sales-outreach/using-the-product/replies).
+
+## Switching providers
+
+If you switch from Gmail to Microsoft (or vice versa), the dashboard shows a confirmation modal:
+
+> *"Disconnect Gmail before connecting Microsoft 365?"*
+
+Confirming disconnects the old provider cleanly. Both can technically be connected at once, but only the one matching your *active sender* setting actually sends.
+
+## Disconnecting
+
+Click **Disconnect** on the provider's row. Tokens are wiped; in-flight emails for that provider stop. Sequences pause until you reconnect (or switch).
+
+<Callout type="note">
+Disconnecting an email provider doesn't delete your prospects or sequences — it just stops sends. Disconnecting **HubSpot or Pipedrive** is a different story: those also remove the prospects you imported from that platform. See [CASL, suppressions & data handling](/sales-outreach/compliance#what-happens-when-you-disconnect-a-single-integration).
+</Callout>

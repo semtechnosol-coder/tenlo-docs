@@ -1,0 +1,45 @@
+---
+title: Notifications
+lastUpdated: 2026-06-02
+---
+
+import { Callout } from '../../../components/Callout'
+
+# Notifications.
+
+The system fires alerts on key Sales Outreach events. You decide where they land.
+
+## The events
+
+| Event | Fires when |
+|---|---|
+| `p02.usage_warning` (80%) | You hit 80% of your monthly approval cap |
+| `p02.usage_warning` (95%) | You hit 95% — *"almost at cap"* |
+| `p02.cap_reached` | You're at 100% — approval blocked until rollover |
+
+## Adding a channel
+
+**Settings → Notifications → + Add channel.** Pick:
+
+- **Slack** — paste an Incoming Webhook URL (Slack → Apps → Incoming Webhooks → Add to channel)
+- **Microsoft Teams** — paste an Incoming Webhook URL (Teams channel → Connectors → Incoming Webhook)
+- **Email** — enter an email address
+
+Click **Send test** to verify the wiring before relying on it.
+
+## Subscribing to events
+
+Once a channel is connected, you'll see an event-toggle grid. Each row is an event; each column is one of your channels. Toggle on what you want where.
+
+<Callout type="note" title="Default behaviour when no channels are configured">
+If you have **no channels configured**, the original 80%/95% email goes to your account owner email by default — same behaviour as before notifications existed.
+</Callout>
+
+## Slack and Teams formatting
+
+- **Slack** uses Block Kit with a coloured stripe (green/amber/red based on the cap level)
+- **Teams** uses MessageCard format with similar colour coding
+
+## Auto-revoke
+
+If a webhook URL becomes invalid (channel deleted, app removed, returns 404/410), the system auto-marks it inactive and sends you an email. Re-add it to restore.

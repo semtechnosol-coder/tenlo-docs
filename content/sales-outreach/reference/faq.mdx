@@ -1,0 +1,64 @@
+---
+title: Frequently asked questions
+lastUpdated: 2026-06-02
+---
+
+# Frequently asked questions.
+
+The questions the support inbox sees most often, with the answers we'd give over chat.
+
+### How long after import before I can approve?
+
+Research takes 30–60 seconds per prospect; sequence generation another 10–30s in AI mode (instant in template mode). Plan ~2 minutes per prospect end-to-end. Bulk imports of 100 prospects typically finish in 5–10 minutes. See [AI research](/sales-outreach/using-the-product/ai-research).
+
+### Can I edit the AI's draft before sending?
+
+Not in v1. The mature path is to set up a sequence template you trust, then use it for predictable copy. Inline draft editing is on the roadmap. See [Sequence templates](/sales-outreach/using-the-product/sequence-templates).
+
+### What's the difference between "approved" and "active"?
+
+`approved` means you've clicked the button but Step 1 hasn't fired yet (it's in the queue, usually for under a minute). `active` means at least one step has gone out and the sequence is mid-flight.
+
+### Do delays compound or stack from approval?
+
+They cascade — Step 1 sends immediately on approval, Step 2 fires `delay_days` days *after Step 1 was sent*, Step 3 *after Step 2*, etc. Delays are calendar days, not business days.
+
+### What if my prospect replies after Step 2?
+
+Steps 3 and 4 are cancelled. Sequence flips to `replied_positive` / `replied_objection` / `unsubscribe` based on classification. You take over. See [Replies & classification](/sales-outreach/using-the-product/replies).
+
+### Can I send to multiple contacts at the same company?
+
+Yes — each is a separate prospect with their own sequence. You'll burn 1 cap unit per contact you approve.
+
+### Will I look spammy if 5 colleagues all get the same template?
+
+Possible if your template doesn't reference each person's role/personalisation hook. Use `contact.title` and `contact.personalization_hook` in your templates and they'll read differently for each recipient even from the same template.
+
+### What if my Gmail token expires?
+
+Sequences pause. The dashboard shows a red dot on the Email Provider card. Click **Reconnect** — pending sequences resume on the next worker pass.
+
+### Can I export my replies and prospects?
+
+Email hello@tenloai.com for a CSV export. Self-serve export is on the roadmap.
+
+### How much does this cost beyond $249/mo?
+
+Nothing for normal use. Email infrastructure, AI calls (research, generation, classification), and CRM sync are included. The dedicated-mailbox upgrade is a separate plan.
+
+### Will Tenlo train AI on my data?
+
+No. Your prospects, replies, and templates are not used to train any models. Anthropic and OpenAI's enterprise endpoints (which Tenlo uses) have data-retention policies that prohibit training on customer data.
+
+### Can I use Sales Outreach for transactional emails, newsletters, or customer comms?
+
+No — this is for B2B cold outreach only. Transactional should go through your billing system; newsletters need a dedicated ESP (Mailchimp, Customer.io, etc.). Mixing the two in one mailbox is bad for deliverability anyway.
+
+### What happens to my data if I cancel?
+
+Provider tokens are nulled immediately. Your data is purged 90 days after cancellation. Deletion-on-request is available at any time — email hello@tenloai.com. Full mechanics in [CASL, suppressions & data handling](/sales-outreach/compliance#what-happens-when-you-cancel-your-subscription).
+
+### How does this differ from the Sales Assistant (P05)?
+
+[P05](/sales-assistant) qualifies visitors who came to *your* site. P02 starts the conversation with prospects who haven't visited yet. The two complement each other — many teams run both.

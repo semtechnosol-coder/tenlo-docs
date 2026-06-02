@@ -1,0 +1,77 @@
+---
+title: Troubleshooting
+lastUpdated: 2026-06-02
+---
+
+# Troubleshooting.
+
+The most common symptoms, with the fixes that resolve them on the first try.
+
+## "I imported but nothing's happening"
+
+- Check the Sequences table — newly imported prospects may still be in `pending_research` (status visible in detail drawer)
+- Refresh after a few minutes — research takes 30–60s per prospect
+- Check Plan & Usage header — if you're at the **import cap** (750/mo), new imports are partially skipped. The import response counts `skippedImportCap`.
+
+## "AI sequences are generic / weak"
+
+- Fill in `company_url` on import — it's the strongest research anchor
+- Set your **brand voice** in Settings → AI Settings (carries across products)
+- Try a [sequence template](/sales-outreach/using-the-product/sequence-templates) instead of AI mode for predictable copy
+- Approved sequences feed back into your brand voice — the more you use the system, the better it gets at sounding like you
+
+## "Email failed to send"
+
+- Open the sequence detail drawer; look at the failed step's `last_error`
+- Common errors:
+  - *"Daily user-quota exceeded"* — you hit Gmail's daily cap. Wait for reset.
+  - *"Invalid grant"* / *"Token expired"* — reconnect Gmail/Microsoft in Settings
+  - *"Recipient address rejected"* — bounce; check the email is real
+  - *"Suppressed"* — recipient is on the suppression list
+- Click **Retry** on the failed step after fixing the cause
+
+## "I'm not getting replies tracked"
+
+- **For Gmail** — confirm the connected account has Gmail Read permission (re-do OAuth if needed)
+- **For Microsoft 365** — confirm the subscription is renewing — daily cron handles this; if it failed, the dashboard shows a warning
+- Replies go through classification within ~1 minute. Sometimes legit replies get classified as `out_of_office` if they're terse — review the drawer to see classification confidence.
+
+## "Cap shows wrong number"
+
+- The cap displayed is the count of sequences moved to `approved` status, not imported prospects
+- Period rollover happens on your monthly billing date — check Stripe for your renewal day
+- If you're a comped/founding customer, the period start may have been set manually — email support to verify
+
+## "I want to send more than 50/day"
+
+- Standard plan is rate-limited at 50/day on shared sending. There's no toggle to increase this.
+- For higher throughput → dedicated mailbox: hello@tenloai.com
+
+## "My CRM didn't get updated"
+
+- Check Settings → Integrations → confirm the CRM is still connected (token may have expired)
+- HubSpot: the token can expire if your access scope changed; reconnect
+- Pipedrive: API tokens are tied to a user account; if that user was removed, you'll need a new token
+- Note that deal-status sync isn't bidirectional — pausing a sequence doesn't move the deal
+
+## "I clicked Approve but nothing sends"
+
+- Open the sequence drawer; Step 1 should show queued or sending
+- Check the Email Provider card — provider may be disconnected
+- **Check your Business mailing address** — if it's missing or rejected as placeholder, the CASL render-time gate blocks every send (you'll see an error in the failed step's `last_error`)
+- Check daily cap — if you're at 50/50 today, sends queue for tomorrow
+
+## "My import got blocked at preview"
+
+- Quebec rows are auto-rejected today — see [Importing prospects](/sales-outreach/using-the-product/importing-prospects)
+- Global abuse-list rows (prior complaints or hard bounces across Tenlo) are auto-rejected
+- Per-business suppressions you've accumulated are excluded
+- If your selected **consent basis** has a time window (e.g. EBR = 24 months) and `last_interaction_date` is older, those rows are also dropped — change the basis or update the dates
+
+## "Where do I set my mailing address?"
+
+Settings (top nav) → Business mailing address card. It's a global setting, not buried inside Sales Outreach. Step 1 of the onboarding checklist links to it. Without it, P02 sends won't fire (CASL §6(2) requirement).
+
+## Anything else
+
+hello@tenloai.com — Mon–Fri 9am–5pm EST, 1 business day response.
