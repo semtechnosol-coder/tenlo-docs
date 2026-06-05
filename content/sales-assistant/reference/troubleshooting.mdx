@@ -1,6 +1,6 @@
 ---
 title: Troubleshooting
-lastUpdated: 2026-05-29
+lastUpdated: 2026-06-05
 ---
 
 # Troubleshooting.
@@ -44,10 +44,8 @@ The most common symptoms, with the fixes that resolve them on the first try.
 
 ## "Lead isn't showing up in my CRM"
 
-- Verify the CRM is connected (Settings → Integrations → green dot)
-- Tokens may have expired — disconnect/reconnect
-- HubSpot scope changes can invalidate the token
-- Check Recent Leads — if the lead is there, the issue is sync; if it's not there, the issue is capture
+- Check Recent Leads first — if the lead is there, it's a sync issue; if it's not, it's a capture issue (open the transcript and confirm the bot captured both name and email).
+- For a sync issue, the **HubSpot card in Settings → Integrations now shows a banner** when the connection needs attention: **Reconnect** if the token expired or was revoked, or **Re-authorize** (naming the exact permission) if a scope is missing. Click it and syncing resumes — no manual disconnect/reconnect dance. A transient provider hiccup shows a quiet "we'll retry" notice instead, so you're not sent to reconnect needlessly.
 
 ## "Bot keeps citing outdated info"
 

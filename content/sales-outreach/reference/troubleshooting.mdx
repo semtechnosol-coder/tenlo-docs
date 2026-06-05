@@ -1,6 +1,6 @@
 ---
 title: Troubleshooting
-lastUpdated: 2026-06-02
+lastUpdated: 2026-06-05
 ---
 
 # Troubleshooting.
@@ -25,14 +25,14 @@ The most common symptoms, with the fixes that resolve them on the first try.
 - Open the sequence detail drawer; look at the failed step's `last_error`
 - Common errors:
   - *"Daily user-quota exceeded"* — you hit Gmail's daily cap. Wait for reset.
-  - *"Invalid grant"* / *"Token expired"* — reconnect Gmail/Microsoft in Settings
+  - *"Invalid grant"* / *"Token expired"* — the **Email Provider card now shows a Reconnect banner** when this happens; click it to re-authorize (no manual disconnect needed)
   - *"Recipient address rejected"* — bounce; check the email is real
   - *"Suppressed"* — recipient is on the suppression list
 - Click **Retry** on the failed step after fixing the cause
 
 ## "I'm not getting replies tracked"
 
-- **For Gmail** — confirm the connected account has Gmail Read permission (re-do OAuth if needed)
+- **For Gmail** — if the connected account is missing a required permission (e.g. Gmail Read), the Email Provider card shows a **Re-authorize** banner naming the permission; click it instead of redoing OAuth by hand
 - **For Microsoft 365** — confirm the subscription is renewing — daily cron handles this; if it failed, the dashboard shows a warning
 - Replies go through classification within ~1 minute. Sometimes legit replies get classified as `out_of_office` if they're terse — review the drawer to see classification confidence.
 
@@ -49,15 +49,14 @@ The most common symptoms, with the fixes that resolve them on the first try.
 
 ## "My CRM didn't get updated"
 
-- Check Settings → Integrations → confirm the CRM is still connected (token may have expired)
-- HubSpot: the token can expire if your access scope changed; reconnect
-- Pipedrive: API tokens are tied to a user account; if that user was removed, you'll need a new token
+- HubSpot: if the token expired or a scope changed, the **HubSpot card shows a Reconnect / Re-authorize banner** — click it. (A transient provider error shows a "we'll retry" notice instead, so you're not sent to reconnect when it wouldn't help.)
+- Pipedrive: API tokens are tied to a user account — if that user was removed at Pipedrive, you'll need a new token (this cause is external to Tenlo; generate a fresh token from someone with permanent access)
 - Note that deal-status sync isn't bidirectional — pausing a sequence doesn't move the deal
 
 ## "I clicked Approve but nothing sends"
 
 - Open the sequence drawer; Step 1 should show queued or sending
-- Check the Email Provider card — provider may be disconnected
+- Check the Email Provider card — if the provider is disconnected or its token expired, the card shows a Reconnect banner
 - **Check your Business mailing address** — if it's missing or rejected as placeholder, the CASL render-time gate blocks every send (you'll see an error in the failed step's `last_error`)
 - Check daily cap — if you're at 50/50 today, sends queue for tomorrow
 
