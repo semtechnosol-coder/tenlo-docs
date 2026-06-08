@@ -13,9 +13,9 @@ No. The bot is grounded — it can only answer using content from your KB. When 
 
 ### Does the bot remember previous messages in the same conversation?
 
-Not yet. Each visitor message is treated independently — the bot doesn't currently use prior turns as context. Multi-turn context is on the roadmap.
+Yes. Within a single conversation the bot uses the recent message history as context, so follow-up questions work — a visitor can ask *"what are your refund policies?"* and then *"what about for sale items?"*, and the bot understands the second question still refers to refunds.
 
-In practice, this means visitors get the best results when each question is self-contained (*"what are your refund policies?"* not *"what about the previous one?"*).
+The bot looks back over the most recent turns of the current conversation (not the visitor's entire history), and each new conversation starts fresh.
 
 ### How fast does the bot respond?
 
