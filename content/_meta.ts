@@ -7,4 +7,5 @@ export default {
   'sales-assistant': 'Sales Assistant',
   'support-chatbot': 'Support Chatbot',
   'sales-outreach': 'Sales Outreach',
+  billing: 'Billing & plans',
 }
