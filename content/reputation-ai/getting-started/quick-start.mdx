@@ -1,6 +1,6 @@
 ---
 title: Quick start — your first week
-lastUpdated: 2026-05-24
+lastUpdated: 2026-06-14
 ---
 
 import { Steps, Step } from '../../../components/Step'
@@ -12,16 +12,16 @@ import { Pill } from '../../../components/Pill'
 Eight steps, in order. Each one unlocks the next item on your dashboard checklist. Total: about 25 minutes of clicking, plus whatever time you spend on brand voice.
 
 <Steps>
-<Step n={1} title="Add your business mailing address." time="~2 min" path="Settings → Business contact info">
+<Step n={1} title="Add your business mailing address." time="~2 min" path="Settings → Account">
 
-Open **Settings**, find the *Business mailing address* card, paste your full address — street, suite, city, province, postal code, country — and click **Save changes**. A "Mailing address saved ✓" toast confirms it's done.
+Open **Settings** (it opens on the **Account** section), find the *Business mailing address* card, paste your full address — street, suite, city, province, postal code, country — and click **Save changes**. A "Mailing address saved ✓" toast confirms it's done.
 
 <Callout type="legal" title="Why this comes first · CASL §6(2)">
 Canadian anti-spam law requires the sender's physical address on every commercial email and SMS. Tenlo enforces this in code — sends are blocked until the address is saved. Do it now so you don't hit a wall at Step 5.
 </Callout>
 </Step>
 
-<Step n={2} title="Connect Google Business Profile." time="~3 min" path="Settings → Google Business Profile">
+<Step n={2} title="Connect Google Business Profile." time="~3 min" path="Settings → Reputation AI">
 
 Click **Connect Google Business Profile**, sign in with the Google account that *owns* the listing, and approve the permission. You'll return to the dashboard and see <Pill v="replied">connected</Pill>. Existing reviews import in 1–2 minutes.
 
@@ -30,7 +30,7 @@ A customer Google account won't carry the `business.manage` permission Tenlo nee
 </Callout>
 </Step>
 
-<Step n={3} title="Teach the AI how you sound." time="~5 min" path="Settings → Brand voice">
+<Step n={3} title="Teach the AI how you sound." time="~5 min" path="Settings → Reputation AI → Brand voice">
 
 Two fields:
 
@@ -67,7 +67,7 @@ See [Campaigns](/reputation-ai/using-the-product/campaigns) for full trigger doc
 Add your own email or phone number as a contact, click **Send test**, and verify the message arrives and looks right. Check that the review link opens the correct Google listing.
 </Step>
 
-<Step n={7} title="Set up auto-response rules." time="~3 min" path="Settings → Routing rules">
+<Step n={7} title="Set up auto-response rules." time="~3 min" path="Settings → Reputation AI → Routing rules">
 
 Decide which reviews auto-post and which come to you for approval. The recommended starting point:
 

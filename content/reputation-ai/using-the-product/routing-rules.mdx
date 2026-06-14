@@ -1,13 +1,13 @@
 ---
 title: Routing rules
-lastUpdated: 2026-05-24
+lastUpdated: 2026-06-14
 ---
 
 import { Callout } from '../../../components/Callout'
 
 # Routing rules.
 
-Routing decides what happens to each review after the AI classifies it. The defaults are conservative — you can adjust everything in **Settings → Routing Rules**.
+Routing decides what happens to each review after the AI classifies it. The defaults are conservative — you can adjust everything in **Settings → Reputation AI → Routing rules**.
 
 ## The decision flow
 
@@ -20,7 +20,7 @@ For each review, the AI computes a sentiment score (1–10) and checks for legal
 
 ## Routing toggles
 
-Three toggles in Settings → Routing Rules:
+Three toggles in Settings → Reputation AI → Routing rules:
 
 - **Auto-post 4–5★ responses** — when off, every reply routes to the human queue regardless of rating.
 - **Route 1–3★ to human queue** — always on by default; 1–3★ reviews are never auto-posted.
@@ -48,7 +48,7 @@ If a review contains words like *lawyer, sue, fraud, scam, lawsuit, court, damag
 - Sends an SMS to your legal escalation phone
 
 <Callout type="warn" title="Legal alerts go to Business contact info">
-Legal-flag alerts route to your **Contact email** and **Contact phone** in **Settings (top nav) → Business contact info** — the same fields that drive the CASL sender footer on outbound emails. Set both to people who can actually act on a legal-language review (your lawyer, founder, or ops lead — not a shared inbox nobody watches). If the fields are blank, the alert falls back to Tenlo support, not you.
+Legal-flag alerts route to your **Contact email** and **Contact phone** in **Settings → Account → Business contact info** — the same fields that drive the CASL sender footer on outbound emails. Set both to people who can actually act on a legal-language review (your lawyer, founder, or ops lead — not a shared inbox nobody watches). If the fields are blank, the alert falls back to Tenlo support, not you.
 </Callout>
 
 The flagged review appears in the Reviews tab under the **Legal** filter. If it's a false positive, click **Dismiss escalation** — the flag clears, status resets and the AI generates a normal draft. If it's a real legal threat, click **Reject review** and handle the matter outside the platform.

@@ -1,6 +1,6 @@
 ---
 title: CASL, suppressions & data handling
-lastUpdated: 2026-06-02
+lastUpdated: 2026-06-14
 ---
 
 import { Callout } from '../../../components/Callout'
@@ -26,7 +26,7 @@ The full suppression-model explainer lives at [tenloai.com/legal/suppression-mod
 - **One-click unsubscribe headers** (`List-Unsubscribe`, `List-Unsubscribe-Post`) — Gmail, Yahoo, and Outlook show an *Unsubscribe* button at the top of the message. The header points at `https://app.tenloai.com/api/unsubscribe` which accepts the one-click `POST` per RFC 8058.
 
 <Callout type="legal" title="Sends are refused if your mailing address is missing">
-If your business mailing address is blank, or the field rejected your input as a placeholder (`TBD`, `123 Main St`, `N/A`), the render-time gate blocks every send. You'll see the error in the failed step's `last_error`. Set the address at **Settings → Business mailing address** to unblock.
+If your business mailing address is blank, or the field rejected your input as a placeholder (`TBD`, `123 Main St`, `N/A`), the render-time gate blocks every send. You'll see the error in the failed step's `last_error`. Set the address at **Settings → Account → Business mailing address** to unblock.
 </Callout>
 
 ## What happens on unsubscribe
