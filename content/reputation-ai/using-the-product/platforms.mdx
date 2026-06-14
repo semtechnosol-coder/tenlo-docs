@@ -1,6 +1,6 @@
 ---
 title: Connecting review platforms
-lastUpdated: 2026-05-24
+lastUpdated: 2026-06-14
 ---
 
 import { Steps, Step } from '../../../components/Step'
@@ -8,7 +8,7 @@ import { Callout } from '../../../components/Callout'
 
 # Connecting review platforms.
 
-Reputation AI currently supports two review sources. Connect each one separately under **Settings**.
+Reputation AI currently supports two review sources. Connect each one separately under **Settings → Reputation AI**.
 
 ## Google Business Profile — full support
 
@@ -21,7 +21,7 @@ Google is the only platform where Reputation AI can post replies for you. Facebo
 </Callout>
 
 <Steps>
-<Step n={1} title="Connect via OAuth" path="Settings → Google Business Profile">
+<Step n={1} title="Connect via OAuth" path="Settings → Reputation AI">
 
 Click **Connect Google Business Profile**. Google will ask you to sign in with the account that owns or manages your listing and approve the `business.manage` permission. After you approve, you'll return to the dashboard with a "Google Business Profile connected ✓" toast.
 
@@ -30,14 +30,14 @@ Sign in with the Google account that owns or manages the listing — the one you
 </Callout>
 </Step>
 
-<Step n={2} title="Set your GBP Location ID" path="Settings → Google Business Profile → Look up">
+<Step n={2} title="Set your GBP Location ID" path="Settings → Reputation AI → Look up">
 
 After connecting, click **Look up**. If your account manages one listing, Tenlo fills the Location ID in automatically. If you manage multiple listings, a dropdown appears — select the correct one. If the lookup fails, find the ID manually: open [business.google.com/locations](https://business.google.com/locations), click into your listing, and copy the long number from the URL.
 
 Once your Location ID is saved, Tenlo immediately begins importing your existing reviews in the background — they typically appear within a minute or two.
 </Step>
 
-<Step n={3} title="Add your Google review link" path="Settings → Google Business Profile">
+<Step n={3} title="Add your Google review link" path="Settings → Reputation AI">
 
 The review link is the public URL that opens the "Write a review" form. Tenlo embeds it in every outbound review-request campaign. It is not needed for review fetching or reply posting — only for campaigns.
 

@@ -1,15 +1,15 @@
 ---
 title: Settings reference
-lastUpdated: 2026-05-24
+lastUpdated: 2026-06-14
 ---
 
 import { Callout } from '../../../components/Callout'
 
 # Settings reference.
 
-Quick reference for every Settings field in Reputation AI. Most live on the **Reputation page → Settings tab**. A few cross-product fields live on **Settings in the top nav** and are called out separately.
+Quick reference for every Settings field in Reputation AI. They all live in the consolidated **Settings** hub (top nav): Reputation-specific fields under **Settings → Reputation AI**, and a few cross-product fields under **Settings → Account**, called out separately.
 
-## Brand voice card *(Reputation → Settings)*
+## Brand voice card *(Settings → Reputation AI)*
 
 | Field | Purpose |
 |---|---|
@@ -19,7 +19,7 @@ Quick reference for every Settings field in Reputation AI. Most live on the **Re
 
 See [Brand voice](/reputation-ai/using-the-product/brand-voice) for usage guidance.
 
-## Routing rules card *(Reputation → Settings)*
+## Routing rules card *(Settings → Reputation AI)*
 
 | Setting | Purpose |
 |---|---|
@@ -29,9 +29,9 @@ See [Brand voice](/reputation-ai/using-the-product/brand-voice) for usage guidan
 
 See [Routing rules](/reputation-ai/using-the-product/routing-rules) for the full decision flow.
 
-## Business contact info *(Settings top nav)*
+## Business contact info *(Settings → Account)*
 
-A cross-product card. The same values feed into Reputation AI legal-alert routing and the CASL sender footer on every outbound email.
+These cross-product fields live in the **Account** section — the **Business mailing address** card holds the address, and the **Business contact info** card holds the rest. The same values feed Reputation AI legal-alert routing and the CASL sender footer on every outbound email.
 
 | Field | Used for |
 |---|---|
@@ -45,13 +45,13 @@ A cross-product card. The same values feed into Reputation AI legal-alert routin
 If both contact email and contact phone are blank, legal-flag alerts go to Tenlo support instead of you. Set both fields to people who can actually act on a legal-language review.
 </Callout>
 
-## Account settings card *(Reputation → Settings)*
+## Account card *(Settings → Reputation AI)*
 
 | Field | Purpose |
 |---|---|
 | Business name | Appears in AI replies and campaign messages |
 | Business type | Sets your vertical — determines which template variables are available |
-| Owner display name | As above (also editable in the top-nav Business contact info card) |
+| Owner display name | As above (also editable in Settings → Account → Business contact info) |
 | Google review link | Embedded in every outbound review request |
 | Yelp business ID | Used for outbound campaign links only (Yelp review fetch is gated behind their Reviews Partner program) |
 | Facebook Page | Connects your Page for rating aggregation |
@@ -62,7 +62,7 @@ If both contact email and contact phone are blank, legal-flag alerts go to Tenlo
 Daylight-saving shifts are handled automatically. If your business relocates, update the time zone here. New sends follow the new zone; already-scheduled sends keep their original timing.
 </Callout>
 
-## Platform connection status strip
+## Platform connection status strip *(Settings → Reputation AI)*
 
 Shows a coloured dot for each connected platform:
 

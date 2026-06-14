@@ -1,13 +1,13 @@
 ---
 title: Connecting your sending email
-lastUpdated: 2026-06-02
+lastUpdated: 2026-06-14
 ---
 
 import { Callout } from '../../../components/Callout'
 
 # Connecting your sending email.
 
-You connect either Gmail **or** Microsoft 365 — only one is active at a time. The **Email Provider** card on the global Settings page handles both.
+You connect either Gmail **or** Microsoft 365 — only one is active at a time. The **Email Provider** card at **Settings → Integrations** handles both.
 
 <Callout type="legal" title="Prerequisite — mailing address first">
 Your **business mailing address** must be saved in Settings before any send works. CASL §6(2) requires it, and Tenlo blocks the send at render-time if it's missing (you'll see a clear error rather than a non-compliant email going out). Placeholder addresses (`TBD`, `123 Main St`, etc.) are rejected. See [Quick start Step 1](/sales-outreach/getting-started/quick-start).
@@ -15,7 +15,7 @@ Your **business mailing address** must be saved in Settings before any send work
 
 ## Connecting Gmail
 
-1. **Settings → Email Provider → Connect Gmail.**
+1. **Settings → Integrations → Email Provider → Connect Gmail.**
 2. Sign in with the account you want to send *from*.
 3. Accept permissions — send mail, read mail, modify (for reply detection).
 4. Done. You're now the active sender.
@@ -26,7 +26,7 @@ Brand-new mailboxes hit Gmail's spam filters hard. If your domain is fresh, do a
 
 ## Connecting Microsoft 365
 
-1. **Settings → Email Provider → Connect Microsoft 365.**
+1. **Settings → Integrations → Email Provider → Connect Microsoft 365.**
 2. Sign in with your work or school account (org-managed) or personal Microsoft account.
 3. Accept permissions — read mail, send mail, set up reply notifications.
 4. Done.
