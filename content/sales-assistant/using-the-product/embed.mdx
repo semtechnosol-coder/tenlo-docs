@@ -1,15 +1,43 @@
 ---
 title: Embedding the widget
-lastUpdated: 2026-06-14
+lastUpdated: 2026-06-19
 ---
 
+import { Steps, Step } from '../../../components/Step'
 import { Callout } from '../../../components/Callout'
 
 # Embedding the widget.
 
 The widget is a small JavaScript snippet that injects a chat bubble into your site. Unlike the [Support Chatbot (P01)](/support-chatbot) which uses an iframe, the Sales Assistant uses **Shadow DOM** — meaning the bubble lives directly in your page's DOM but its styles are isolated, so nothing leaks in or out.
 
-## The basic snippet
+## Install from your dashboard
+
+<Callout type="note" title="The recommended path">
+The dashboard builds your snippet with the right `data-business-id` already baked in — and emits `data-primary-color` for you once you pick a Widget color — then walks you through the install for your specific platform.
+</Callout>
+
+<Steps>
+<Step n={1} title="Open the install panel." path="Settings → Sales Assistant → Embed your widget">
+
+The **Embed your widget** card holds your snippet, the Widget color picker, per-platform steps, and a test button.
+</Step>
+
+<Step n={2} title="Pick your platform.">
+
+Choose your website builder from the tabs: **WordPress, Shopify, Webflow, Squarespace, Wix, Google Tag Manager,** or **Custom HTML.** Each tab shows numbered steps, the exact snippet with your ID filled in, and a **Copy** button.
+</Step>
+
+<Step n={3} title="Paste, publish, then Test installation.">
+
+Paste the snippet where the tab tells you and publish your site. Then click **Test installation** — Tenlo pings your domain and confirms the widget is live. (Open your site in another tab first, then test.)
+</Step>
+</Steps>
+
+## Manual install (fallback)
+
+Prefer to copy-paste by hand? Here's the raw snippet and where it goes on each platform — the same thing the dashboard generates.
+
+### The snippet
 
 ```html
 <script
@@ -21,22 +49,19 @@ The widget is a small JavaScript snippet that injects a chat bubble into your si
 
 Your `data-business-id` is shown in the **Embed your widget** card at [Settings → Sales Assistant](/sales-assistant/using-the-product/dashboard) — copy it from there. The `data-primary-color` attribute is optional — the dashboard emits it automatically once you change the Widget color from the default. See [Theming & branding](/sales-assistant/using-the-product/theming).
 
-## Where to paste it
+### Where to paste it
 
 Drop it before the closing `</body>` tag on any page where the bubble should appear.
 
 | Platform | Where to paste |
 |---|---|
 | WordPress | Theme File Editor → `footer.php` (before `</body>`), or *Insert Headers and Footers* plugin |
-| Squarespace | Settings → Advanced → Code Injection → Footer |
-| Wix | Settings → Custom Code → Add Custom Code → *Body — End* |
 | Shopify | Online Store → Themes → Edit Code → `theme.liquid` (before `</body>`) |
 | Webflow | Project Settings → Custom Code → Footer Code |
-| Plain HTML | Before `</body>` in your HTML file |
-
-<Callout type="warn" title="Webflow customers — read this">
-The in-dashboard Getting Started checklist's platform tabs cover only WordPress, Squarespace, Wix, Shopify, and custom HTML. Webflow customers should follow the row above — the dashboard's per-platform helper doesn't include a Webflow tab.
-</Callout>
+| Squarespace | Settings → Advanced → Code Injection → Footer |
+| Wix | Settings → Custom Code → Add Custom Code → *Body — End* |
+| Google Tag Manager | New tag → Custom HTML → trigger *All Pages* → Submit, then publish the container |
+| Custom HTML | Before `</body>` in your HTML file |
 
 ## What the bubble looks like
 
