@@ -8,5 +8,6 @@ export default {
   templates: 'Message templates & A/B testing',
   notifications: 'Notifications',
   'multi-location': 'Multi-location',
+  'ai-visibility': 'AI visibility',
   reports: 'Monthly ROI reports',
 }

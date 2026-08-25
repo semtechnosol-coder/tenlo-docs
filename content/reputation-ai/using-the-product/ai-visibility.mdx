@@ -1,0 +1,125 @@
+---
+title: AI visibility
+lastUpdated: 2026-08-25
+---
+
+import { Callout } from '../../../components/Callout'
+
+# AI visibility.
+
+<Callout type="note" title="Reputation AI Pro · Beta">
+AI visibility is part of **Reputation AI Pro** ($299/month CAD). It is labelled Beta because the questions we ask, and the assistants we ask them of, are still changing. See [Billing & your account](/reputation-ai/reference/billing).
+</Callout>
+
+More and more buyers start with an AI assistant instead of a search box. They type "best plumber in Barrie" and act on the answer. AI visibility tells you whether you are in that answer.
+
+Once a week, Tenlo asks a fixed set of buying questions about your category and your town, records what comes back, and shows you whether you were named, whether you were recommended, and who was named instead.
+
+## What this is, and what it is not
+
+<Callout type="warn" title="These are monitored samples, not a ranking">
+An AI assistant's answer changes with the assistant, the exact wording of the question, where the person asking is, and the day. A result here tells you what one assistant said, to one question, on one date.
+
+It is not a position. It is not a score. **Nobody can guarantee placement in an AI answer, including us** — and any vendor who tells you otherwise is selling something we would not sell.
+
+Read the trend across several weeks. A single run is one sample.
+</Callout>
+
+This is why every figure in the product is shown with the number of samples behind it. "Named in 3 of 4 samples" looks like 75%, and it is four data points. The denominator is there so you can tell the difference.
+
+## Getting started
+
+Open **AI visibility** in the Reputation AI menu, or go to [/dashboard/reputation/ai-visibility](https://app.tenloai.com/dashboard/reputation/ai-visibility).
+
+The first time you open it, Tenlo works out your category and town from your Google listing and suggests five questions a customer in your area would realistically ask. Nothing is monitored until you press **Monitor these questions** — suggesting costs you nothing.
+
+You can add your own questions at any time, up to **eight per location**.
+
+<Callout type="warn" title="A monitored question cannot name your business">
+Tenlo will reject a question like *"is Joe's Plumbing any good?"*. A question that names you finds you every single week and measures nothing — you would be paying to watch a flat line.
+
+Ask what a stranger with a problem would ask: *"best emergency plumber in Barrie"*, *"who should I call for a burst pipe near Innisfil?"*
+
+If your business is named after your trade and your town — Barrie Plumbing, say — the ordinary question *"best plumber in Barrie"* is still accepted. Only a question that actually identifies you is refused.
+</Callout>
+
+### If Tenlo cannot suggest questions
+
+The suggestions are built from the category and town on your Google listing. If your location does not resolve to a business on Google — some addresses resolve to the street rather than the shop — you will see a message saying so instead of an empty box. Add your Google profile URL in [Reputation settings](https://app.tenloai.com/dashboard/settings/reputation), or write your own questions.
+
+## Reading a result
+
+Each monitored question shows the outcome of the most recent run.
+
+| Outcome | What it means |
+|---|---|
+| **Recommended** | The assistant put you forward as an option the reader should consider. This is the one that matters. |
+| **Named in passing** | You appear — as an aside, a counter-example, or a directory the reader is pointed at — but you were not put forward. |
+| **Not named** | The assistant named other businesses and not you. |
+| **Check failed** | We could not reach the assistant on that run. This is a gap in the sample, **not** a finding about you. The next run tries again. |
+| **Not checked yet** | Added since the last run. Press **Run checks now** if you do not want to wait. |
+
+Beneath each result is the count that gives it context — *named in 2 of 6 samples* — and the date and assistant it came from.
+
+### Show what the assistant read
+
+Every result keeps its receipt. Click **Show what the assistant read** to see the pages the assistant actually used, and the exact sentences that named each business.
+
+This is usually where the real problem is. If the answer was built from three local directories and you are not on any of them, that is a concrete, fixable thing — and far more useful than the score.
+
+## Running a check now
+
+Checks run automatically every Monday morning. If you have just added questions and do not want to wait, press **Run checks now**.
+
+It only runs questions that have not already been checked today, so pressing it twice costs nothing. A run of eight questions can take a few minutes; if it runs out of time it tells you how many are left and you press again.
+
+## What to do about a result
+
+Each result carries suggested actions, and each one links to the place in Tenlo where you do it. They are deliberately limited to levers this product actually gives you — you will not be told to "improve your local SEO."
+
+| What you see | The usual lever |
+|---|---|
+| Not named, competitors were | [Run a review request campaign](https://app.tenloai.com/dashboard/reputation?tab=campaigns) — volume and recency are what assistants read most |
+| Not named, nobody tracked was either | The businesses the answer found may be worth [tracking as competitors](https://app.tenloai.com/dashboard/reputation/competitors) |
+| Named, but only in passing | Published proof gives an assistant something to cite — [build a trust asset](https://app.tenloai.com/dashboard/reputation/assets) |
+| A competitor appeared ahead of you | Close the review-volume gap; unresolved complaints are what hold it down. [Open the recovery queue](https://app.tenloai.com/dashboard/reputation/recovery) |
+| Recommended, first | Nothing to fix. Watch it week to week rather than reading it as a position. |
+| The assistant named nobody at all | It answered generically. That is a property of the question — try a more specific one. |
+
+There is deliberately no "fix my AI ranking" button, because there is no such thing.
+
+## Which assistants are checked
+
+Today: **Claude, with web search enabled**, shown as `claude-sonnet-web`.
+
+Web search is the important half. Without it a model answers from memory, and its memory of a twelve-person local business is usually nothing at all — which would return "not named" for every business forever. With search, the answer is the one a buyer would actually get today.
+
+More assistants may be added during the beta. Results are always recorded against the assistant that produced them, and never averaged together — a mention on one says nothing about another.
+
+## Notifications
+
+There are none, deliberately. A single week's answer is a sample, and emailing you about a sample would train you to read it as a measurement. Findings live on this tab, next to the denominator that makes them readable.
+
+Your [monthly report](/reputation-ai/using-the-product/reports) includes an AI visibility summary for the period, with the same sampling language.
+
+## Privacy and fair use
+
+The questions we ask are ordinary consumer questions about a category and a place. They contain no customer data, and no data about you beyond your trade and your town. We store the assistant's answer summary, the businesses it named, the sentences it named them in, and the sources it read.
+
+<Callout type="legal" title="What we will never do">
+Tenlo does not attempt to influence, game or manipulate an AI assistant's answer, and does not offer any service that claims to. AI visibility is monitoring: it tells you where you stand so you can improve the underlying reality — your reviews, your profile, your published proof — which is the only thing that legitimately moves an answer.
+</Callout>
+
+## Frequently asked
+
+**Why did my result change from one week to the next when nothing changed on my side?**
+Because the assistant's answer changed. Search results move, pages get published, models get updated. This is the reason the product refuses to present a single run as a position — the trend is the signal.
+
+**Why was a competitor of mine not recognised?**
+Tenlo matches names conservatively. Two different offices of the same franchise — two RE/MAX brokerages, say — share most of their name, and matching on that alone would report a stranger as your tracked competitor. When in doubt, Tenlo does not claim a match. Everyone the answer named is still listed under **Show what the assistant read**.
+
+**Can I monitor more than eight questions?**
+Not at present. Each question is a real, billed AI query every week; eight per location is the ceiling during the beta.
+
+**Does this replace SEO?**
+No. It is a measurement of one channel, not a service for improving it.
