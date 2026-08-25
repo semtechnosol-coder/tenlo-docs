@@ -8,5 +8,10 @@ export default {
   templates: 'Message templates & A/B testing',
   notifications: 'Notifications',
   'multi-location': 'Multi-location',
+  recovery: 'Service recovery',
+  'trust-score': 'Trust Score',
+  'trust-assets': 'Trust assets',
+  competitors: 'Competitors',
+  'ai-visibility': 'AI visibility',
   reports: 'Monthly ROI reports',
 }
