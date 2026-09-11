@@ -1,12 +1,40 @@
 ---
 title: Changelog
 description: What changed and when in the Reputation AI manual
-lastUpdated: 2026-08-25
+lastUpdated: 2026-09-11
 ---
 
 # Changelog.
 
 Manual changes by section, newest first.
+
+---
+
+## 2026-09-11
+
+**Repackaged — Essentials, Growth and Pro, at new prices:**
+
+| Plan | Was | Now |
+|---|---|---|
+| Reputation AI Essentials (was "base") | $99 | **$30** |
+| Reputation AI Growth | $199 | **$50** |
+| Reputation AI Pro | $299 | **$99** |
+
+Prices are CAD only now; the USD prices were retired. Two features moved as well:
+
+- **Review-request campaigns** moved from the base plan to **Growth**.
+- **Trust Score** and **service recovery** moved from Growth to **Pro**.
+
+Trust assets stay in Growth; competitors and AI visibility stay in Pro, which also now carries a monthly **Trust Audit**.
+
+**Also corrected on the billing pages:**
+
+- **Tier changes are self-serve.** The previous note said Growth and Pro were not — they are now chosen in **Settings → Billing**. Upgrades invoice the prorated difference immediately; downgrades take effect immediately and credit the unused portion. Plan switching is deliberately absent from the Stripe portal, which still handles cards, invoices and cancellation.
+- **Monthly allowances documented for the first time** — campaign emails, SMS and trust assets per tier, plus the fact that going over **holds** queued sends until the 1st rather than failing them. The 50 SMS/day cap is separate and checked first.
+- **Dropping below Growth pauses queued campaign sends** rather than cancelling them, and the public intake webhook answers `403 PLAN_REQUIRED`.
+- **Bundles split in two** — the Growth Bundle at $325 carries Reputation AI at Growth, the Pro Bundle at $375 carries it at Pro. The old $599 bundle maps to the Pro Bundle. Every other product's price changed too: Support Chatbot $125, Sales Outreach $125, Sales Assistant $100.
+- **Multi Location** described as what it is — quoted per business, and a separate switch rather than a fourth tier.
+- **Monthly report** — the ROI figures are now priced from your own numbers when you have entered them under Settings → ROI assumptions, and the report's depth follows your tier.
 
 ---
 

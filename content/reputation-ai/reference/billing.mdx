@@ -1,6 +1,6 @@
 ---
 title: Billing & your account
-lastUpdated: 2026-08-25
+lastUpdated: 2026-09-11
 ---
 
 import { Callout } from '../../../components/Callout'
@@ -11,27 +11,52 @@ Everything about what you pay, how you pay it and how to stop lives in **Setting
 
 ## What it costs
 
-Reputation AI is **$99/month CAD**, flat. SMS is included up to the daily cap (50/day). Email and AI usage are included. There's no usage-based billing on top, and no per-location charge — the price is the same whether you run one location or six.
+Reputation AI comes in three tiers. All three are **flat monthly in CAD**, and none of them is per-location — the price is the same whether you run one location or six. SMS is included up to the caps below, and so are email and AI usage. There is no usage-based billing on top.
 
-It's also included in the **Growth Bundle at $599/month CAD**, which adds the other Tenlo products.
-
-### Growth and Pro
-
-Two optional upgrades add depth for businesses that want it. Both are flat monthly, like the base plan.
-
-| Plan | Price (CAD/mo) | Adds |
+| Plan | Price (CAD/mo) | What you get |
 |---|---|---|
-| **Reputation AI** | $99 | Review inbox, AI-drafted replies, request campaigns |
-| **Reputation AI Growth** | $199 | [Service recovery](/reputation-ai/using-the-product/recovery), [Trust Score](/reputation-ai/using-the-product/trust-score), [trust assets](/reputation-ai/using-the-product/trust-assets) |
-| **Reputation AI Pro** | $299 | [Competitors](/reputation-ai/using-the-product/competitors), [AI visibility](/reputation-ai/using-the-product/ai-visibility) (Beta) |
+| **Reputation AI Essentials** | $30 | Google and Facebook review monitoring, AI-drafted replies with approval, auto-publish for eligible reviews, sensitive-review routing, review history and export, the basic monthly report |
+| **Reputation AI Growth** | $50 | Everything in Essentials, plus [review-request campaigns](/reputation-ai/using-the-product/campaigns) (email and SMS, contacts, templates, send windows, A/B) and the [trust asset generator](/reputation-ai/using-the-product/trust-assets) |
+| **Reputation AI Pro** | $99 | Everything in Growth, plus [Trust Score](/reputation-ai/using-the-product/trust-score) and its history, [service recovery](/reputation-ai/using-the-product/recovery), [competitors](/reputation-ai/using-the-product/competitors), [AI visibility](/reputation-ai/using-the-product/ai-visibility) (Beta), and a monthly Trust Audit |
 
-Each tier includes everything below it. The Growth Bundle includes Reputation AI at the base tier — Growth and Pro are a separate upgrade on top.
+Each tier includes everything below it. You can move between tiers yourself from **Settings → Billing** — see [Changing your tier](#changing-your-tier).
 
-<Callout type="note" title="Upgrading to Growth or Pro">
-These upgrades aren't self-serve in Settings → Billing yet. Email **hello@tenloai.com** and we'll move your account over.
-</Callout>
+**Multi Location** is a separate arrangement rather than a tier: it is quoted per business, because what it costs depends on how many locations you run and how they are set up. The Locations screens link to a contact form, or email **hello@tenloai.com**.
 
-Downgrading switches the extra features off at the end of the billing period. Your review history, campaigns and past reports are untouched.
+### What changed in September 2026
+
+The tiers were repackaged on 2026-09-08, and the prices came down a long way — the old ladder was $99 / $199 / $299. Two things moved as well as the prices:
+
+- **Review-request campaigns** are now part of **Growth**. They used to be in the base plan.
+- **Trust Score** and **service recovery** are now part of **Pro**. They used to be in Growth.
+
+If you were on the old **$99 Reputation AI** plan, your account is on **Growth at $50** — everything you were using still works, nothing was taken away, and trust assets came with the move. If you were on the old **$599 bundle**, you are on the **Pro Bundle**, which carries Reputation AI at Pro.
+
+### What's included each month
+
+Campaign sends and trust assets have monthly allowances. They exist so a runaway import can't quietly run up a bill; they are not something a normal month gets close to.
+
+| | Essentials | Growth | Pro |
+|---|---|---|---|
+| Campaign emails | — | 500 | 1,000 |
+| Campaign SMS | — | 200 | 500 |
+| Trust assets generated | — | 20 | 50 |
+| AI visibility manual refreshes | — | — | 4 |
+
+A month that runs out of allowance does **not** fail your sends — anything already queued is **held until the 1st**, when the allowance resets, and then goes out. Nothing is lost and nothing is silently dropped. If you need a higher ceiling, email **hello@tenloai.com** and it can be raised on your account without changing your tier.
+
+The **50 SMS per day** cap is separate from the monthly allowance and is checked first. It protects your sending reputation, and it applies on every tier that can send.
+
+### In a bundle
+
+Reputation AI is also part of both bundles, and the bundle you are on decides the tier:
+
+| Bundle | Price (CAD/mo) | Reputation AI at |
+|---|---|---|
+| **Growth Bundle** | $325 | Growth |
+| **Pro Bundle** | $375 | Pro |
+
+Both carry all four Tenlo products. See [Billing & plans](/billing) for the full comparison.
 
 ## Free trial
 
@@ -49,13 +74,15 @@ Past invoices live in the Stripe-hosted portal. From the Billing page, click **M
 
 Tenlo does not store invoices separately — the Stripe portal is the single source for all billing history.
 
-## Changing plans
+## Changing your tier
 
-Click **Manage Billing →** on the Billing page to switch plans.
+Tier changes happen **in the product**, not in the Stripe portal: go to **Settings → Billing** and pick the tier you want. The Stripe portal handles your card, your invoices and cancellation — it deliberately does not offer plan switching, so there is one place where a tier change happens and one set of rules for what it does.
 
-**Upgrades** take effect immediately. The full price difference between your current plan and the new plan is charged to your card at the time of the change. For example, upgrading from Reputation AI ($99/mo) to the Growth Bundle ($599/mo) results in an immediate charge of $500.
+**Upgrades** take effect immediately, and the prorated difference for the rest of the current period is invoiced and charged there and then. Upgrading from Essentials to Pro halfway through a month costs roughly half the $69 difference now, and the full $99 at your next renewal.
 
-**Downgrades** take effect at the end of your current billing period. You retain full access until the period closes.
+**Downgrades** also take effect immediately, and the unused part of what you already paid is credited against your next invoice rather than refunded. Losing a tier locks the features it carried, but never deletes anything: your review history, campaigns, contacts, trust assets and past reports all stay exactly where they are, and come back untouched if you upgrade again.
+
+One thing worth knowing before dropping below Growth: **queued campaign sends are paused, not cancelled**. Anything scheduled keeps its send time and simply does not go out while the tier is below Growth. Upgrade again and it resumes. The public review-request webhook answers `403 PLAN_REQUIRED` while you are below Growth, so an integration that posts contacts to it will see a clear refusal rather than silently dropping them.
 
 ## Cancelling
 
