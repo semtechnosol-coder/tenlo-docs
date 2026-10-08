@@ -3,10 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
-    "postinstall": "patch-package"
+    "dev": "patch-package && next dev --turbopack",
+    "build": "patch-package && next build",
+    "start": "next start"
   },
   "dependencies": {
     "geist": "^1.3.0",
