@@ -1,6 +1,6 @@
 ---
 title: Importing prospects
-lastUpdated: 2026-06-02
+lastUpdated: 2026-10-09
 ---
 
 import { Callout } from '../../../components/Callout'
@@ -19,7 +19,6 @@ When you trigger any import, the drawer first calls a **preview** endpoint that 
 | **On your unsubscribe list** | Collapsible group of rows that already opted out (per-business suppressions) |
 | **Flagged in our system** | Collapsible group of rows on the global abuse list (e.g. prior spam complaints across any Tenlo customer) |
 | **Quebec** | Quebec contacts are blocked at import today (Law 25 compliance — broader QC support planned post-launch). Detection uses the `province` field and area-code analysis. |
-| **Express consent expired** | Rows whose `last_interaction_date` falls outside the implied-consent window your chosen basis allows (e.g. EBR 24 months for paying customers, 6 months for enquiries) |
 
 Below the preview you must:
 
@@ -40,7 +39,7 @@ Below the preview you must:
 
 3. Click **Confirm import**. Only then are the clean rows written.
 
-Each commit records an attestation row (timestamp + your user ID + consent basis + attestation version + row counts) for audit/legal purposes. You can read the underlying policy at [tenloai.com/legal/suppression-model](https://www.tenloai.com/legal/suppression-model).
+Each commit records an attestation row (timestamp + your user ID + consent basis + attestation version + row counts) for audit/legal purposes. You can read the underlying policy at [app.tenloai.com/legal/suppression-model](https://app.tenloai.com/legal/suppression-model).
 
 ---
 
@@ -63,7 +62,7 @@ The most common path.
 | `company_url` | Or `website`, `url`, `domain` |
 | `phone` | Used for Quebec area-code detection and stored for future SMS support |
 | `province` | Used for Quebec detection; accepts `QC`, `Quebec`, `Québec` |
-| `last_interaction_date` | ISO date of your most recent legitimate contact with this prospect. Used to check whether your selected consent basis is still in window (e.g. EBR expires after 24 months). |
+| `last_interaction_date` | ISO date of your most recent legitimate contact with this prospect. Stored for your records. Sales Outreach doesn't apply an age check at import, so make sure your chosen consent basis is still valid (an existing business relationship, for example, lapses 24 months after the last purchase under CASL). |
 
 Headers are matched case-insensitively. The XLSX parser switched from `xlsx` to `exceljs` in 2026-05 — behaviour-identical, but slightly stricter about malformed cells.
 
@@ -87,7 +86,7 @@ Headers are matched case-insensitively. The XLSX parser switched from `xlsx` to 
 | `skippedImportCap` | Hit the 750/month import ceiling |
 
 <Callout type="legal" title="Why Quebec is blocked">
-Law 25 (Loi 25) extends Quebec's consumer-protection regime to commercial electronic messages and adds disclosure requirements Tenlo doesn't yet meet across the full QC dataset. Tenlo blocks at import to keep you compliant. Broader Quebec support is planned post-launch — if you need it sooner, email hello@tenloai.com and Tenlo will prioritise based on demand.
+Law 25 (Loi 25) extends Quebec's consumer-protection regime to commercial electronic messages and adds disclosure requirements Tenlo doesn't yet meet across the full QC dataset. Tenlo blocks at import to keep you compliant. Broader Quebec support is planned post-launch — if you need it sooner, email support@tenloai.com and Tenlo will prioritise based on demand.
 </Callout>
 
 ---
@@ -113,7 +112,7 @@ The Pipedrive adapter pulls `phone`, `address` (mapped to `province` where parsa
 
 Same flow as Pipedrive but using HubSpot Contact Lists.
 
-1. Settings → Integrations → HubSpot → paste OAuth access token (or use the Connect button).
+1. Settings → Integrations → HubSpot → click **Connect** to authorize via OAuth, or paste a private app access token.
 2. **Import prospects → From HubSpot.**
 3. Pick a saved Contact List from the dropdown. Up to **500 contacts** import.
 4. Contacts without an email are skipped.

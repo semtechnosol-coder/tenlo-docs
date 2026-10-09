@@ -1,6 +1,6 @@
 ---
 title: The Conversations inbox
-lastUpdated: 2026-06-02
+lastUpdated: 2026-10-09
 ---
 
 import { Callout } from '../../../components/Callout'
@@ -31,6 +31,14 @@ Left pane shows recent conversations. Each card has:
 
 Click a conversation → right pane shows the full thread. Each assistant message displays its **confidence score** so you can see exactly how confident the bot was on each turn.
 
+## Visitor feedback
+
+Visitors can rate each answer with a thumbs up or thumbs down, and add an optional comment on a thumbs down. The rating (and comment) shows next to the confidence score on that message in the thread viewer.
+
+A **high-confidence answer with a thumbs down** is the one to act on: the bot found content in your KB and used it, but the content itself is wrong or out of date. Fix the FAQ or document it came from.
+
+There's no conversation search — use the status filters above to narrow the list.
+
 ## Reading patterns
 
 Things to look for:
@@ -44,7 +52,7 @@ Things to look for:
 
 <Callout type="note">
 - **No visitor session continuity.** Each page reload = new conversation. Tenlo doesn't track returning visitors.
-- **No conversation export.** Today, transcripts live in the dashboard. CSV export is on the roadmap — email support for one-off exports.
+- **No conversation export.** Today, transcripts live in the dashboard. Email support@tenloai.com for a one-off export.
 - **No live conversation viewer.** You see conversations after they happen, not as they're happening (yet).
 - **No analytics events.** The widget doesn't fire to GA, PostHog, Segment, etc. You can add your own tracking on the host page if you want.
 </Callout>

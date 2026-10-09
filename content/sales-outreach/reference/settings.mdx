@@ -1,6 +1,6 @@
 ---
 title: Settings reference
-lastUpdated: 2026-06-14
+lastUpdated: 2026-10-09
 ---
 
 import { Callout } from '../../../components/Callout'
@@ -15,7 +15,7 @@ Quick reference for every Sales Outreach-related setting. Most live in the **Set
 |---|---|
 | Business name | Used in email signatures, templates (`sender.business`), and the CASL sender-id footer |
 | Owner display name | Personal name used in templates (`sender.owner_name`) and the CASL footer contact line |
-| Timezone | IANA timezone — affects send window calculations |
+| Timezone | IANA timezone — your local time (e.g. sends deferred by the daily limit resume at 9:00 local). Sales Outreach has no send-window setting. |
 | Logo | PNG/SVG, max 500KB — used in monthly reports |
 
 ## Business mailing address card *(Settings → Account, required)*
@@ -43,7 +43,7 @@ Placeholder-looking addresses (`TBD`, `123 Main St`, `N/A`) are rejected by vali
 
 | Field | Purpose |
 |---|---|
-| HubSpot | OAuth connect / disconnect |
+| HubSpot | Connect via OAuth or paste a private app access token / disconnect |
 | Pipedrive | API token paste / disconnect |
 | Calendly | OAuth (used by [P05 — Sales Assistant](/sales-assistant)) |
 
@@ -53,7 +53,7 @@ See [CRM integration](/sales-outreach/using-the-product/crm).
 
 | Field | Purpose |
 |---|---|
-| Channels | List of Slack/Teams/email destinations you've configured |
+| Channels | Your account email (added automatically, can't be removed) plus any Slack or Teams channels you've added |
 | Subscriptions | Toggle grid — which events to which channels |
 
 See [Notifications](/sales-outreach/using-the-product/notifications).

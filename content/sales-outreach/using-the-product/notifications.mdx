@@ -1,13 +1,13 @@
 ---
 title: Notifications
-lastUpdated: 2026-06-02
+lastUpdated: 2026-10-09
 ---
 
 import { Callout } from '../../../components/Callout'
 
 # Notifications.
 
-The system fires alerts on key Sales Outreach events. You decide where they land.
+The system fires alerts when you approach your monthly approval cap. You decide where they land. (Replies don't trigger notifications — see [Replies & classification](/sales-outreach/using-the-product/replies).)
 
 ## The events
 
@@ -19,11 +19,10 @@ The system fires alerts on key Sales Outreach events. You decide where they land
 
 ## Adding a channel
 
-**Settings → Notifications → + Add channel.** Pick:
+Your account email is added as a channel automatically and can't be removed. To add more destinations, go to **Settings → Notifications → + Add channel** and pick:
 
 - **Slack** — paste an Incoming Webhook URL (Slack → Apps → Incoming Webhooks → Add to channel)
 - **Microsoft Teams** — paste an Incoming Webhook URL (Teams channel → Connectors → Incoming Webhook)
-- **Email** — enter an email address
 
 Click **Send test** to verify the wiring before relying on it.
 
@@ -31,8 +30,8 @@ Click **Send test** to verify the wiring before relying on it.
 
 Once a channel is connected, you'll see an event-toggle grid. Each row is an event; each column is one of your channels. Toggle on what you want where.
 
-<Callout type="note" title="Default behaviour when no channels are configured">
-If you have **no channels configured**, the original 80%/95% email goes to your account owner email by default — same behaviour as before notifications existed.
+<Callout type="note" title="Email is always on">
+Because your account email is a built-in channel, the 80%/95% usage warnings reach you by email even if you never add Slack or Teams.
 </Callout>
 
 ## Slack and Teams formatting

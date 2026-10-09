@@ -1,6 +1,6 @@
 ---
 title: CASL, TCPA & unsubscribes
-lastUpdated: 2026-06-14
+lastUpdated: 2026-10-09
 ---
 
 import { Callout } from '../../../components/Callout'
@@ -13,8 +13,8 @@ Tenlo's compliance posture covers four layers:
 
 1. **Identification** — every outbound email and SMS carries CASL §6(2) sender-ID info (your business + "Sent on behalf of Tenlo AI Inc.").
 2. **Consent** — every contact row is stamped with a CASL consent basis at import, attested by you in the UI, and held alongside an audit log.
-3. **Opt-out** — unsubscribe footer + one-click headers on every email; STOP/START/HELP keyword handling on every SMS; a global suppression list shared across all Tenlo customers; a global abuse list fed by Resend complaint webhooks.
-4. **Pre-send filters** — at import, contacts already suppressed, on the abuse list, or in Quebec are rejected; rows older than 24 months are flagged for EBR review.
+3. **Opt-out** — unsubscribe footer + one-click headers on every email (an email unsubscribe applies to your business); STOP/START/HELP keyword handling on every SMS (an SMS STOP applies across all Tenlo customers); a global abuse list, shared across all Tenlo customers, fed by spam complaints and repeat bounces.
+4. **Pre-send filters** — at import, contacts already suppressed, on the abuse list, or in Quebec are rejected, and so are rows claiming an existing business relationship (EBR) more than 24 months old.
 
 The full suppression-model explainer lives at [app.tenloai.com/legal/suppression-model](https://app.tenloai.com/legal/suppression-model).
 
@@ -38,9 +38,9 @@ For SMS, CASL allows a linked identification page. Every SMS includes a short UR
 Every campaign email includes:
 
 - **Unsubscribe footer link** — clicking takes the recipient to a branded page that records the opt-out.
-- **One-click unsubscribe headers** (`List-Unsubscribe`, `List-Unsubscribe-Post`) — Gmail and Outlook show an "Unsubscribe" button at the top of the message; one click adds the recipient to the suppression list.
+- **One-click unsubscribe headers** (`List-Unsubscribe`, `List-Unsubscribe-Post`) — Gmail and Outlook show an "Unsubscribe" button at the top of the message; one click adds the recipient to your suppression list.
 
-Suppressions are global — once someone unsubscribes from any Tenlo customer's mailings, they're suppressed across the platform. They're also per-business — local suppressions are honoured even if the global list is clear.
+Email unsubscribes are **per business**. The unsubscribe link identifies the business that sent the email, so the recipient stops hearing from you — other Tenlo customers they have a relationship with can still email them. (An older unsubscribe link without that identifier falls back to a platform-wide suppression, the safe direction.) Spam complaints and repeat bounces are different: they go on the global abuse list and block the address for every Tenlo customer — see below.
 
 ## SMS STOP
 
@@ -69,22 +69,22 @@ Per-batch attestation is logged to a tamper-evident table per business. You can 
 
 ## Import-time filters
 
-Every contact import passes through three hard-reject filters and one advisory check:
+Every contact import passes through four hard-reject filters:
 
 | Filter | Behaviour |
 |---|---|
-| Already suppressed | Hard reject — drop rows whose email is on the global suppression list |
+| Already suppressed | Hard reject — drop rows whose email is already suppressed |
 | Global abuse list | Hard reject — drop rows whose email triggered a prior spam complaint |
 | Quebec residency | Hard reject — excluded by default (Law 25 exemptions don't translate cleanly to CASL) |
-| EBR aging (24+ months) | Advisory — flagged, not blocked. You can choose to send on another basis. |
+| EBR aging (24+ months) | Hard reject — rows on an existing-business-relationship basis older than 24 months are excluded and shown as *"N skipped (EBR window > 24 months)"* |
 
 Rejected rows appear in the import summary with the reason.
 
 ## Global abuse list vs. suppression
 
-**Suppression** — someone unsubscribed or texted STOP.
+**Suppression** — someone unsubscribed from your emails (scoped to your business) or texted STOP (applies across all Tenlo customers).
 
-**Global abuse list** — fed by spam complaints. When a recipient hits "Report spam" in their mail client, Resend's complaint webhook fires and Tenlo records that address platform-wide. An abuse-listed address is blocked for every Tenlo customer, not just the one whose mail drew the complaint. It's also a hard reject at import, stored separately from unsubscribes.
+**Global abuse list** — fed by spam complaints and repeat bounces. When a recipient hits "Report spam" in their mail client, Resend's complaint webhook fires and Tenlo records that address platform-wide. An abuse-listed address is blocked for every Tenlo customer, not just the one whose mail drew the complaint. It's also a hard reject at import, stored separately from unsubscribes.
 
 ## Data retention and requests
 

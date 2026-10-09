@@ -1,6 +1,6 @@
 ---
 title: Pricing & billing
-lastUpdated: 2026-09-11
+lastUpdated: 2026-10-09
 ---
 
 import { Callout } from '../../../components/Callout'
@@ -20,7 +20,8 @@ The Sales Assistant is **$100/month CAD**, flat. It's also included in both bund
 | Leads | Unlimited |
 | Bookings | Unlimited (via your Calendly account's own limits) |
 | KB entries (typed) | Unlimited |
-| KB documents (URL/PDF/Word/MD) | Up to 100 documents per business (total across all Tenlo products that ingest documents) · 25 MB per file · 20 ingests/hour |
+| Abuse safeguards | Per-visitor rate limits (about 30 messages and 20 new chats per minute from one IP address) stop bots and scripted abuse. Real visitors never hit them. |
+| KB documents (URL/PDF/Word/MD) | Up to 100 documents per business at any one time — **shared across Support Chatbot (P01) and Sales Assistant (P05)**; deleting a document frees a slot · 25 MB per file · 20 ingests/hour |
 | Trial | 7 days |
 | Bundle | Included in the Growth Bundle ($325/mo) and the Pro Bundle ($375/mo) with the other three Tenlo products |
 
@@ -44,11 +45,7 @@ Tenlo does not store invoices separately — the Stripe portal is the single sou
 
 ## Changing plans
 
-Click **Manage Billing →** on the Billing page to switch plans.
-
-**Upgrades** take effect immediately. The full price difference between your current plan and the new plan is charged to your card at the time of the change. For example, upgrading from the Sales Assistant ($100/mo) to the Growth Bundle ($325/mo) results in an immediate charge of $225.
-
-**Downgrades** take effect at the end of your current billing period. You retain full access until the period closes.
+There's no in-app plan switch for the Sales Assistant. **Manage Billing →** opens the Stripe portal, which handles your payment method, invoices and cancellation. To add another product or move to a bundle, email hello@tenloai.com; for any other change to your existing subscription, email support@tenloai.com.
 
 ## Cancelling
 
@@ -59,9 +56,9 @@ Click **Manage Billing →** on the Billing page and follow the cancellation ste
 | When does cancellation take effect? | Your subscription runs to the end of the current billing period |
 | Are there refunds? | No refunds for remaining days in a billing period |
 | What stops when the period ends? | The widget stops loading on your site, AI scoring stops, CRM syncs stop, notifications stop |
-| What can I still do after cancellation? | Your account switches to read-only — you can view leads, transcripts and bookings, disconnect platforms, and export your data as CSV |
+| What can I still do after cancellation? | Your account switches to read-only — you can view leads, transcripts and bookings, and disconnect platforms. There's no self-serve export; email support@tenloai.com if you want a copy of your data |
 | Can I reactivate? | Yes — visit tenloai.com/pricing at any time. Your KB entries, ICP, qualifying questions and settings will still be there. |
 
 <Callout type="note" title="Data after cancellation">
-When you disconnect an integration (HubSpot, Pipedrive, Calendly), Tenlo wipes the tokens and stops future syncs; records already created in the third-party system are not touched, and your Tenlo-side history (leads, bookings, transcripts) is preserved. If you cancel your subscription, your data is automatically purged 90 days after cancellation — including conversation transcripts, leads, and your knowledge-base index. For an immediate deletion request, email hello@tenloai.com.
+When you disconnect an integration (HubSpot, Pipedrive, Calendly), Tenlo wipes the tokens and stops future syncs; records already created in the third-party system are not touched, and your Tenlo-side history (leads, bookings, transcripts) is preserved. If you cancel your subscription, your data is automatically deleted 90 days after cancellation — including conversation transcripts, leads, and your knowledge-base index. Export is available on request before then. For an export or an immediate deletion request, email support@tenloai.com.
 </Callout>

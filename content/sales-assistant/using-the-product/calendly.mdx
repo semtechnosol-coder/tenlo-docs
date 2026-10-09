@@ -1,6 +1,6 @@
 ---
 title: Connecting Calendly
-lastUpdated: 2026-06-14
+lastUpdated: 2026-10-09
 ---
 
 import { Steps, Step } from '../../../components/Step'
@@ -28,7 +28,7 @@ Select the meeting type you want the bot to offer — e.g. *"30-min Discovery Ca
 When you connect Calendly, Tenlo automatically creates a webhook subscription so we know when:
 
 - A visitor **books a call** (`invitee.created`) → your CRM deal advances
-- A visitor **cancels** (`invitee.canceled`) → your CRM deal status reverts
+- A visitor **cancels** (`invitee.canceled`) → the booking is marked unconfirmed in Tenlo and the lead's status is recalculated. Your CRM deal isn't changed — see [CRM integration](/sales-assistant/using-the-product/crm)
 
 No manual webhook setup needed on your end.
 </Step>

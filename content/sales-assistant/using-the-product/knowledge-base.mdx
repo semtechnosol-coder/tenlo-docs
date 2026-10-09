@@ -1,6 +1,6 @@
 ---
 title: Knowledge base & document ingestion
-lastUpdated: 2026-05-29
+lastUpdated: 2026-10-09
 ---
 
 import { Callout } from '../../../components/Callout'
@@ -93,7 +93,7 @@ If you have existing sales content (a help-centre URL, a product PDF, an FAQ doc
 |---|---|---|
 | URL (single page) | — | Public web page; we extract main content |
 | URL (whole site) | — | Point at a site and we'll follow its sitemap to ingest multiple pages in one go |
-| PDF | `.pdf` | Text-based PDFs work directly. Scanned/image PDFs are now read via OCR — no need to convert them first. OCR is capped at the first 50 pages per PDF; anything beyond page 50 is silently dropped. |
+| PDF | `.pdf` | Text-based PDFs work directly. Scanned/image PDFs are now read via OCR — no need to convert them first. OCR covers the first 50 pages per PDF; for longer PDFs only those pages are processed, and the document card shows a note suggesting you split the file into smaller PDFs. |
 | Word | `.docx` | Modern Word format. Legacy `.doc` is rejected — convert to `.docx` first. |
 | Markdown | `.md` | Plain Markdown |
 
@@ -136,10 +136,14 @@ The Imported documents list has a **Delete** button per row. Clicking it removes
 
 You can mix both freely. The bot searches everything together.
 
+## Daily website snapshot
+
+Separately from the documents you ingest, the assistant re-scans your business website (the website URL on your account) once a day and uses what it finds — current listings, offerings and other page content — when answering visitors. You don't need to re-ingest your site by hand to keep that current.
+
 ## What's not yet supported
 
 - **JavaScript-rendered single-page apps** — save the page as a PDF and upload that instead
-- **Scheduled re-ingestion** — today, you re-ingest manually after content changes
+- **Scheduled re-ingestion of uploaded documents** — today, you re-ingest a document manually after its content changes
 - **Multi-file batch upload** — ingest documents one at a time
 
 These are roadmap items. (Sitemap crawl and scanned-PDF OCR — previously listed here — are now live.)

@@ -1,6 +1,6 @@
 ---
 title: Frequently asked questions
-lastUpdated: 2026-09-11
+lastUpdated: 2026-10-09
 ---
 
 # Frequently asked questions.
@@ -53,21 +53,25 @@ Indirectly. Update your ICP and qualifying questions and the scoring shifts. The
 
 ### What happens to leads that don't book?
 
-They land in your CRM with their score and reasoning, and your team can follow up. The bot doesn't auto-send follow-up emails.
+They land in your CRM with their score and reasoning, and your team can follow up. You can also turn on [approved follow-up emails](/sales-assistant/using-the-product/follow-ups): the AI drafts one follow-up per qualified lead that didn't book, and nothing sends until you approve it.
 
 ### Are visitor conversations used to train AI models?
 
-No. Tenlo uses Anthropic's enterprise endpoints which prohibit training on customer data.
+No. Tenlo's AI providers — Anthropic (the conversation and scoring model), OpenAI (embeddings for knowledge-base retrieval) and Mistral (OCR of scanned PDFs) — are used through enterprise endpoints that prohibit training on customer data.
 
 ### What happens to my data if I cancel or disconnect?
 
 When you disconnect an integration (HubSpot, Pipedrive, Calendly), Tenlo wipes the tokens and stops future syncs; records already created in the third-party system are not touched, and your Tenlo-side history (leads, bookings, transcripts) is preserved.
 
-If you cancel your subscription, your data is automatically purged 90 days after cancellation — including conversation transcripts, leads, and your knowledge-base index. For an immediate deletion request, email hello@tenloai.com.
+If you cancel your subscription, your data is automatically deleted 90 days after cancellation — including conversation transcripts, leads, and your knowledge-base index. Export is available on request before then. For an export or an immediate deletion request, email support@tenloai.com.
 
 ### How much does this cost beyond $100/mo?
 
 Nothing. AI inference, Calendly integration, CRM sync, document ingestion — all included.
+
+### What happens if a visitor asks to talk to a person?
+
+The assistant tells them someone from your team will reach out. It doesn't alert you when this happens today, so check new conversations and leads in the dashboard regularly and read the transcript to see who asked. (A dedicated alert for this is being added.)
 
 ### What if my Calendly account expires?
 

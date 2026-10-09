@@ -1,6 +1,6 @@
 ---
 title: Replies & classification
-lastUpdated: 2026-06-02
+lastUpdated: 2026-10-09
 ---
 
 import { Callout } from '../../../components/Callout'
@@ -24,10 +24,16 @@ The AI reads the reply and classifies it as one of four buckets:
 
 | Classification | Behaviour |
 |---|---|
-| **positive** | Sequence stops. Status → `replied_positive`. CRM deal auto-created (HubSpot or Pipedrive). Notification fires. |
-| **objection** | Sequence stops. Status → `replied_objection`. You handle the response — the system doesn't auto-reply. |
-| **unsubscribe** | Sequence stops. Status → `archived`. Email added to your suppression list. |
+| **positive** | Sequence pauses. Status → `replied_positive`. CRM deal synced (HubSpot or Pipedrive, if connected). |
+| **objection** | Sequence pauses. Status → `replied_objection`. You handle the response — the system doesn't auto-reply. |
+| **unsubscribe** | Address added to your suppression list. Sequence archived. |
 | **out_of_office** | Logged but **sequence continues** — the OOO isn't a real engagement. |
+
+If the AI isn't confident about a reply, it's held as **needs review** and the sequence pauses until you look at it.
+
+<Callout type="note" title="No alert on positive replies">
+A positive reply doesn't send a notification. Check the Sequences table (or your inbox) for new replies. The only Sales Outreach notifications are the [usage warnings](/sales-outreach/using-the-product/notifications) at 80% and 95% of your monthly cap.
+</Callout>
 
 ## Why classification matters
 
@@ -39,7 +45,7 @@ Reply classification is high-accuracy but not perfect. You can:
 
 - Manually **pause** the sequence in the UI if you spot a misclassification
 - Use the row menu → **Archive** if the prospect should permanently drop out
-- Email hello@tenloai.com if you see systematic errors (Tenlo will review and tune)
+- Email support@tenloai.com if you see systematic errors (Tenlo will review and tune)
 
 ## The "no auto-reply" policy
 

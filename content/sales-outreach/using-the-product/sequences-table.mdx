@@ -1,6 +1,6 @@
 ---
 title: The Sequences table
-lastUpdated: 2026-06-02
+lastUpdated: 2026-10-09
 ---
 
 import { Callout } from '../../../components/Callout'
@@ -47,7 +47,7 @@ Click any sortable column header. Sort state lives in the URL (`?sort=last_sent_
 
 Click any row → 640px slide-in panel. Shows:
 
-- All 4 steps with subject, body, angle, delay
+- All 4 steps with subject, body, angle, delay — the subject and body of any unsent step can be edited here (see [Approving & sending](/sales-outreach/using-the-product/approving-sequences#editing-a-draft))
 - Send timestamps per step
 - The full reply text (if replied)
 - Failed-step error messages with **Retry** buttons
@@ -64,6 +64,6 @@ If an individual step send fails after 5 retries (transient Gmail/Microsoft 5xx 
 
 <Callout type="note" title="Common failure causes">
 - **Token expired** — reconnect the email provider
-- **Recipient bounced** — the email was added to your suppression list automatically
+- **Recipient bounced** — check the address; repeat bounces put the address on Tenlo's global abuse list
 - **Quota hit** — wait until the daily counter resets
 </Callout>

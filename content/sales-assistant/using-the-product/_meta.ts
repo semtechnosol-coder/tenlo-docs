@@ -9,6 +9,7 @@ export default {
   'lead-scoring': 'Lead scoring & lifecycle',
   transcripts: 'Reading conversation transcripts',
   crm: 'CRM integration',
+  'follow-ups': 'Approved follow-up emails',
   notifications: 'Notifications',
   theming: 'Theming & branding',
   reports: 'Monthly ROI reports',

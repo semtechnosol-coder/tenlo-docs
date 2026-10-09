@@ -1,6 +1,6 @@
 ---
 title: Campaigns
-lastUpdated: 2026-09-11
+lastUpdated: 2026-10-09
 ---
 
 import { Callout } from '../../../components/Callout'
@@ -56,7 +56,7 @@ The Campaigns tab shows a sortable table of all your campaigns with per-campaign
 
 **Daily SMS cap: 50 SMS per business per day.** Built in to protect your sender reputation. If you have 200 contacts to send to, the first 50 go today and the rest queue automatically.
 
-Email is unmetered — sends are paced at 100 ms per contact to stay within rate limits — but suppressions and unsubscribes always apply.
+**Monthly allowances.** Campaign email and SMS count against a monthly allowance (UTC calendar month): Growth includes 500 emails and 200 SMS, Pro 1,000 emails and 500 SMS. If you run out, queued sends are held until the 1st rather than failed — see [Billing & your account](/reputation-ai/reference/billing#whats-included-each-month). Email sends are paced at 100 ms per contact to stay within rate limits, and suppressions and unsubscribes always apply.
 
 **Send retries:** Transient failures (5xx) get 3 attempts with delays of 0 s, 1 s, and 3 s. Rate-limit responses (429) get up to 5 attempts with exponential back-off, honouring any Retry-After header. Final failures are recorded — you'll see the contact's `last_send_error` in the campaign drawer.
 
