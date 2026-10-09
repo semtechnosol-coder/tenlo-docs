@@ -1,6 +1,6 @@
 ---
 title: Quick start — your first week
-lastUpdated: 2026-06-14
+lastUpdated: 2026-10-09
 ---
 
 import { Steps, Step } from '../../../components/Step'
@@ -10,6 +10,10 @@ import { Pill } from '../../../components/Pill'
 # Quick start.
 
 Eight steps, in order. Each one unlocks the next item on your dashboard checklist. Total: about 25 minutes of clicking, plus whatever time you spend on brand voice.
+
+<Callout type="note" title="On Essentials?">
+Steps 4–6 and 8 set up review-request campaigns, which are a Growth and Pro feature. Essentials accounts can skip steps 4–6 and 8; they unlock on Growth. The dashboard checklist still lists them today.
+</Callout>
 
 <Steps>
 <Step n={1} title="Add your business mailing address." time="~2 min" path="Settings → Account">
@@ -37,7 +41,7 @@ Two fields:
 - **Tone description** — 1–2 sentences on how you'd want a reply to read. Direct, warm, technical, conversational — be specific.
 - **Sign-off** — how every reply ends. *"— The [Business] Team"* or just your first name.
 
-Or click **Analyse my reviews** to let Tenlo read your existing replies and draft a tone description for you to edit.
+Or click **Analyze my reviews** to let Tenlo read your existing replies and draft a tone description for you to edit.
 
 <Callout type="tip">
 Human-edited replies feed the brand-voice analyser first. The more you tweak AI drafts before approving, the faster Tenlo learns to sound like you.
@@ -73,12 +77,12 @@ Decide which reviews auto-post and which come to you for approval. The recommend
 
 | Rating | Default action |
 |---|---|
-| 5 stars | Auto-post after 24h |
-| 4 stars | Auto-post after 24h |
-| 3 stars | Human queue |
-| 1–2 stars | Human queue (always) |
+| 5 stars | Auto-post after 2h (Google, high-quality draft, no legal or human-trigger keywords) |
+| 4 stars | Auto-post after 2h (same conditions) |
+| 3 stars | Approval queue — never auto-posts |
+| 1–2 stars | Approval queue — never auto-posts |
 
-Adjust the **Auto-post delay** if you want a window to catch anything before it goes live.
+Adjust the **Auto-post delay** (2, 4, 8 or 24 hours) if you want a longer window to catch anything before it goes live. 1–3★ reviews go to the approval queue while **route negative to human** is on, which is the default.
 </Step>
 
 <Step n={8} title="Go live." time="1 min" path="Campaigns → your campaign">

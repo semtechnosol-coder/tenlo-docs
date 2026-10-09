@@ -1,6 +1,6 @@
 ---
 title: Notifications
-lastUpdated: 2026-06-14
+lastUpdated: 2026-10-09
 ---
 
 import { Callout } from '../../../components/Callout'
@@ -9,11 +9,21 @@ import { Callout } from '../../../components/Callout'
 
 Reputation AI can send operational alerts to Slack, Microsoft Teams, or email. At a minimum, route the legal flag alert to a place where your team will actually see it.
 
+## The events
+
+| Event | Fires when |
+|---|---|
+| Legal flag | A review contains legal language and is held for escalation |
+| Negative review | A new low-rated review arrives |
+| Recovery task created | A negative review opens a [service recovery](/reputation-ai/using-the-product/recovery) task *(Pro)* |
+| Recovery task aging / overdue | A recovery task has sat open past its follow-up window *(Pro)* |
+| Competitor gap opened | A new gap opens between you and a tracked [competitor](/reputation-ai/using-the-product/competitors) *(Pro)* |
+
 ## Connecting a channel
 
 Open **Settings → Notifications** from the top nav.
 
-Your account email is already listed there — Tenlo provisions it automatically and it can't be removed. It's the always-on fallback so you never miss an alert.
+Your account email is already listed there — Tenlo adds it automatically and it can't be removed. It's the always-on fallback so you never miss an alert. You can add Slack and Microsoft Teams channels alongside it.
 
 To add Slack or Microsoft Teams, click **+ Add Slack channel** or **+ Add Teams channel**. A dialogue opens with two fields:
 

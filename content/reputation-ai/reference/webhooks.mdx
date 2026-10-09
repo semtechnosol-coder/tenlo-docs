@@ -1,6 +1,6 @@
 ---
 title: Webhook intake
-lastUpdated: 2026-05-24
+lastUpdated: 2026-10-09
 ---
 
 import { Callout } from '../../../components/Callout'
@@ -48,6 +48,7 @@ The token authenticates the source — never share it publicly or commit it to s
 | `200 {"status":"existing_contact"}` | Duplicate — same email or phone already in campaign, no action taken |
 | `400` | Missing required fields |
 | `401` | Invalid or missing token |
+| `403 PLAN_REQUIRED` | Your account is below Growth — review-request campaigns need Growth or Pro. Nothing is added |
 | `404` | Campaign not found |
 
 ## Test mode
@@ -68,6 +69,6 @@ The drawer has a **View intake log** link — the last 50 webhook hits, includin
 
 **Jobber** — Use Jobber's webhook automation on "Job closed" → map customer fields.
 
-**HubSpot / Pipedrive** — Tenlo has native CRM integrations for the [Sales Outreach](/sales-outreach) product. For Reputation AI, use the webhook intake or Zapier.
+**HubSpot / Pipedrive** — Tenlo has built-in HubSpot and Pipedrive integrations for the [Sales Outreach](/sales-outreach) product. For Reputation AI, use the webhook intake or Zapier.
 
 **Custom** — Any backend that can POST JSON works — typically 5–10 lines of code.

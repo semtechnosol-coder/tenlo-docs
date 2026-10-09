@@ -1,6 +1,6 @@
 ---
 title: What the Sales Assistant does
-lastUpdated: 2026-05-29
+lastUpdated: 2026-10-09
 ---
 
 import { Callout } from '../../../components/Callout'
@@ -16,7 +16,7 @@ The Sales Assistant is a 24/7 AI chat widget that runs on your website. Its job 
 - **Captures their name and email** mid-conversation, in context, without ever showing a form.
 - **Scores the lead 0–100** against your Ideal Customer Profile and qualifying criteria.
 - **Offers a Calendly link** automatically — but only when the score is high enough and the visitor seems ready.
-- **Pushes the lead to your CRM** (Tenlo native, HubSpot or Pipedrive) with the score and reasoning attached.
+- **Pushes the lead to your CRM** (HubSpot or Pipedrive) with the score and reasoning attached.
 - **Notifies your team** via Slack, Teams, or email on every new lead — with a score badge so you can triage at a glance.
 - **Updates your CRM when the visitor books**, advancing the deal stage.
 
@@ -30,8 +30,8 @@ The Sales Assistant does not run on its own — it requires an embed snippet pas
 
 - Does not invent products, prices, or terms beyond what's in your Knowledge Base and Products & services field.
 - Does not push booking offers to visitors who don't match your ICP — non-fits are exited gracefully with a free resource where possible.
-- Does not auto-send follow-up emails after a chat ends — leads land in your CRM for your team to action.
-- Does not train AI models on your conversations. Anthropic's enterprise endpoints prohibit training on customer data.
+- Does not send follow-up emails on its own. Leads land in your CRM for your team to action; if you turn on [approved follow-ups](/sales-assistant/using-the-product/follow-ups), the AI drafts one email per qualified lead that didn't book and nothing sends until you approve it.
+- Does not train AI models on your conversations. Tenlo's AI providers (Anthropic, OpenAI, Mistral) are used through enterprise endpoints that prohibit training on customer data.
 
 ## How it differs from the Support Chatbot (P01)
 

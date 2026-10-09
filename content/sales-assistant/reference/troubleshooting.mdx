@@ -1,13 +1,13 @@
 ---
 title: Troubleshooting
-lastUpdated: 2026-06-14
+lastUpdated: 2026-10-09
 ---
 
 # Troubleshooting.
 
 The most common symptoms, with the fixes that resolve them on the first try.
 
-## "I installed the embed but the bubble isn't showing"
+## “I installed the embed but the bubble isn't showing”
 
 - Check the script tag is before `</body>` (not in `<head>`)
 - Check browser DevTools → Console for `chat-widget.js` errors
@@ -15,26 +15,26 @@ The most common symptoms, with the fixes that resolve them on the first try.
 - Confirm CSP allows `script-src` and `connect-src` to `app.tenloai.com`
 - Try a hard reload (`Ctrl+Shift+R`) — your CDN may have cached an old page
 
-## "The bot is asking weird/wrong questions"
+## “The bot is asking weird/wrong questions”
 
 - Check **Qualifying questions** — make sure they're things you'd actually ask
 - Check **ICP** — too vague ICP → too generic conversations
 - Check **Tone description** — overly formal or weird tone affects question framing
 - Open a recent transcript and read what the bot actually said
 
-## "Leads are scoring too low across the board"
+## “Leads are scoring too low across the board”
 
 - Tighten or expand your ICP. If your real customers don't match the ICP you wrote, the bot will mark them all low-fit.
 - Check whether ICP is actually set. Empty ICP = scoring against qualifying questions only = weaker.
 - Lower your booking threshold from 60 to 50 or 55 to see if the issue is threshold rather than scoring.
 
-## "Leads are scoring too high across the board"
+## “Leads are scoring too high across the board”
 
 - Tighten ICP — make it more specific about what you *don't* serve
 - Add disqualifiers explicitly to the ICP
 - Raise threshold from 60 to 70
 
-## "Calendly link isn't being offered to clearly-qualified leads"
+## “Calendly link isn't being offered to clearly-qualified leads”
 
 - Verify Calendly is connected (Settings → Sales Assistant → Widget configuration → *Connected* badge)
 - Verify event type is selected from the dropdown
@@ -42,36 +42,36 @@ The most common symptoms, with the fixes that resolve them on the first try.
 - Check the conversation transcript — did the bot capture both name AND email? Booking won't fire without both.
 - Check Calendly availability — if you have no slots in the next 7 days, the bot won't push the link
 
-## "Lead isn't showing up in my CRM"
+## “Lead isn't showing up in my CRM”
 
 - Check Recent Leads first — if the lead is there, it's a sync issue; if it's not, it's a capture issue (open the transcript and confirm the bot captured both name and email).
 - For a sync issue, the **HubSpot card in Settings → Integrations now shows a banner** when the connection needs attention: **Reconnect** if the token expired or was revoked, or **Re-authorize** (naming the exact permission) if a scope is missing. Click it and syncing resumes — no manual disconnect/reconnect dance. A transient provider hiccup shows a quiet "we'll retry" notice instead, so you're not sent to reconnect needlessly.
 
-## "Bot keeps citing outdated info"
+## “Bot keeps citing outdated info”
 
 - KB edits should sync immediately. If you edit via the dashboard and the bot still says the old answer, re-edit (any small change) and re-save.
 - If you imported a document and the content is wrong, delete and re-ingest after updating the source.
 - Direct database edits don't sync the search index — always edit through the dashboard.
 
-## "Document ingestion failed"
+## “Document ingestion failed”
 
 - Scanned/image PDFs are now read automatically via OCR. If a scanned PDF still fails, re-scan at higher resolution or copy the text into a `.docx`.
 - *".doc legacy format not supported"* → Convert to `.docx`
 - *"Failed to fetch URL"* → Page is bot-blocked or behind authentication; copy content into a Word doc instead
 - *"Document is empty"* → Page is JavaScript-rendered; save as PDF and upload that
 
-## "Notifications stopped firing"
+## “Notifications stopped firing”
 
 - Settings → Notifications → check channel status
 - If a webhook returned 404/410, it's auto-marked inactive — re-add
 - Click **Test** on each channel to verify
 - If using email-only, check spam folder
 
-## "I'm seeing duplicate leads"
+## “I'm seeing duplicate leads”
 
 - Each browser session is one lead. Same person reloading the page = new session = potentially new lead with same email.
 - The system de-dups by session, not by email. CRM-level dedup is up to your CRM's rules.
 
 ## Anything else
 
-hello@tenloai.com — Mon–Fri 9am–5pm EST, 1 business day response.
+support@tenloai.com — Mon–Fri 9am–5pm ET, 1 business day response.

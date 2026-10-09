@@ -1,6 +1,6 @@
 ---
 title: Approving & sending
-lastUpdated: 2026-06-02
+lastUpdated: 2026-10-09
 ---
 
 import { Callout } from '../../../components/Callout'
@@ -14,8 +14,18 @@ Once a sequence is in `pending_approval` status (research and generation complet
 1. **Cap check** — the system atomically checks if you have approval cap remaining. If you're at 500/500, the click returns *"Cap reached — contact us for dedicated-mailbox setup"* and the sequence stays pending.
 2. **Cap consumed** — your usage counter ticks +1.
 3. **Warning fires** if you crossed the 80% or 95% threshold (one-time per period — see [Notifications](/sales-outreach/using-the-product/notifications)).
-4. **Step 1 queues** — sends within minutes (subject to your daily 50-email cap).
+4. **Step 1 queues** — sends within minutes (subject to the ~50 emails/day per mailbox safeguard; anything over is deferred to 9:00 local time the next day).
 5. **Steps 2–4 queue** with their respective delays.
+
+## Editing a draft
+
+You can change the AI's draft on any step that hasn't sent yet — before you approve, or after approval while the step is still pending.
+
+- Open the sequence and edit the step's **subject** and **body**. Your edits are what sends.
+- **Reset to AI draft** throws away your edits on that step and restores what the AI wrote.
+- While the sequence is still pending approval, you can also have the AI **regenerate** the draft.
+
+Steps that have already sent can't be edited.
 
 ## Pause, Resume, Archive
 
@@ -39,4 +49,4 @@ Approval is blocked. You have three options:
 - Email hello@tenloai.com to upgrade to a **dedicated mailbox**
 - Archive sequences you don't intend to use (doesn't refund the cap, but reduces visual clutter)
 
-See [Pricing, caps & billing](/sales-outreach/reference/billing) for the difference between **approval cap** (500/mo), **import cap** (750/mo), and **daily send cap** (50/day).
+See [Pricing, caps & billing](/sales-outreach/reference/billing) for the difference between **approval cap** (500/mo), **import cap** (750/mo), and the **daily send safeguard** (~50/day per mailbox).

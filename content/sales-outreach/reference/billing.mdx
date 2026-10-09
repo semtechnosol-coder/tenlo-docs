@@ -1,6 +1,6 @@
 ---
 title: Pricing, caps & billing
-lastUpdated: 2026-09-11
+lastUpdated: 2026-10-09
 ---
 
 import { Callout } from '../../../components/Callout'
@@ -18,51 +18,45 @@ Sales Outreach is **$125/month CAD**, flat — single plan. Also included in the
 | Price | $125/mo CAD (flat — single plan) |
 | Prospect cap | **500 approvals per month** |
 | Import cap | **750 prospects per month** (1.5× the approval cap — protects you from researching prospects you'll never email) |
-| Sending capacity | Shared mailbox: ~50 emails/day, ~1,500/month theoretical ceiling |
-| Daily send limit | 50 emails per business per day |
+| Sending | From **your own** connected Gmail or Microsoft 365 mailbox — never a shared Tenlo mailbox |
+| Daily send limit | ~50 emails per mailbox per day (fixed safeguard, not configurable) |
 | Trial | 7 days |
 | Bundle | Included in the Growth Bundle ($325/mo) and the Pro Bundle ($375/mo) with Reputation AI, Sales Assistant, and Support Chatbot — same 500-prospect cap |
 | Higher throughput? | **Dedicated mailbox setup** available — contact hello@tenloai.com |
 
 <Callout type="note" title="The single-plan model">
-Earlier tiers (Growth at 2,000/mo, Scale at 10,000/mo) were retired in May 2026 because the shared-mailbox sending capacity couldn't deliver them. If you need more than ~50 emails/day, the answer is a dedicated mailbox — email hello@tenloai.com and Tenlo will set it up case-by-case.
+Earlier tiers (Growth at 2,000/mo, Scale at 10,000/mo) were retired in May 2026. Google and Microsoft limit how much a single mailbox can safely send, so one mailbox couldn't deliver those volumes. If you need more than ~50 emails/day, the answer is additional dedicated mailboxes — email hello@tenloai.com and Tenlo will set it up case-by-case.
 </Callout>
 
 ## The three caps
 
 | Cap | What it limits | When it ticks |
 |---|---|---|
-| **Approval cap** (500/mo) | Sequences you can send | On click of **Approve & send** |
+| **Approval cap** (500/mo, hard cap) | Prospects you can approve | On click of **Approve & send** — counted at approval, not at send |
 | **Import cap** (750/mo, 1.5×) | Prospects you can research | On import (file/CRM/manual) |
-| **Daily send cap** (50/day) | Emails sent in a day | On every send |
+| **Daily send safeguard** (~50/day per mailbox) | Emails sent from your mailbox in a day | On every send |
 
 ### Approvals vs imports — what they mean
 
 - **Approvals** consume your 500-per-month approval cap. Every time you click **Approve & send** on a sequence, your usage counter ticks up by one.
-- **Imports** are what you've researched but haven't necessarily approved yet. The 750 import cap exists because every prospect costs ~$0.04 to research even if you never email them — without the ceiling, you could import 5,000 prospects, cherry-pick the best 500, and burn unsustainable margin.
+- **Imports** are what you've researched but haven't necessarily approved yet. Every imported prospect is researched by the AI whether or not you email them, so imports have their own ceiling at 1.5× the approval cap.
 - **Resets** happen monthly on your billing renewal date.
 
-### Daily 50-email behaviour
+### Daily send behaviour
 
-If you have 200 prospects approved at once, the system sends the first 50 today and queues the rest for tomorrow's quota. No emails are dropped — just delayed.
+Every email goes out from the Gmail or Microsoft 365 mailbox you connected — there's no Tenlo-managed sending pool. To protect that mailbox's deliverability, Tenlo sends at most **~50 emails per mailbox per day**. This safeguard is fixed; there's no setting to change it.
 
-### Send windows and timezones
+If you approve 200 prospects at once, the first ~50 emails go out today. Sends over the daily limit are deferred to **9:00 local time the next day**. No emails are dropped — just delayed.
 
-Step delays are calculated in **calendar days**, but the system respects your business hours window. By default, sends fire when ready. If you set a window (e.g. 9am–5pm) in Settings, late-night sends queue forward to the next morning.
+### Step timing
 
-## What "shared mailbox" means
-
-The shared sending pool is Tenlo-managed infrastructure used by all customers on the standard plan. Practical implications:
-
-- **~50 emails/day per business** is enforced
-- **No dedicated IP** — your sender reputation is a function of the pool
-- **No custom from-domain** — emails send from your connected Gmail/Microsoft account, but routing volume is shared
+Step delays are calculated in **calendar days** from the previous step. There's no send-window setting for Sales Outreach; a step is sent when it's due, subject to the daily limit above.
 
 ## When to upgrade to a dedicated mailbox
 
 If any of these is true, email hello@tenloai.com for dedicated-mailbox pricing:
 
-- You consistently hit 50/day and want more headroom
+- You consistently hit ~50/day and want more headroom
 - You need more than 500 prospects/month
 - You want to send from a custom domain you've warmed yourself
 - You need predictable enterprise-style deliverability
@@ -83,7 +77,7 @@ Past invoices live in the Stripe-hosted portal. From the Billing page, click **M
 
 ## Changing plans
 
-**Upgrades** take effect immediately — the price difference is charged to your card at the time of the change. **Downgrades** take effect at the end of your current billing period; you retain full access until the period closes.
+There's no in-app plan switch for Sales Outreach. **Manage Billing →** opens the Stripe portal, which handles your payment method, invoices and cancellation. To add another product or move to the Growth or Pro Bundle, email hello@tenloai.com; for any other change to your existing subscription, email support@tenloai.com. Tenlo will make the change for you.
 
 ## Cancelling
 
@@ -94,8 +88,8 @@ Click **Manage Billing →** on the Billing page and follow the cancellation ste
 | When does cancellation take effect? | Your subscription runs to the end of the current billing period |
 | Are there refunds? | No refunds for remaining days in a billing period |
 | What stops when the period ends? | Outbound sends stop, AI calls stop, CRM sync stops, notifications stop |
-| What can I still do after cancellation? | Account switches to read-only — view sequences, replies, transcripts, export your data as CSV |
+| What can I still do after cancellation? | Account switches to read-only — view sequences and replies. There's no self-serve export; email support@tenloai.com if you want a copy of your data |
 
 <Callout type="legal" title="Data after cancellation — 90-day grace">
-The moment Stripe confirms a cancellation, provider tokens (Gmail, Microsoft 365, Calendly, HubSpot, Pipedrive) are nulled. Your data is automatically purged 90 days after cancellation — sequences, prospects, replies, attestation records. Full mechanics in [CASL, suppressions & data handling](/sales-outreach/compliance#what-happens-when-you-cancel-your-subscription).
+The moment Stripe confirms a cancellation, provider tokens (Gmail, Microsoft 365, Calendly, HubSpot, Pipedrive) are nulled. Your data is automatically deleted 90 days after cancellation — sequences, prospects, replies. Export is available on request before then. Full mechanics in [CASL, suppressions & data handling](/sales-outreach/compliance#what-happens-when-you-cancel-your-subscription).
 </Callout>

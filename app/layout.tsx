@@ -23,11 +23,11 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Reputation AI — Tenlo Docs',
+    default: 'Tenlo Docs',
     template: '%s — Tenlo Docs',
   },
   description:
-    'Operator handbook for Tenlo Reputation AI (P09). Review replies, campaigns, compliance, and settings.',
+    'Customer documentation for Tenlo AI: Reputation AI, AI Support Chatbot, Sales Outreach AI and AI Sales Assistant. Setup, daily use, compliance, billing and settings.',
 }
 
 const navbar = (
@@ -49,7 +49,7 @@ const navbar = (
 const footer = (
   <Footer>
     <span style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', opacity: 0.5 }}>
-      Tenlo AI Inc. · support@tenloai.com · Mon–Fri 9am–5pm EST
+      Tenlo AI Inc. · support@tenloai.com · Mon–Fri 9am–5pm ET
     </span>
   </Footer>
 )

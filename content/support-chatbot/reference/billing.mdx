@@ -1,6 +1,6 @@
 ---
 title: Pricing & billing
-lastUpdated: 2026-09-11
+lastUpdated: 2026-10-09
 ---
 
 import { Callout } from '../../../components/Callout'
@@ -16,14 +16,14 @@ The Support Chatbot is **$125/month CAD**, flat. It's also included in both bund
 | Item | Value |
 |---|---|
 | Price | $125/mo CAD flat |
-| Conversations | Unlimited |
-| Messages | Unlimited |
+| Conversations | Up to 500 new conversations per business per day |
+| Messages | Up to 2,000 visitor messages per business per day · 100 visitor messages per conversation |
 | FAQ entries | Unlimited (typed) |
-| Document ingestion | Up to 100 documents per business — **shared across Support Chatbot (P01) and Sales Assistant (P05)** · 25 MB per file · 20 ingest operations/hour (a sitemap crawl counts as one operation regardless of page count) |
+| Document ingestion | Up to 100 documents per business at any one time — **shared across Support Chatbot (P01) and Sales Assistant (P05)**; deleting a document frees a slot · 25 MB per file · 20 ingest operations/hour (a sitemap crawl counts as one operation regardless of page count) |
 | Trial | 7 days |
 | Bundle | Included in the Growth Bundle ($325/mo) and the Pro Bundle ($375/mo) with the other three Tenlo products |
 
-There are **no usage caps, no per-message billing, no "AI minutes"** to watch. You can run thousands of conversations a month on the same flat fee.
+There's **no per-message billing and no "AI minutes"** — the price is flat. The daily limits above (counted per UTC day) exist to stop abuse and runaway costs, not to meter normal use, and there are also per-visitor rate limits so one visitor can't flood your bot. If your traffic genuinely needs more, email support@tenloai.com and the limits can be raised for your business.
 
 ## Free trial
 
@@ -41,11 +41,7 @@ Tenlo does not store invoices separately — the Stripe portal is the single sou
 
 ## Changing plans
 
-Click **Manage Billing →** on the Billing page to switch plans.
-
-**Upgrades** take effect immediately. The full price difference between your current plan and the new plan is charged to your card at the time of the change. For example, upgrading from the Support Chatbot ($125/mo) to the Growth Bundle ($325/mo) results in an immediate charge of $200.
-
-**Downgrades** take effect at the end of your current billing period. You retain full access until the period closes.
+There's no in-app plan switch for the Support Chatbot. **Manage Billing →** opens the Stripe portal, which handles your payment method, invoices and cancellation. To add another product or move to a bundle, email hello@tenloai.com; for any other change to your existing subscription, email support@tenloai.com.
 
 ## Cancelling
 
@@ -54,9 +50,9 @@ Click **Manage Billing →** on the Billing page to switch plans.
 | When does cancellation take effect? | Your subscription runs to the end of the current billing period |
 | Are there refunds? | No refunds for remaining days in a billing period |
 | What stops when the period ends? | The widget on your site stops responding (returns an error), AI inference stops, ingestion stops, notifications stop |
-| What can I still do after cancellation? | Your account switches to read-only — you can view conversations and transcripts, export your data as CSV (via support), and disconnect platforms |
+| What can I still do after cancellation? | Your account switches to read-only — you can view conversations and transcripts and disconnect platforms. There's no self-serve export; email support@tenloai.com if you want a copy of your data |
 | Can I reactivate? | Yes — visit tenloai.com/pricing at any time. Your FAQs, ingested documents, and settings will still be there. |
 
 <Callout type="note" title="Data after cancellation">
-Data is retained while your account is open. After cancellation, your data is automatically purged 90 days later — including FAQs, conversation transcripts, and your KB index. For an immediate deletion request, email hello@tenloai.com. Full mechanics in [Legal & data handling](/support-chatbot/compliance).
+Data is retained while your account is open. After cancellation, your data is automatically deleted 90 days later — including FAQs, conversation transcripts, and your KB index. Export is available on request before then. For an export or an immediate deletion request, email support@tenloai.com. Full mechanics in [Legal & data handling](/support-chatbot/compliance).
 </Callout>

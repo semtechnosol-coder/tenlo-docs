@@ -1,20 +1,20 @@
 ---
 title: Legal & data handling
-lastUpdated: 2026-05-29
+lastUpdated: 2026-10-09
 ---
 
 import { Callout } from '../../../components/Callout'
 
 # Legal & data handling.
 
-Tenlo's Conversational Sales Assistant runs an AI chat widget on your website, captures visitor information, and (where you've connected it) syncs leads and bookings into your CRM and calendar. A few documents govern how the product handles your data and your visitors' data.
+Tenlo's AI Sales Assistant runs an AI chat widget on your website, captures visitor information, and (where you've connected it) syncs leads and bookings into your CRM and calendar. A few documents govern how the product handles your data and your visitors' data.
 
 ## Governing documents
 
 - **Privacy policy** — how Tenlo collects, stores and processes data, including US state privacy laws (CCPA/CPRA) where they apply. [tenloai.com/privacy](https://www.tenloai.com/privacy)
 - **Terms of service** — the contract between you and Tenlo AI Inc. [tenloai.com/terms](https://www.tenloai.com/terms)
 - **Data processing addendum (DPA)** — for customers who need one for their own compliance. Tenlo acts as a processor for the visitor data your widget collects; you remain the controller.
-- **Subprocessors** — the AI, hosting and CRM providers Tenlo uses to deliver the Sales Assistant are listed in the DPA and on the website.
+- **Subprocessors** — the AI providers (Anthropic for conversations and scoring, OpenAI for knowledge-base embeddings, Mistral for OCR of scanned PDFs), hosting and CRM providers Tenlo uses to deliver the Sales Assistant are listed in the DPA and on the website.
 
 ## What you should do on your side
 
@@ -29,15 +29,15 @@ See [Reading conversation transcripts](/sales-assistant/using-the-product/transc
 ## AI training
 
 <Callout type="legal" title="Conversations are not used for model training">
-Tenlo uses Anthropic's enterprise endpoints which prohibit training on customer data. Your visitor conversations are never used to train AI models — Anthropic's, Tenlo's, or anyone else's.
+Tenlo uses Anthropic's, OpenAI's and Mistral's enterprise endpoints, which prohibit training on customer data. Your visitor conversations are never used to train AI models — theirs, Tenlo's, or anyone else's.
 </Callout>
 
 ## Data retention and deletion
 
 - **While your subscription is active** — leads, transcripts, bookings and KB content are retained for the life of your account.
 - **When you disconnect an integration** (HubSpot, Pipedrive, Calendly) — Tenlo wipes the tokens and stops future syncs. Records already created in the third-party system are not touched; your Tenlo-side history is preserved.
-- **When you cancel your subscription** — your data is automatically purged 90 days after cancellation, including conversation transcripts, leads, and your knowledge-base index.
-- **Immediate deletion** — email hello@tenloai.com to request earlier deletion.
+- **When you cancel your subscription** — your data is automatically deleted 90 days after cancellation, including conversation transcripts, leads, and your knowledge-base index. Export is available on request before then (support@tenloai.com).
+- **Immediate deletion** — email support@tenloai.com to request earlier deletion.
 
 ## Where to look
 

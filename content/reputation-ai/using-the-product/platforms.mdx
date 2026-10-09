@@ -1,6 +1,6 @@
 ---
 title: Connecting review platforms
-lastUpdated: 2026-06-14
+lastUpdated: 2026-10-09
 ---
 
 import { Steps, Step } from '../../../components/Step'
@@ -12,12 +12,12 @@ Reputation AI currently supports two review sources. Connect each one separately
 
 ## Google Business Profile — full support
 
-**What you get:** Review-request links open the real Google review form. Reviews flow into your dashboard. AI replies post back automatically. The aggregate Google and Facebook rating appears on the Rating Improvement Card.
+**What you get:** Review-request links open the real Google review form. Reviews flow into your dashboard. Approved replies post back to Google for you (**Approve & post**), and eligible positive replies can auto-post. The aggregate Google and Facebook rating appears on the Rating Improvement Card.
 
 **What you need:** A Google account that owns or manages your Google Business Profile — the same account you used to claim or verify the business.
 
 <Callout type="note">
-Google is the only platform where Reputation AI can post replies for you. Facebook is read-only.
+Google is the only platform where Reputation AI can post replies for you. On Facebook, Tenlo drafts the reply and you paste it in yourself — see below.
 </Callout>
 
 <Steps>
@@ -69,11 +69,11 @@ If reviews don't appear within an hour, open your review link in an incognito wi
 
 ---
 
-## Facebook Pages — connection works, review fetch pending
+## Facebook Pages — reviews in, replies by copy and paste
 
-**What you get:** OAuth connection succeeds and your Page is linked. The aggregate rating appears on the Rating Improvement Card.
+**What you get:** Individual Facebook recommendations flow into your inbox alongside your Google reviews, and the aggregate rating appears on the Rating Improvement Card. Facebook doesn't use stars, so Tenlo maps each recommendation to a rating: **recommends = 5★**, **doesn't recommend = 1★**. That rating drives routing exactly as it does for Google.
 
-**What you don't get yet:** Individual reviews don't flow in. The required Meta permission (`pages_read_user_content`) is gated behind Meta App Review. The application is in progress — once approved, reviews will start flowing in automatically with no action needed on your end.
+**Replying:** Tenlo drafts a reply in your brand voice, but replies to Facebook reviews are **never posted automatically**. Once you're happy with the draft, click **Approve & copy**, then paste the reply into Facebook yourself.
 
 **How to connect:** Settings → Connect Facebook. Sign in with your Facebook account, select your Business Page when prompted.
 

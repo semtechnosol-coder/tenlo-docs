@@ -1,6 +1,6 @@
 ---
 title: Knowledge base — documents
-lastUpdated: 2026-06-02
+lastUpdated: 2026-10-09
 ---
 
 import { Callout } from '../../../components/Callout'
@@ -34,7 +34,7 @@ Status pill flips through `pending` → `processing` → `embedded` (success) or
 
 ## Limits
 
-- **100 documents per business** (lifetime) — shared across Support Chatbot (P01) and [Sales Assistant (P05)](/sales-assistant). Deleting a document anywhere on either product frees a slot for either product.
+- **100 documents per business at any one time** — shared across Support Chatbot (P01) and [Sales Assistant (P05)](/sales-assistant). Deleting a document anywhere on either product frees a slot for either product.
 - **25 MB max** per file
 - **20 ingest operations per hour** — a sitemap crawl that fans out into 80 pages still counts as **1 operation** against this cap. Single URL or single file = 1 operation.
 - **Scanned PDFs** — first **50 pages** are OCR'd; beyond that, processing stops and the document card shows how many pages were skipped. Re-upload a split version if you need the tail.

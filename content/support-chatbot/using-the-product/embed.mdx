@@ -1,6 +1,6 @@
 ---
 title: Embedding the widget
-lastUpdated: 2026-06-19
+lastUpdated: 2026-10-09
 ---
 
 import { Steps, Step } from '../../../components/Step'
@@ -70,7 +70,7 @@ Drop it before the closing `</body>` tag on any page where the bubble should app
 ## What the bubble looks like
 
 - **56px round button** in the bottom-right corner
-- 💬 emoji when closed; ✕ when open
+- 💬 icon when closed; ✕ when open (you can set a **Chat avatar** under Settings → Support Chatbot → widget appearance)
 - Default colour `#1B3A5C` (deep navy) — see [Theming & branding](/support-chatbot/using-the-product/theming) to override
 - Click expands a **380×580px** chat window
 - On mobile (under 440px wide), the chat fills nearly the full screen
@@ -80,10 +80,10 @@ Drop it before the closing `</body>` tag on any page where the bubble should app
 
 The chat window doesn't load until the visitor clicks the bubble. The script tag adds essentially zero weight to your page on first paint — just the 5KB widget loader.
 
-## Same-origin iframe (architecture note)
+## Cross-origin iframe (architecture note)
 
 <Callout type="note" title="Deliberate isolation">
-The chat itself runs inside an iframe served from `app.tenloai.com`. This means your site's CORS headers, CSP, and cookie policies don't affect the chat — the bubble is on your domain, but the chat conversation runs in Tenlo's domain. **Visitors can't extract data from your site through the bot**, which is a deliberate security choice.
+The chat itself runs inside an iframe served from `app.tenloai.com` — a different origin from your site. This means your site's CORS headers, CSP, and cookie policies don't affect the chat — the bubble is on your domain, but the chat conversation runs in Tenlo's domain. **Visitors can't extract data from your site through the bot**, which is a deliberate security choice.
 </Callout>
 
 Unlike the Sales Assistant (P05) which uses Shadow DOM, the Support Chatbot uses an iframe. The trade-off is stronger isolation for slightly less style flexibility — see [Theming & branding](/support-chatbot/using-the-product/theming).

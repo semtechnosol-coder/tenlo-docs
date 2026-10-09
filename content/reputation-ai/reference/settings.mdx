@@ -1,6 +1,6 @@
 ---
 title: Settings reference
-lastUpdated: 2026-06-14
+lastUpdated: 2026-10-09
 ---
 
 import { Callout } from '../../../components/Callout'
@@ -45,6 +45,10 @@ These cross-product fields live in the **Account** section — the **Business ma
 If both contact email and contact phone are blank, legal-flag alerts go to Tenlo support instead of you. Set both fields to people who can actually act on a legal-language review.
 </Callout>
 
+## Team *(Settings → Account → Team)*
+
+Owners can invite teammates by email. There are two roles: **owner** and **member**. Everyone on the account works from the same review inbox and boards.
+
 ## Account card *(Settings → Reputation AI)*
 
 | Field | Purpose |
@@ -53,8 +57,7 @@ If both contact email and contact phone are blank, legal-flag alerts go to Tenlo
 | Business type | Sets your vertical — determines which template variables are available |
 | Owner display name | As above (also editable in Settings → Account → Business contact info) |
 | Google review link | Embedded in every outbound review request |
-| Yelp business ID | Used for outbound campaign links only (Yelp review fetch is gated behind their Reviews Partner program) |
-| Facebook Page | Connects your Page for rating aggregation |
+| Facebook Page | Connects your Page so recommendations flow into your inbox (recommends = 5★, doesn't recommend = 1★) and the rating aggregates |
 | Time zone | Drives campaign send windows, business-hours-only auto-posting, the midnight boundary for "Done today", and monthly report send time |
 | Logo | Appears on branded pages (unsubscribe, sender-ID, help pages) |
 
@@ -69,5 +72,5 @@ Shows a coloured dot for each connected platform:
 | Colour | Meaning |
 |---|---|
 | Green | Delivering reviews normally |
-| Grey | Connected but no reviews yet (e.g. Yelp — Reviews Partner program access is currently closed) |
+| Grey | Connected but no reviews yet |
 | Red | Token revoked or expired — click to reconnect |

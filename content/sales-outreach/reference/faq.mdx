@@ -1,6 +1,6 @@
 ---
 title: Frequently asked questions
-lastUpdated: 2026-09-11
+lastUpdated: 2026-10-09
 ---
 
 # Frequently asked questions.
@@ -13,7 +13,7 @@ Research takes 30–60 seconds per prospect; sequence generation another 10–30
 
 ### Can I edit the AI's draft before sending?
 
-Not in v1. The mature path is to set up a sequence template you trust, then use it for predictable copy. Inline draft editing is on the roadmap. See [Sequence templates](/sales-outreach/using-the-product/sequence-templates).
+Yes. Open the sequence and edit the subject and body of any step that hasn't sent yet — before or after you approve. **Reset to AI draft** puts a step back to what the AI wrote, and while a sequence is still pending approval you can ask the AI to regenerate it. If you want predictable copy across many prospects, set up a [sequence template](/sales-outreach/using-the-product/sequence-templates) you trust.
 
 ### What's the difference between "approved" and "active"?
 
@@ -25,7 +25,7 @@ They cascade — Step 1 sends immediately on approval, Step 2 fires `delay_days`
 
 ### What if my prospect replies after Step 2?
 
-Steps 3 and 4 are cancelled. Sequence flips to `replied_positive` / `replied_objection` / `unsubscribe` based on classification. You take over. See [Replies & classification](/sales-outreach/using-the-product/replies).
+The remaining steps don't send. What happens next depends on how the reply is classified — a positive reply or an objection pauses the sequence, an unsubscribe suppresses the address and archives the sequence, and an out-of-office lets it continue. You take over. See [Replies & classification](/sales-outreach/using-the-product/replies).
 
 ### Can I send to multiple contacts at the same company?
 
@@ -41,11 +41,11 @@ Sequences pause. The dashboard shows a red dot on the Email Provider card. Click
 
 ### Can I export my replies and prospects?
 
-Email hello@tenloai.com for a CSV export. Self-serve export is on the roadmap.
+Not self-serve today. Email support@tenloai.com and Tenlo will prepare an export for you.
 
 ### How much does this cost beyond $125/mo?
 
-Nothing for normal use. Email infrastructure, AI calls (research, generation, classification), and CRM sync are included. The dedicated-mailbox upgrade is a separate plan.
+Nothing for normal use. AI calls (research, generation, classification) and CRM sync are included, and emails send from your own connected mailbox. If you need more throughput than one mailbox allows, email hello@tenloai.com about dedicated mailboxes.
 
 ### Will Tenlo train AI on my data?
 
@@ -57,7 +57,7 @@ No — this is for B2B cold outreach only. Transactional should go through your 
 
 ### What happens to my data if I cancel?
 
-Provider tokens are nulled immediately. Your data is purged 90 days after cancellation. Deletion-on-request is available at any time — email hello@tenloai.com. Full mechanics in [CASL, suppressions & data handling](/sales-outreach/compliance#what-happens-when-you-cancel-your-subscription).
+Provider tokens are nulled immediately. Your data is deleted 90 days after cancellation; if you want a copy before then, email support@tenloai.com and ask for an export. Deletion-on-request is available at any time — email support@tenloai.com. Full mechanics in [CASL, suppressions & data handling](/sales-outreach/compliance#what-happens-when-you-cancel-your-subscription).
 
 ### How does this differ from the Sales Assistant (P05)?
 
