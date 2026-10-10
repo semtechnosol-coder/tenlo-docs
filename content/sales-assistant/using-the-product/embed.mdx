@@ -68,10 +68,10 @@ Drop it before the closing `</body>` tag on any page where the bubble should app
 - 56px round button in the bottom-right corner
 - Default colour `#0D2D6B` (deep navy) — change from the Widget color picker
 - Default bubble glyph 💬 and chat-header avatar 🤖 — both customizable
-- Click expands a 360×520px chat window
+- Click expands a 360×520px chat window on desktop and tablets
 - All UI rendered inline — no iframe; no separate page
 - `z-index: 2147483647` (maximum) — sits on top of any site chrome
-- Fixed 360×520 px window — fits standard mobile portrait viewports (≥ 375 px wide) without resizing. No media queries; the widget itself doesn't reflow for narrower screens.
+- **Mobile-responsive.** On screens 440px wide or narrower the chat opens as a full-screen sheet instead of a window. It respects the notch and home-bar safe areas, keeps the message box above the on-screen keyboard, and uses a 16px input so iOS doesn't zoom in. Close it with the ✕ in the header.
 
 ## Cross-origin compatibility
 
@@ -79,7 +79,7 @@ The widget makes direct API calls to `app.tenloai.com` from your site. CORS head
 
 ## Lazy initialization
 
-The bubble appears immediately on page load. The widget **auto-opens 8 seconds after page load** if the visitor hasn't already clicked the bubble — this is a fixed behavior, not configurable from the dashboard. When the chat window opens (by click or auto-open), an internal analytics session is created and the greeting message is shown.
+The bubble appears immediately on page load. The widget **auto-opens 8 seconds after page load** if the visitor hasn't already clicked the bubble — this is a fixed behavior, not configurable from the dashboard. On phones (440px wide or narrower) it doesn't auto-open, because the open chat covers the whole screen; it waits for a tap on the bubble. When the chat window opens (by click or auto-open), an internal analytics session is created and the greeting message is shown.
 
 A **lead** — the customer-facing record in your Recent Leads card — is only created when the AI extracts a contact (name + email) from the conversation. You can therefore test the widget on your own site without populating your lead pipeline; just don't give it a real name and email mid-chat.
 
