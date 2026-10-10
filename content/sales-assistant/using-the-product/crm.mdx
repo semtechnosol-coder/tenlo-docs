@@ -1,6 +1,6 @@
 ---
 title: CRM integration
-lastUpdated: 2026-05-29
+lastUpdated: 2026-10-10
 ---
 
 import { Callout } from '../../../components/Callout'
@@ -14,27 +14,35 @@ Two CRMs supported: **HubSpot** and **Pipedrive**. Connecting one (or both) lets
 | Trigger | HubSpot action | Pipedrive action |
 |---|---|---|
 | Lead captured | Upsert Contact; create Deal *"Tenlo Lead — \[name]"* | Upsert Person; create Deal *"Tenlo Lead — \[name]"* |
-| Lead scored | Advance Deal stage based on score bucket | Mark Deal won if score ≥80 |
-| Lead booked (Calendly) | Advance Deal to `qualifiedtobuy` | Mark Deal won |
-| Booking cancelled (Calendly) | No automatic action — manual follow-up | No automatic action |
+| Lead scored 60 or higher | Move Deal forward to **Qualified to buy** | Move Deal forward to your **Qualified** stage |
+| Meeting booked | Move Deal forward to **Presentation scheduled** | Move Deal forward to your **demo / meeting** stage |
+| Booking cancelled | No automatic action — manual follow-up | No automatic action |
 
-## HubSpot deal stage mapping
+Two rules apply to both CRMs:
 
-| Score | HubSpot stage |
+- **Tenlo never closes a deal.** A good score or a booked meeting isn't a sale, so Tenlo never marks a deal won or lost. That stays your call.
+- **Deals only move forward.** If a deal is already further along, including anything you moved by hand, Tenlo leaves it where it is. A late score never pulls a booked deal back.
+
+## HubSpot deal stages
+
+New deals start at **Appointment scheduled**, the first stage of HubSpot's default pipeline.
+
+| Event | HubSpot stage |
 |---|---|
-| ≥80 (`hot`) | `qualifiedtobuy` |
-| 60–79 (`good_fit`) | `presentationscheduled` |
-| under 60 (`low_fit`) | `appointmentscheduled` |
+| Score 60 or higher (`good_fit` or `hot`) | `qualifiedtobuy` |
+| Score under 60 (`low_fit`) | no change |
+| Meeting booked | `presentationscheduled` |
 
-These map to HubSpot's default deal pipeline. If you use a custom pipeline, the deal still creates but stage names may not match — contact support to align.
+These are HubSpot's default deal pipeline stages. On a custom pipeline the deal is still created and kept up to date with the contact, but Tenlo doesn't move it between stages. Contact support if you'd like it aligned.
 
-## Pipedrive deal status
+## Pipedrive deal stages
 
-Pipedrive has a simpler model:
+Pipedrive stage names are yours, so Tenlo matches on the name, in the deal's own pipeline:
 
-- **Score ≥80** → deal status `won`
-- **Otherwise** → deal stays `open` at default stage
-- **Booking** → deal `won`
+- **Score 60 or higher** → the first stage with *qualif* in its name (e.g. "Qualified").
+- **Meeting booked** → the first stage with *demo*, *meeting*, *appointment*, *scheduled* or *booked* in its name (e.g. "Demo Scheduled").
+
+If no stage name matches, the deal stays where it is. Won and lost deals are never touched.
 
 Pipedrive deals are linked to the Person only — **no Organisation is created for P05 leads**, because the chat doesn't reliably capture company info. If you need Org-level pipeline tracking, create and link the Organisation manually. On the roadmap once company info is reliably available from the conversation.
 
