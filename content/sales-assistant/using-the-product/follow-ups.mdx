@@ -1,28 +1,80 @@
 ---
-title: Approved follow-up emails
-lastUpdated: 2026-10-09
+title: Follow-ups
+lastUpdated: 2026-11-06
 ---
 
 import { Callout } from '../../../components/Callout'
 
-# Approved follow-up emails.
+# Follow-ups.
 
-Some qualified visitors leave without booking. Follow-ups give each of them one email from you, drafted by the AI and sent only after you approve it.
+Some qualified visitors leave without booking. Follow-ups keep the conversation going: the AI drafts each message from the chat, you approve it (or let clean drafts send on their own), and Tenlo stops as soon as the lead responds.
 
 ## What it does
 
-- **One follow-up per lead.** Only leads scored **good fit** or **hot** that didn't book a meeting are eligible.
-- **Drafted by AI, approved by you.** After the delay you choose, the AI writes a draft based on the conversation. It waits in the **Follow-ups** tab until you approve it. Nothing sends without your approval.
-- **Cancelled when it no longer makes sense.** If the visitor comes back, books a meeting, or opts out before the email goes out, the follow-up is cancelled.
+- **Only for qualified leads.** Leads scored **good fit** or **hot** that left an email and didn't book a meeting are eligible.
+- **Drafted by AI, approved by you.** After the delay you choose, the AI writes a draft based on the conversation. It waits in the **Follow-ups** tab until you approve it.
+- **A sequence you choose.** Send one email, or a short sequence of three or four. See [Sequences](#sequences).
+- **Stops by itself.** A reply, a booking or an opt-out ends the follow-ups for that lead. See [What stops a sequence](#what-stops-a-sequence).
 
 ## Turning it on
 
-Follow-ups are **off by default** for every business. Turn them on in the follow-up card at **Settings → Sales Assistant**, and set how long after the conversation the draft should be prepared (the delay).
+Follow-ups are **off by default** for every business. Turn them on in the follow-up card at **Settings → Sales Assistant**, set how long after the conversation the first draft should be prepared (the delay), and pick a sequence.
+
+## Sequences
+
+| Sequence | What the lead gets |
+|---|---|
+| **One follow-up email** | One email after the chat. This is the default. |
+| **General services (3 emails)** | A follow-up, a helpful check-in 3 days later, and a last note a week after that. |
+| **Real estate: buyer (4 emails)** | A follow-up, then what they're looking for, a buying-process tip and a last check-in, over about two and a half weeks. |
+| **Real estate: seller (4 emails)** | A follow-up, then what a pricing conversation covers, a preparation tip and a last check-in, over about three and a half weeks. |
+
+The AI writes every step for that lead, from their chat and the messages already sent. Only facts from your Knowledge Base and Products & services field are used.
+
+Changing the sequence applies to new leads. Leads already in a sequence finish the one they started.
+
+### Sending the check-in as a text
+
+If [text messages](/sales-assistant/using-the-product/text-messages) are on, you can tick **Send the check-in as a text**. The second step of a multi-email sequence then goes out as a short text from your number, when the lead left a Canadian phone number and hasn't opted out of texts. Everyone else gets the email instead.
+
+Texts follow the same approval as emails, and each one counts toward your monthly text allowance.
 
 ## Approving drafts
 
-Open the **Follow-ups** tab on the Sales Assistant dashboard. Each draft shows the lead and the email the AI wrote. You can edit the subject and body before you approve it. Approving sends it. Drafts you don't approve never go out.
+Open the **Follow-ups** tab on the Sales Assistant dashboard. Each draft under **Needs approval** shows the lead and what the AI wrote. You can edit it before you approve. Drafts you don't approve never go out.
 
-<Callout type="note" title="One email, not a sequence">
-Follow-ups are deliberately limited to a single email per lead. For multi-step outbound to people who haven't visited your site, see [Sales Outreach AI](/sales-outreach).
+Approved messages send between 9am and 8pm in your time zone. Texts also wait out quiet hours in the lead's time. **Sequences in progress** shows leads between steps, where you can stop a sequence or mark that the lead replied.
+
+### Sending clean drafts automatically
+
+Tick **Send clean drafts automatically** to skip approval when the AI is confident. A draft sends on its own only when it passes every check and answers everything from your content. Anything else still waits for you.
+
+Follow-up messages send on their own only if a booking calendar is connected, so Tenlo can tell the lead hasn't booked.
+
+## When a lead replies
+
+Replies to your follow-up emails come back through Tenlo. Each reply:
+
+1. Stops the lead's sequence.
+2. Is added to the lead's conversation.
+3. Is forwarded to your business contact email, so you can answer from your own inbox.
+
+The AI also drafts an answer, which appears under **Replies** on the Follow-ups tab for you to approve. With automatic sending on, a clean answer can go out by itself, and the forwarded email tells you so. Choose **Don't send, I'll answer** under **Replies** if you'd rather reply yourself. Complaints, billing questions and requests to speak to a person always wait for you.
+
+## What stops a sequence
+
+Any of these ends the follow-ups for a lead, and each is re-checked right before every send:
+
+- The lead replies by email or text, or comes back to the chat.
+- The lead books a meeting. A click on the booking link doesn't count.
+- The lead unsubscribes, replies STOP, or is on your do-not-contact list.
+- You stop the sequence, or mark that the lead replied.
+- The lead is no longer a good fit or hot.
+- You reject a step, or a step can't be sent.
+- Six months pass since the lead's enquiry.
+
+If Tenlo can't tell whether a lead has replied or booked, the message pauses rather than sends. The timeline on each follow-up shows every approval, send and stop reason.
+
+<Callout type="note" title="Leads who came to you">
+Follow-ups only go to people who contacted you through the assistant. For outreach to people who haven't visited your site, see [Sales Outreach AI](/sales-outreach).
 </Callout>
