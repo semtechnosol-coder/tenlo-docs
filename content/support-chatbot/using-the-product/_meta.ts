@@ -8,6 +8,7 @@ export default {
   handoff: 'Handoff to a human',
   'trigger-phrases': 'Trigger phrases',
   conversations: 'The Conversations inbox',
+  outcomes: 'Outcomes',
   notifications: 'Notifications',
   theming: 'Theming & branding',
   reports: 'Monthly ROI reports',

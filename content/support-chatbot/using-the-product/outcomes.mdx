@@ -1,0 +1,57 @@
+---
+title: Outcomes
+lastUpdated: 2026-11-10
+---
+
+import { Callout } from '../../../components/Callout'
+
+# Outcomes.
+
+**Support Chatbot → Outcomes** shows how conversations ended, who came back, what happened to handoffs, and what your knowledge fixes changed. Pick **Last 30 days** or **Last 90 days**, and one channel or all of them (website chat, hosted chat page, email).
+
+Only conversations where the visitor typed something are counted. Chats you marked as a test in [Conversations](/support-chatbot/using-the-product/conversations) are left out.
+
+<Callout type="note" title="Counts, not a score">
+There's no single resolution percentage. Most visitors neither rate a reply nor come back, so **Unknown** is usually the biggest group. That is the honest answer, not a problem with your chatbot. Under 20 conversations, read the numbers as individual cases rather than a trend.
+</Callout>
+
+## How conversations ended
+
+Each conversation gets one outcome, checked in this order, once 7 days have passed since it started:
+
+| Outcome | When |
+|---|---|
+| **Not resolved** | The last reply got a thumbs down or was marked wrong, a handoff was closed as not resolved, or the same signed-in person asked the same thing again within 7 days |
+| **Resolved by your team** | Someone closed the handoff as resolved |
+| **Resolved, said the visitor** | Thumbs up on the last reply, no thumbs down, and they didn't come back about it |
+| **Handed off, outcome not recorded** | The visitor was handed to your team and nobody recorded how it ended. Mark these in Conversations. |
+| **Went unanswered** | The last reply couldn't answer and the visitor didn't ask for a person |
+| **Unknown** | Answered, then nothing. A visitor who left happy looks the same as one who gave up. |
+| **Too recent to tell** | Started in the last 7 days. A return visit could still change it. |
+
+## Came back within 7 days
+
+Tenlo only matches what it knows for sure:
+
+- **Same person:** a signed-in visitor (your site passes their identity to the widget) or an email that passed sender checks.
+- **Probably the same person:** the same email address, where one side was typed into the handoff form and isn't verified.
+- **Can't tell who it was:** anonymous chats. They're never matched by wording, browser or IP address.
+
+Each is split into the **same question** or a **different or unclear** one. The same person asking the same thing again is the signal that the first answer didn't work.
+
+## Handoffs
+
+How many times the chatbot offered a person, how many visitors accepted, and how many your team closed as resolved or not resolved. "No outcome recorded" includes recent handoffs that are still too recent above.
+
+## What people said about the replies
+
+Thumbs up and down on bot replies, how many conversations got any rating, and how many replies your team marked wrong. Visitors rarely rate, and the ones who do lean negative.
+
+## Your team's effort and answer quality after fixes
+
+These two sections cover the [knowledge fixes](/support-chatbot/using-the-product/dashboard#knowledge-fixes-tab) opened in the period, across all channels:
+
+- **Effort:** fixes opened, approved, rejected, still waiting, draft edits, and the time from opened to decided (waiting time included — Tenlo doesn't track how long anyone worked on one).
+- **Quality:** whether the fix came from a gap in your content or an answer marked wrong, whether the question came back after the fix, whether the corrected entry is found when the questions are asked again, and how your saved tests did before and after.
+
+No model scores the replies. Everything here comes from what visitors and your team did.

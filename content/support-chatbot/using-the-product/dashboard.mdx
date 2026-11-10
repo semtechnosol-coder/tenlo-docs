@@ -1,19 +1,19 @@
 ---
 title: Dashboard at a glance
-lastUpdated: 2026-10-09
+lastUpdated: 2026-11-10
 ---
 
 import { Callout } from '../../../components/Callout'
 
 # Dashboard at a glance.
 
-Your dashboard lives at [app.tenloai.com/dashboard/chatbot](https://app.tenloai.com/dashboard/chatbot). The left rail has four tabs — **Overview**, **Conversations**, **Knowledge Base**, and **Coverage** — plus a **Settings** shortcut that opens the consolidated Settings hub at **Settings → Support Chatbot**.
+Your dashboard lives at [app.tenloai.com/dashboard/chatbot](https://app.tenloai.com/dashboard/chatbot). The left rail has seven tabs — **Overview**, **Conversations**, **Outcomes**, **Coverage**, **Knowledge fixes**, **Tests** and **Knowledge base** — plus a **Settings** shortcut that opens the consolidated Settings hub at **Settings → Support Chatbot**.
 
 ## Overview tab
 
 | Block | What it shows |
 |---|---|
-| KPI tiles | Total Conversations · Resolution Rate · Human Handoffs · FAQ Entries |
+| KPI tiles | Total Conversations · Answered Rate · Human Handoffs · FAQ Entries. Answered Rate is the share whose last reply wasn't a fallback, not a resolution rate; test chats aren't counted. |
 | Onboarding checklist | 8 steps; complete in order |
 | Test Chat Sandbox | Try the bot with the same RAG flow real visitors hit |
 | Widget install block | Your `<script>` snippet with copy button + **Verify Installation** |
@@ -21,7 +21,19 @@ Your dashboard lives at [app.tenloai.com/dashboard/chatbot](https://app.tenloai.
 
 ## Conversations tab
 
-Two-pane inbox of every chat that's happened, with filters for `all` / `resolved` / `unresolved` / `handed_off`. Click a conversation to read the full thread and see per-message confidence scores. See [The Conversations inbox](/support-chatbot/using-the-product/conversations).
+Two-pane inbox of every chat that's happened, with filters for **All** / **Answered** / **Not answered** / **Handed off**. Mark how a handoff ended, or mark a chat as a test. Click a conversation to read the full thread and see per-message confidence scores. See [The Conversations inbox](/support-chatbot/using-the-product/conversations).
+
+## Outcomes tab
+
+How conversations ended, who came back with the same question, what happened to handoffs, what visitors and your team said about replies, and what your knowledge fixes changed. Counts only, no single resolution percentage. See [Outcomes](/support-chatbot/using-the-product/outcomes).
+
+## Knowledge fixes tab
+
+Suggested corrections to your knowledge base, from questions the bot kept missing and from replies marked wrong (a visitor's thumbs down or your **Answer was wrong**). Edit the draft, then approve or reject it. Nothing changes in your knowledge base until you approve.
+
+## Tests tab
+
+Save the questions you never want the chatbot to get wrong, with checks on the reply, and replay them after you change your knowledge base. **Add starter tests** adds a general set to begin with. Approving a knowledge fix reruns the tests it could affect and shows the result before and after.
 
 ## Knowledge Base tab
 
