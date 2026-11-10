@@ -1,7 +1,9 @@
 ---
 title: Monthly ROI reports
-lastUpdated: 2026-06-02
+lastUpdated: 2026-11-10
 ---
+
+import { Callout } from '../../../components/Callout'
 
 # Monthly ROI reports.
 
@@ -11,14 +13,27 @@ On the **1st of each month at ~9am Eastern**, your account owner receives a one-
 
 | Block | What it shows |
 |---|---|
-| Conversations | Total, deflected (resolved without handoff), handoffs, deflection rate, average messages per conversation |
+| Conversations | Total, **answered without a handoff**, handoffs, and average messages per conversation |
 | Messages | User vs assistant counts, plus a count of fallbacks (where the bot couldn't answer with confidence) |
 | FAQ hits | How many assistant messages drew on a curated FAQ entry (aggregate-only) |
 | KB snapshot | Total FAQs and ingested documents at end of period |
-| ROI summary | Time saved (deflected conversations × 5 minutes × $50/hour). Tenlo counts *deflected* only, not total — handoff conversations still required staff time, so counting them would be dishonest. |
-| Customer-satisfaction line | Labelled *"needs calibration (V2)"* until Tenlo has direct CSAT signals |
+| ROI summary | **Time saved:** conversations answered without a handoff × 5 minutes × your hourly rate ($50/hour unless you set your own in ROI assumptions). **Support cost avoided beyond staff time:** shown once you enter your cost per support ticket. |
 
-If you have other Tenlo products, those sections appear in the same email. Chatbot-only customers see only the P01 block.
+Chats you marked as a test in Conversations aren't counted anywhere in the report.
+
+## What "answered without a handoff" means
+
+A conversation counts when the chatbot's last reply wasn't a fallback, the visitor didn't hand off to a person, and nobody said that last reply was wrong: no thumbs down from the visitor and no **Answer was wrong** from your team.
+
+<Callout type="note" title="It isn't proof the question was solved">
+Most visitors don't rate replies. A visitor who got a poor answer and left without saying so looks the same as one who was helped, so this number, and the time saved built on it, is an upper bound. Earlier reports called it "deflected" and also counted answers that had been marked wrong.
+</Callout>
+
+For how conversations actually ended (resolved, not resolved, handed off, unknown), and who came back with the same question, see the [Outcomes tab](/support-chatbot/using-the-product/outcomes).
+
+Handoff conversations aren't counted toward time saved: someone on your team still spent time on them.
+
+If you have other Tenlo products, those sections appear in the same email. Chatbot-only customers see only the Support Chatbot block.
 
 ## Archive
 

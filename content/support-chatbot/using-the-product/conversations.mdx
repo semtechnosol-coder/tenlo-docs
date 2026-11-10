@@ -1,6 +1,6 @@
 ---
 title: The Conversations inbox
-lastUpdated: 2026-10-09
+lastUpdated: 2026-11-10
 ---
 
 import { Callout } from '../../../components/Callout'
@@ -14,22 +14,35 @@ import { Callout } from '../../../components/Callout'
 Left pane shows recent conversations. Each card has:
 
 - **Visitor name** (or *"Anonymous visitor"* if not collected)
-- **Started date** + time
-- **Status badges** — `Resolved` / `Unresolved` / `Handed off`
-- **Source** — `widget` or `hosted_page`
+- **Started date**
+- **Status badge** — `Answered` / `Not answered` / `Handed off` (with how it ended, once recorded)
+- **Source** — `widget`, `hosted_page` or `email`
+- **Test** — shown when you've marked the chat as a test
 
 ## Filter pills
 
 | Filter | Shows |
 |---|---|
 | **All** | Every conversation |
-| **Resolved** | Last message had high confidence (not handed off) |
-| **Unresolved** | Last message was a fallback (no handoff form submitted) |
-| **Handed off** | Visitor submitted the handoff form |
+| **Answered** | The bot's last reply wasn't a fallback, and there was no handoff |
+| **Not answered** | The bot's last reply was a fallback, and there was no handoff |
+| **Handed off** | The visitor was handed to your team |
+
+<Callout type="note" title="Answered isn't the same as resolved">
+"Answered" only means the last reply wasn't a fallback. It doesn't tell you whether the visitor got what they needed. For that, see [Outcomes](/support-chatbot/using-the-product/outcomes).
+</Callout>
 
 ## The thread viewer
 
 Click a conversation → right pane shows the full thread. Each assistant message displays its **confidence score** so you can see exactly how confident the bot was on each turn.
+
+At the top of the thread:
+
+- **Mark answered / Mark not answered** — correct the status by hand.
+- **How did this handoff end?** — on a handed-off chat, mark it **Resolved** or **Not resolved**. This is the only way a handoff counts as resolved in Outcomes; nobody marking it means "outcome not recorded".
+- **This was a test** — under the visitor's name. A test chat stays in this list but is left out of Outcomes, Coverage, the Overview figures, the monthly report and its ROI, the inbox and knowledge-fix suggestions. Click **Undo** to count it again.
+
+Under each assistant reply, **Answer was wrong** opens a knowledge fix for the entry the reply came from.
 
 ## Visitor feedback
 
@@ -51,7 +64,7 @@ Things to look for:
 ## What's not in the dashboard
 
 <Callout type="note">
-- **No visitor session continuity.** Each page reload = new conversation. Tenlo doesn't track returning visitors.
+- **Anonymous visitors aren't followed between visits.** Each page reload is a new conversation. If your site tells the widget who's signed in, [Outcomes](/support-chatbot/using-the-product/outcomes) can tell when the same person came back.
 - **No conversation export.** Today, transcripts live in the dashboard. Email support@tenloai.com for a one-off export.
 - **No live conversation viewer.** You see conversations after they happen, not as they're happening (yet).
 - **No analytics events.** The widget doesn't fire to GA, PostHog, Segment, etc. You can add your own tracking on the host page if you want.
