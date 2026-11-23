@@ -1,6 +1,6 @@
 ---
 title: Handoff to a human
-lastUpdated: 2026-06-14
+lastUpdated: 2026-11-23
 ---
 
 import { Callout } from '../../../components/Callout'
@@ -25,13 +25,16 @@ The bot says:
 ## What happens after the visitor submits the form
 
 1. The conversation is marked `handed_off`
-2. The full transcript is sent to your **handoff email** (Settings → Support Chatbot → Handoff Rules)
-3. If you've configured Slack or Teams notifications, they fire too — see [Notifications](/support-chatbot/using-the-product/notifications)
-4. The visitor sees: *"Thanks \[name]! Someone from our team will be in touch shortly."*
+2. A **Handoff** alert goes to the people and channels on the Handoff row of the Notifications card (Settings → Support Chatbot → Notifications). See [Notifications](/support-chatbot/using-the-product/notifications)
+3. The visitor is told someone will be in touch only if the alert actually went out. If it couldn't be sent, they're told so instead of being promised a reply
 
-## Configuring the handoff email
+## When the visitor doesn't hand off
 
-**Settings → Support Chatbot → Handoff Rules → Handoff notification email.** Best practice:
+If the bot couldn't answer a question and the visitor leaves without sending the form, you still hear about it: a **Couldn't answer** alert goes out once the chat has been quiet for 15 minutes. It's on by default for the Handoff row's email address. If the visitor hands off within those 15 minutes, you get only the handoff alert.
+
+## Configuring who gets the handoff email
+
+**Settings → Support Chatbot → Notifications → Handoff row → Email.** You can enter up to 5 addresses. Best practice:
 
 - Use a **shared inbox** (e.g. `support@yourbusiness.com`) so multiple team members can see and reply
 - Don't use a personal address that may go to spam or get missed

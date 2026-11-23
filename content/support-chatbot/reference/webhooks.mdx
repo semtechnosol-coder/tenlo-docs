@@ -1,0 +1,140 @@
+---
+title: Webhook events
+description: Signed webhook events the Support Chatbot sends to a partner's system
+lastUpdated: 2026-11-23
+---
+
+import { Callout } from '../../../components/Callout'
+
+# Webhook events.
+
+For partners who handle Support Chatbot conversations in their own system (a help desk, a support inbox). Tenlo POSTs a signed JSON event to your HTTPS endpoint for each kind of conversation you've asked for.
+
+<Callout type="note" title="Set up by Tenlo">
+Webhooks are connected by Tenlo, not from Settings. Tell us your endpoint URL and which events you want; we send you the signing secret. Ask us to switch on a new event only once your endpoint accepts it: an event your endpoint rejects is retried for about 15 hours, then alerts our team.
+</Callout>
+
+## Events
+
+| Event | Sent when | `reason` |
+|---|---|---|
+| `p01.handoff_requested` | The visitor sent the handoff form. At once. | `visitor_requested`, `asked_for_person` or `unanswered` (see below) |
+| `p01.unanswered_question` | The bot couldn't answer at least one real question and the chat went quiet for 15 minutes without a handoff | `unanswered_question` |
+| `p01.conversation_answered` | Every question was answered and the chat went quiet for 15 minutes | `answered` |
+
+`p01.handoff_requested` is on for every webhook. The other two are off until you ask for them.
+
+Each conversation sends **at most one event of each kind**. A chat that had an unanswered question and then a handoff within the 15 minutes sends only `p01.handoff_requested`.
+
+Handoff `reason` values:
+
+- `asked_for_person`: the visitor asked for a person (a trigger phrase or a plain request)
+- `unanswered`: the bot's last reply was one it couldn't answer, and the visitor then handed off
+- `visitor_requested`: anything else, for example the visitor opened the form themselves
+
+## Request
+
+```http
+POST /your/endpoint HTTP/1.1
+Content-Type: application/json
+User-Agent: Tenlo-Webhooks/1.0
+x-tenlo-event-id: 6f1c2d4e-8a9b-4c3d-9e2f-1a2b3c4d5e6f
+x-tenlo-timestamp: 1795449600
+x-tenlo-signature: 3b5f...e9a1
+```
+
+| Header | Meaning |
+|---|---|
+| `x-tenlo-event-id` | Unique per event. Same value as `event_id` in the body. |
+| `x-tenlo-timestamp` | Unix time in seconds when this attempt was signed |
+| `x-tenlo-signature` | Hex HMAC-SHA256 of the timestamp, a dot, and the raw body |
+
+## Verifying the signature
+
+1. Read the raw request body as text, before parsing it.
+2. Compute HMAC-SHA256 with your signing secret over `<x-tenlo-timestamp>.<raw body>` and hex-encode it.
+3. Compare it with `x-tenlo-signature` in constant time.
+4. Reject the request if the timestamp is more than 5 minutes from your clock.
+
+```js
+import { createHmac, timingSafeEqual } from 'node:crypto'
+
+function verify(secret, timestamp, signature, rawBody, now = Date.now()) {
+  if (!secret || !timestamp || !signature) return false
+  if (Math.abs(now - Number(timestamp) * 1000) > 5 * 60 * 1000) return false
+  const expected = createHmac('sha256', secret).update(`${timestamp}.${rawBody}`).digest()
+  const given = Buffer.from(signature.replace(/^sha256=/, ''), 'hex')
+  return given.length === expected.length && timingSafeEqual(given, expected)
+}
+```
+
+## Responding, retries and duplicates
+
+- Reply with any **2xx** within 5 seconds. Anything else, including a redirect or a timeout, is a failure.
+- A failure is retried after 1 minute, 5 minutes, 30 minutes, 2 hours and 12 hours. After that the event is dropped and Tenlo's team is alerted.
+- **Dedupe on `event_id`.** A slow 2xx can still be retried, so the same event may arrive more than once. Retries carry the same `event_id` and body, with a new timestamp and signature.
+
+## Payload
+
+Every event has the same shape:
+
+| Field | Type | Notes |
+|---|---|---|
+| `event` | string | One of the three events above |
+| `event_id` | string | Unique per event; dedupe on it |
+| `created_at` | string | ISO 8601 time the event was created |
+| `chatbot_id` | string | |
+| `business_id` | string | |
+| `conversation.id` | string | |
+| `conversation.source` | string or null | `widget` for the website chat |
+| `conversation.page_url` | string or null | The page the chat started on |
+| `conversation.started_at` | string or null | |
+| `conversation.context` | object or null | What your app passed to the widget when it opened |
+| `conversation.agent_ref` | string or null | From a signed embed token |
+| `conversation.external_user_ref` | string or null | From a signed embed token |
+| `conversation.identity_verified` | boolean | True when a signed embed token vouched for the visitor |
+| `visitor.name`, `visitor.email` | string or null | Never guessed |
+| `reason` | string | See the events table |
+| `last_fallback_reason` | string or null | Why the bot's last reply couldn't answer, when it couldn't |
+| `transcript` | array | `{ role: "user" \| "assistant", content, created_at }`, oldest first |
+| `transcript_truncated` | boolean | True when older messages were dropped (the newest 100 messages, up to 30,000 characters, are kept) |
+| `unanswered_questions` | array | `p01.unanswered_question` only: `{ content, asked_at, fallback_reason }`, oldest first, at most 5 |
+
+### Example: `p01.unanswered_question`
+
+```json
+{
+  "event": "p01.unanswered_question",
+  "event_id": "6f1c2d4e-8a9b-4c3d-9e2f-1a2b3c4d5e6f",
+  "created_at": "2026-11-23T15:20:00.000Z",
+  "chatbot_id": "3a1e...",
+  "business_id": "9c2b...",
+  "conversation": {
+    "id": "c0ff...",
+    "source": "widget",
+    "page_url": "https://app.example.com/billing",
+    "started_at": "2026-11-23T15:02:11.000Z",
+    "context": { "page_title": "Billing" },
+    "agent_ref": "agent_42",
+    "external_user_ref": "user-1",
+    "identity_verified": true
+  },
+  "visitor": { "name": "Laura", "email": "laura@example.com" },
+  "reason": "unanswered_question",
+  "last_fallback_reason": "no_match",
+  "transcript": [
+    { "role": "user", "content": "Why was I charged twice this month?", "created_at": "2026-11-23T15:03:40.000Z" },
+    { "role": "assistant", "content": "I'm not sure I have the right information to answer that. Would you like me to connect you with a human who can help?", "created_at": "2026-11-23T15:03:42.000Z" }
+  ],
+  "transcript_truncated": false,
+  "unanswered_questions": [
+    { "content": "Why was I charged twice this month?", "asked_at": "2026-11-23T15:03:40.000Z", "fallback_reason": "no_match" }
+  ]
+}
+```
+
+`p01.handoff_requested` and `p01.conversation_answered` look the same, with their own `event` and `reason` and no `unanswered_questions`.
+
+<Callout type="note" title="The visitor wasn't promised a reply">
+On `p01.unanswered_question` the bot offered the visitor a person but didn't tell them anyone would follow up. If you reply, it's a welcome surprise, not a promise kept.
+</Callout>
