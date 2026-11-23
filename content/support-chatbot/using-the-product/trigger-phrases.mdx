@@ -1,6 +1,6 @@
 ---
 title: Trigger phrases
-lastUpdated: 2026-06-14
+lastUpdated: 2026-11-23
 ---
 
 import { Callout } from '../../../components/Callout'
@@ -28,9 +28,14 @@ Common triggers:
 
 ## How matching works
 
-- **Substring match** — the visitor's message just has to *contain* the phrase
+- **Whole words**: the phrase must appear as whole words: `agent` matches *"can I talk to an agent"* but not *"which agents are listed"*, and `real person` doesn't match *"surreal personality"*
 - **Case-insensitive** — `Cancel` matches `cancel`
+- **Spacing doesn't matter**: extra spaces or a line break between the words still match
 - **Lowercased on save** so what you type and what gets matched are stable
+
+<Callout type="note" title='Why there is no "call me"'>
+Earlier accounts had `call me` as a default trigger. It matched *"you can call me Bob"*, so it was removed in November 2026. Real call-back requests like *"please call me back"* are still recognised as a request for a person without it.
+</Callout>
 
 A visitor saying *"hi, I'd like to cancel my account please"* triggers the `cancel my account` phrase and gets handoff immediately, even if your KB has detailed cancellation FAQs.
 

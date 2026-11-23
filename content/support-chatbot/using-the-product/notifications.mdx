@@ -1,47 +1,75 @@
 ---
 title: Notifications
-lastUpdated: 2026-10-09
+lastUpdated: 2026-11-23
 ---
 
 import { Callout } from '../../../components/Callout'
 
 # Notifications.
 
-When a handoff fires, you can route the alert to whatever channels your team actually monitors — Slack, Microsoft Teams, or email.
+Choose who hears about each kind of conversation, and where: email, Slack, Microsoft Teams, or (for partners) a signed webhook.
 
-## The event
+## Three kinds of conversation
 
-| Event | Fires when |
-|---|---|
-| `p01.handoff` | Visitor submits the handoff form |
+| Kind | When it's sent | Default |
+|---|---|---|
+| **Handoff** | The visitor asked for a person and sent the handoff form | On, by email |
+| **Couldn't answer** | The bot had no answer in your knowledge base for at least one real question, and the visitor didn't hand off | On, by email |
+| **Answered** | Every question in the chat was answered | Off |
 
-Other Tenlo products fire other events into the same notification system — see [Reputation AI](/reputation-ai/using-the-product/notifications) and [Sales Assistant](/sales-assistant/using-the-product/notifications).
+Handoff alerts go out as soon as the visitor sends the form. **Couldn't answer** and **Answered** go out once a chat has been quiet for 15 minutes, so the visitor has time to finish or ask for a person.
 
-## Adding a channel
+A "real question" reads like a question, or is a statement of five words or more. A bare "hi" or "thanks" that the bot didn't answer never sends an alert.
 
-Your account email is added as a channel automatically and can't be removed. To add more destinations, go to **Top nav → Settings → Notifications → + Add channel** and pick:
+## One alert per conversation
 
-- **Slack** — paste an Incoming Webhook URL (Slack → Apps → Incoming Webhooks → Add to channel)
-- **Microsoft Teams** — paste an Incoming Webhook URL (Teams channel → Connectors → Incoming Webhook)
+Each conversation sends **at most one alert of each kind**, however many questions go unanswered and however often the system retries a failed delivery.
 
-## Subscribing handoffs to a channel
+If a visitor hits a question the bot can't answer and then asks for a person within those 15 minutes, you get **one** alert: the handoff. If they come back later and hand off after a Couldn't answer alert already went out, the handoff alert still sends, because it's new information.
 
-After adding the channel, find the `p01.handoff` row in the per-event toggle grid and flip it on. Done — handoffs now fire to that channel.
+## Setting it up
 
-<Callout type="note" title="Existing handoff email keeps working">
-If you've previously set a **Handoff email** in chatbot Settings, it keeps working as the default email channel — you don't need to reconfigure anything. The Notifications system layers on top.
+Go to **Settings → Support Chatbot → Notifications**. The card has a row for each kind and a column for each channel:
+
+- **Email**: tick to send, and enter who receives it. Separate several addresses with commas (up to 5 per row). A row you've never edited uses the Handoff row's addresses.
+- **Slack** and **Teams**: one column per channel you've connected. Tick the rows that channel should get.
+- **Webhook**: only shown if Tenlo has connected a webhook for your chatbot. It's read-only; ask us to change which events it receives.
+
+<Callout type="note" title="Existing accounts">
+If you had a handoff notification email before this card existed, it's already in the Handoff row, and Couldn't answer is switched on for the same address. You don't need to change anything.
 </Callout>
 
-## Test ping
+## Adding a Slack or Teams channel
 
-Each channel has a **Send test** button. Use it before relying on a brand-new webhook to make sure the wiring is correct.
+Your account email is added as a channel automatically and can't be removed. To add more, go to **Settings → Notifications → + Add channel** and pick:
 
-## What the alerts look like
+- **Slack**: paste an Incoming Webhook URL (Slack → Apps → Incoming Webhooks → Add to channel)
+- **Microsoft Teams**: paste an Incoming Webhook URL (Teams channel → Connectors → Incoming Webhook)
 
-- **Slack** — Block Kit message with visitor name, email, the question that triggered handoff, and a link back to the conversation in your dashboard
-- **Teams** — MessageCard format with the same content
-- **Email** — full transcript (the original handoff email format)
+A new channel starts with Handoff and Couldn't answer switched on; tick Answered if you want it. A Slack or Teams channel added before 23 November 2026 starts with Couldn't answer off; tick it on the Notifications card.
+
+Each channel has a **Send test** button. Use it before relying on a brand-new webhook.
+
+## What an alert contains
+
+| | Handoff | Couldn't answer | Answered |
+|---|---|---|---|
+| Visitor name and email ("Not provided" if not given) | ✓ | ✓ | ✓ |
+| The question or questions it couldn't answer (up to 5) | | ✓ | |
+| The page the visitor was on | | ✓ | ✓ |
+| The last few lines of the chat | ✓ | ✓ | ✓ |
+| A link to Conversations | ✓ | ✓ | ✓ |
+
+Email alerts come from `alerts@tenloai.com`. When the visitor gave an email address, replying to the alert goes straight to them.
+
+## What the visitor is told
+
+The bot never tells a visitor their question has been passed on. When it can't answer, it offers to connect them with a person; the Couldn't answer alert to your team is separate, and the visitor isn't promised a follow-up. If they want one, they use the handoff form. See [Handoff to a human](/support-chatbot/using-the-product/handoff).
 
 ## Auto-revoke
 
-If a webhook URL becomes invalid (channel deleted, app removed, returns 404/410), the system auto-marks it inactive and emails you. Re-add it whenever convenient.
+If a Slack or Teams webhook URL stops working (channel deleted, app removed, returns 404 or 410), the channel is marked inactive and you get an email. Re-add it whenever convenient.
+
+## For partners: webhook events
+
+Partners who receive conversations in their own system can get each kind as a signed webhook event. See [Webhook events](/support-chatbot/reference/webhooks).

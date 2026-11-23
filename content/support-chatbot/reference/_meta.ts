@@ -3,4 +3,5 @@ export default {
   billing: 'Pricing & billing',
   faq: 'Frequently asked questions',
   troubleshooting: 'Troubleshooting',
+  webhooks: 'Webhook events',
 }
